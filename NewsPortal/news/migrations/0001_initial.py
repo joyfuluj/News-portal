@@ -30,7 +30,7 @@ class Migration(migrations.Migration):
                 ('url', models.CharField(max_length=100)),
                 ('image_url', models.CharField(max_length=100)),
                 ('content', models.CharField(max_length=1000)),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='polls.user')),
+                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='news.user')),
             ],
         ),
     ]
