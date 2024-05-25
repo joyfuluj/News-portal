@@ -9,6 +9,7 @@ class User(models.Model):
     password = models.CharField(max_length=128, default=make_password('default_pass'))
     date_registered = models.DateField(auto_now_add=True)
 
+    # TO FIX
     def save(self, *args, **kwargs):
         if not self.pk:
             self.password = make_password(self.password)
