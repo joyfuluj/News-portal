@@ -20,10 +20,11 @@ class User(models.Model):
 
 # Bookmark model
 class Bookmark(models.Model):
-    date_bookmarked = models.DateField(auto_now_add=True) 
+    date_bookmarked = models.DateField(auto_now_add=True)
     source = models.CharField(max_length=100)
     title = models.CharField(max_length=100)
-    url = models.URLField(max_length=200) 
+    date_published = models.DateField(null=True, blank=True, default=None)
+    url = models.URLField(max_length=200)
     image_url = models.URLField(max_length=200)
     content = models.TextField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
