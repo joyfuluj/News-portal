@@ -5,132 +5,41 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>ChronoScope</title>
-        <link rel="stylesheet" type="text/css" href="{% static '/css/index.css' %}">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="{% static '/css/reset.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static '/css/index.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.4.0/remixicon.css" crossorigin="">
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg bg-white">
-            <div class="container-fluid justify-content-center">
-                <a class="navbar-brand" href="#"><img id="logo" src="{% static '/images/logo_white.png' %}" alt="logo"></a>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-            </div>
-        </nav>
-
+        <div id="header">
+            <nav class="navbar navbar-expand-lg bg-white">
+                <div class="container-fluid justify-content-center">
+                    <a class="navbar-brand" href="#"><img id="logo-white" src="{% static '/images/logo_white.png' %}" alt="logo"></a>
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+            </nav>
+        </div>
+       
         <div class="wrapper">
-
             <div class="row">
                 <div id="leftside-bar" class="col-md-2">
-                    <div class="d-flex flex-column flex-shrink-0">
-                        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-                        <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-                        <span class="fs-4">Language</span>
-                        </a>
-                        <hr>
-                        <ul class="nav nav-pills flex-column mb-auto">
-                            <li class="nav-item">
-                                <a href="#" class="nav-link link-dark" aria-current="page">
-                                    <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>English
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link link-dark">
-                                    <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>French
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link link-dark">
-                                    <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>Italian
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link link-dark">
-                                    <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>German
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link link-dark">
-                                    <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>Spanish
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link link-dark">
-                                    <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>Russian
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link link-dark">
-                                    <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>Portuguese
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div id="main" class="col-md-8">
-                    <div class="tabs">
-                        <input type="radio" name="tab_name" id="tab1" checked>
-                        <label class="tab_class" for="tab1">Top</label>
-                        <div class="content_class">
-                            <p>タブ1のコンテンツを表示します</p>
-                        </div>
-                        <input type="radio" name="tab_name" id="tab2" >
-                        <label class="tab_class" for="tab2">Technology</label>
-                        <div class="content_class">
-                            <p>タブ2のコンテンツを表示します</p>
-                        </div>
-                        <input type="radio" name="tab_name" id="tab3" >
-                        <label class="tab_class" for="tab3">Sports</label>
-                        <div class="content_class">
-                            <p>タブ3のコンテンツを表示します</p>
-                        </div>
-                        <input type="radio" name="tab_name" id="tab4" >
-                        <label class="tab_class" for="tab4">Entertainment</label>
-                        <div class="content_class">
-                            <p>タブ4のコンテンツを表示します</p>
-                        </div>
-                        <input type="radio" name="tab_name" id="tab5" >
-                        <label class="tab_class" for="tab5">Science</label>
-                        <div class="content_class">
-                            <p>タブ5のコンテンツを表示します</p>
-                        </div>
-                        <input type="radio" name="tab_name" id="tab6" checked>
-                        <label class="tab_class" for="tab6">Local</label>
-                        <div class="content_class">
-                            <p>タブ6のコンテンツを表示します</p>
-                        </div>
-                        <input type="radio" name="tab_name" id="tab7" checked>
-                        <label class="tab_class" for="tab7">Business</label>
-                        <div class="content_class">
-                            <p>タブ7のコンテンツを表示します</p>
-                        </div>
-                        <input type="radio" name="tab_name" id="tab8" checked>
-                        <label class="tab_class" for="tab8">Bookmark</label>
-                        <div class="content_class">
-                            <p>タブ8のコンテンツを表示します</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="rightside-bar" class="col-md-2">
-                    <div class="d-flex flex-column flex-shrink-0">
+                    <div class="">
                         <div class="dropdown">
                             <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-                                <strong>mdo</strong>
+                                <img src="https://www.antiochchurchnc.org/wp-content/uploads/2017/05/Joyful.jpeg" alt="profile-pic" width="32" height="32" class="rounded-circle me-2">
+                                <strong>joyful</strong>
                             </a>
                             <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-                                <li><a class="dropdown-item" href="#">New project...</a></li>
                                 <li><a class="dropdown-item" href="#">Settings</a></li>
-                                <li><a class="dropdown-item" href="#">Profile</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="#">Sign out</a></li>
                             </ul>
                         </div>
                         <hr>
-                        <ul class="nav nav-pills flex-column mb-auto">
+                        <ul class="nav nav-pills flex-column">
                             <li class="nav-item">
                                 <a href="#" class="nav-link active" aria-current="page">
                                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
@@ -140,34 +49,269 @@
                             <li>
                                 <a href="#" class="nav-link link-dark">
                                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
-                                Dashboard
+                                Settings
                                 </a>
                             </li>
+                            <hr>
                             <li>
                                 <a href="#" class="nav-link link-dark">
                                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
-                                Orders
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link link-dark">
-                                <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
-                                Products
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link link-dark">
-                                <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
-                                Customers
+                                Sign out
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </div>
+
+                <div id="main" class="col-md-9">
+                    <div class="tabs">
+                        <input type="radio" name="tab-name" id="tab1" checked>
+                        <label class="tab" for="tab1">Top</label>
+                        <div class="content">
+                            <div class="top-cards">
+                                <a class="card-big" href="#">
+                                    <div class="card card-large">
+                                        <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                        <div class="card-content">
+                                            <div class="title">What is Lorem Ipsum?</div>
+                                            <div> Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+                                            <div class="favorite" >
+                                                <i class="ri-heart-fill"></i>
+                                                <span>3</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <div class="card-small">
+                                    <a id="cd-1" href="#">
+                                        <div class="card">
+                                            <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                            <div class="card-content">
+                                                <div class="title">What is Lorem Ipsum?</div>
+                                                <div> Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+                                                <div class="favorite" >
+                                                    <i class="ri-heart-fill"></i>
+                                                    <span>3</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a id="cd-2" href="#">
+                                        <div class="card">
+                                            <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                            <div class="card-content">
+                                                <div class="title">What is Lorem Ipsum?</div>
+                                                <div> Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+                                                <div class="favorite" >
+                                                    <i class="ri-heart-fill"></i>
+                                                    <span>3</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a id="cd-3" href="#">
+                                        <div class="card">
+                                            <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                            <div class="card-content">
+                                                <div class="title">What is Lorem Ipsum?</div>
+                                                <div> Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+                                                <div class="favorite" >
+                                                    <i class="ri-heart-fill"></i>
+                                                    <span>3</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a id="cd-4" href="#">
+                                        <div class="card">
+                                            <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                            <div class="card-content">
+                                                <div class="title">What is Lorem Ipsum?</div>
+                                                <div> Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+                                                <div class="favorite" >
+                                                    <i class="ri-heart-fill"></i>
+                                                    <span>3</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="cards">
+                                <a id="cd-1" href="#">
+                                    <div class="card">
+                                        <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                        <div class="card-content">
+                                            <div class="title">What is Lorem Ipsum?</div>
+                                            <div> Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+                                            <div class="favorite" >
+                                                <i class="ri-heart-fill"></i>
+                                                <span>3</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a id="cd-2" href="#">
+                                    <div class="card">
+                                        <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                        <div class="card-content">
+                                            <div class="title">What is Lorem Ipsum?</div>
+                                            <div> Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+                                            <div class="favorite" >
+                                                <i class="ri-heart-fill"></i>
+                                                <span>3</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a id="cd-3" href="#">
+                                    <div class="card">
+                                        <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                        <div class="card-content">
+                                            <div class="title">What is Lorem Ipsum?</div>
+                                            <div> Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+                                            <div class="favorite" >
+                                                <i class="ri-heart-fill"></i>
+                                                <span>3</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a id="cd-4" href="#">
+                                    <div class="card">
+                                        <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                        <div class="card-content">
+                                            <div class="title">What is Lorem Ipsum?</div>
+                                            <div> Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+                                            <div class="favorite" >
+                                                <i class="ri-heart-fill"></i>
+                                                <span>3</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <input type="radio" name="tab-name" id="tab2">
+                        <label class="tab" for="tab2">Technology</label>
+                        <div class="content">
+                            <p>タブ2のコンテンツを表示します</p>
+                        </div>
+                        <input type="radio" name="tab-name" id="tab3">
+                        <label class="tab" for="tab3">Sports</label>
+                        <div class="content">
+                            <p>タブ3のコンテンツを表示します</p>
+                        </div>
+                        <input type="radio" name="tab-name" id="tab4">
+                        <label class="tab" for="tab4">Entertainment</label>
+                        <div class="content">
+                            <p>タブ4のコンテンツを表示します</p>
+                        </div>
+                        <input type="radio" name="tab-name" id="tab5">
+                        <label class="tab" for="tab5">Science</label>
+                        <div class="content">
+                            <p>タブ5のコンテンツを表示します</p>
+                        </div>
+                        <input type="radio" name="tab-name" id="tab6">
+                        <label class="tab" for="tab6">Local</label>
+                        <div class="content">
+                            <p>タブ6のコンテンツを表示します</p>
+                        </div>
+                        <input type="radio" name="tab-name" id="tab7">
+                        <label class="tab" for="tab7">Business</label>
+                        <div class="content">
+                            <p>タブ7のコンテンツを表示します</p>
+                        </div>
+                        <input type="radio" name="tab-name" id="tab8">
+                        <label class="tab" for="tab8">Bookmark</label>
+                        <div class="content">
+                            <p>タブ8のコンテンツを表示します</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="rightside-bar" class="col-md-1">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Country
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Australia</a></li>
+                            <li><a class="dropdown-item" href="#">Brazil</a></li>
+                            <li><a class="dropdown-item" href="#">Canada</a></li>
+                            <li><a class="dropdown-item" href="#">China</a></li>
+                            <li><a class="dropdown-item" href="#">France</a></li>
+                            <li><a class="dropdown-item" href="#">Germany</a></li>
+                            <li><a class="dropdown-item" href="#">Hong Kong</a></li>
+                            <li><a class="dropdown-item" href="#">India</a></li>
+                            <li><a class="dropdown-item" href="#">Indonesia</a></li>
+                            <li><a class="dropdown-item" href="#">Iran</a></li>
+                            <li><a class="dropdown-item" href="#">Iraq</a></li>
+                            <li><a class="dropdown-item" href="#">Israel</a></li>
+                            <li><a class="dropdown-item" href="#">Italy</a></li>
+                            <li><a class="dropdown-item" href="#">Japan</a></li>
+                            <li><a class="dropdown-item" href="#">Malaysia</a></li>
+                            <li><a class="dropdown-item" href="#">Mexico</a></li>
+                            <li><a class="dropdown-item" href="#">New Zealand</a></li>
+                            <li><a class="dropdown-item" href="#">Nigerian</a></li>
+                            <li><a class="dropdown-item" href="#">North Korea</a></li>
+                            <li><a class="dropdown-item" href="#">Philippines</a></li>
+                            <li><a class="dropdown-item" href="#">Russia</a></li>
+                            <li><a class="dropdown-item" href="#">Saudi Arabia</a></li>
+                            <li><a class="dropdown-item" href="#">Singapore</a></li>
+                            <li><a class="dropdown-item" href="#">South Africa</a></li>
+                            <li><a class="dropdown-item" href="#">South Korea</a></li>
+                            <li><a class="dropdown-item" href="#">Spain</a></li>
+                            <li><a class="dropdown-item" href="#">Switzerland</a></li>
+                            <li><a class="dropdown-item" href="#">Taiwan</a></li>
+                            <li><a class="dropdown-item" href="#">Thailand</a></li>
+                            <li><a class="dropdown-item" href="#">Turkey</a></li>
+                            <li><a class="dropdown-item" href="#">United Arab Emirates</a></li>
+                            <li><a class="dropdown-item" href="#">United Kingdom</a></li>
+                            <li><a class="dropdown-item" href="#">United States of America</a></li>
+                            <li><a class="dropdown-item" href="#">Vietnam</a></li>
+                            <li><a class="dropdown-item" href="#">World</a></li>
+                        </ul>
+                    </div>
+                    <hr>
+                    <ul class="nav">
+                        <li><a href="#" class="nav-link link-dark">Arabic</a></li>
+                        <li><a href="#" class="nav-link link-dark">Chinese</a></li>
+                        <li><a href="#" class="nav-link link-dark">Duch</a></li>
+                        <li><a href="#" class="nav-link link-dark">English</a></li>
+                        <li><a href="#" class="nav-link link-dark">Filipino</a></li>
+                        <li><a href="#" class="nav-link link-dark">French</a></li>
+                        <li><a href="#" class="nav-link link-dark">German</a></li>
+                        <li><a href="#" class="nav-link link-dark">Hindi</a></li>
+                        <li><a href="#" class="nav-link link-dark">Indonesian</a></li>
+                        <li><a href="#" class="nav-link link-dark">Italian</a></li>
+                        <li><a href="#" class="nav-link link-dark">Japanese</a></li>
+                        <li><a href="#" class="nav-link link-dark">Korean</a></li>
+                        <li><a href="#" class="nav-link link-dark">Malay</a></li>
+                        <li><a href="#" class="nav-link link-dark">Persian</a></li>
+                        <li><a href="#" class="nav-link link-dark">Portuguese</a></li>
+                        <li><a href="#" class="nav-link link-dark">Punjabi</a></li>
+                        <li><a href="#" class="nav-link link-dark">Russian</a></li>
+                        <li><a href="#" class="nav-link link-dark">Spanish</a></li>
+                        <li><a href="#" class="nav-link link-dark">Thai</a></li>
+                        <li><a href="#" class="nav-link link-dark">Vietnamese</a></li>
+                    </ul>
+                </div>
             </div>
 
         </div>
+
+        <div id="footer">
+            <p>Copyright &copy; 2024 JoyfulTaiful Inc. All rights reserved.</p>
+            <a class="navbar-brand" href="#"><img id="logo-black" src="{% static '/images/logo_black.png' %}" alt="logo"></a>
+            <ul>
+                <a href="#"><li>Privacy Policy</li></a> |
+                <a href="#"><li>Term of Use</li></a>
+            </ul>
+        </div>
+
         <h1>{{ status }}</h1>
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     </body>
 </html>

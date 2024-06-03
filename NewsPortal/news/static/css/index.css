@@ -1,5 +1,6 @@
-#logo {
-    width: 150px;
+/* header */
+#logo-white {
+    width: 180px;
 }
 
 /* wrapper */
@@ -14,9 +15,13 @@
 }
 
 /* leftside bar */
-/* #leftside-bar{
+#leftside-bar .dropdown {
+    margin-top: 0.5em;
+}
 
-} */
+#leftside-bar ul hr {
+    margin: 0.2em 0;
+}
 
 /* main */
 .tabs {
@@ -25,13 +30,16 @@
     flex-wrap: wrap;
     display: flex;
 }
-   
-.tab_class {
+
+.tab {
     width: calc(100%/8);
     height: 50px;
     background-color: #D2EFFF;
     color: #2A6789;
-    border-radius: 0 20% 0 0;
+    border-radius: 0 20px 0 0;
+    border-top: 2px solid white;
+    border-right: 2px solid white;
+    border-left: 2px solid white;
     line-height: 50px;
     font-size: 15px;
     text-align: center;
@@ -40,30 +48,201 @@
     order: -1;
 }
 
-input[name="tab_name"] {
+input[name="tab-name"] {
     display: none;
 }
 
-input:checked + .tab_class {
+input:checked + .tab {
     border-top: 2px solid #2A6789;
     border-right: 2px solid #2A6789;
     border-left: 2px solid #2A6789;
+    border-bottom: 2px solid white;
     background-color: white;
     color: black;
 }
 
-.content_class {
+.content {
     display: none;
     width: 100%;
     border: 2px solid #2A6789;
     padding: 30px 10px;
 }
 
-input:checked + .tab_class + .content_class {
+input:checked + .tab + .content {
     display: block;
 }
 
-/* rightside bar */
-/* #rightside-bar {
+.top-cards {
+    display: grid;
+    grid-template-areas: 
+        "cd-bg cd-sm";
+    grid-template-columns: 1fr 1fr;
+}
 
-} */
+.card-big {
+    grid-area: "cd-bg";
+}
+
+.card-small {
+    grid-area: "cd-sm";
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+/* card */
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 
+                0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 96%;
+    height: 320px;
+    border-radius: 16px;
+    position: relative;
+    --bs-card-border-width: 0;
+    margin-bottom: 10px;
+}
+
+.card img {
+    width: 100%;
+    height: 62.5%;
+    object-fit: cover;
+    border-radius: 16px 16px 0 0;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.card-content {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.title {
+    font-weight: 700;
+}
+
+.favorite {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.ri-heart-fill {
+    color: red;
+}
+
+.card-large {
+    width: 98%;
+    height: 650px;
+}
+
+.card-large img {
+    width: 100%;
+    height: 62.5%;
+}
+
+
+
+/* rightside bar */
+#rightside-bar .nav {
+    --bs-nav-link-padding-x: 0;
+    --bs-nav-link-padding-y: 0;
+    display: block;
+    flex-wrap: nowrap;
+}
+
+#rightside-bar .dropdown {
+    margin-top: 0.5em;
+}
+
+/* footer */
+#footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #2B2B2B;
+    color: white;
+    margin-top: 3em;
+    padding: 2em;
+}
+
+#logo-black {
+    width: 130px;
+}
+
+#footer li {
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+}
+
+/* Responsive design */
+@media (min-width: 1050px) and (max-width: 1180px) {
+    .top-cards {
+        display: grid;
+        grid-template-areas: 
+            "cd-bg cd-sm";
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows: 1fr;
+    }
+
+    .card-small {
+        grid-area: "cd-sm";
+        display: grid;
+        grid-template-areas: 
+            "cd1"
+            "cd2";
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+
+    #cd-1 {
+        grid-area: "cd1";
+    }
+
+    #cd-2 {
+        grid-area: "cd2";
+    }
+
+    #cd-3 {
+        grid-area: "cd3";
+    }
+
+    #cd-4 {
+        grid-area: "cd4";
+    }
+}
+
+@media screen and (max-width: 1050px) {
+    .card-large {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .top-cards {
+        display: grid;
+        grid-template-areas: 
+            "cd-bg"
+            "cd-sm";
+        grid-template-columns: 1fr;
+        grid-template-rows: 2fr 1fr;
+        width: 98%;
+    }
+
+    .card-small {
+        grid-area: "cd-sm";
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: 1fr;
+    }
+   
+}
