@@ -1,0 +1,79 @@
+/* header */
+#logo-white {
+    width: 180px;
+}
+
+/* wrapper */
+.wrapper {
+    margin: 0 3em 0 3em;
+}
+
+/* main */
+h1 {
+    font-size: 34px;
+    font-family: Kodchasan;
+    text-align: center;
+}
+
+.wrapper p {
+    text-align: center;
+    font-family: Poppins;
+}
+
+.wrapper form {
+    max-width: 600px;
+    width: 60%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 
+                0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 10px;
+    padding: 4em 5em 4em 5em;
+    margin: 1em auto 10em auto;
+    font-family: Poppins;
+}
+
+.wrapper input {
+    margin: 3em 0 3em 0;
+}
+
+.wrapper form input[id="password"] {
+    margin: 3em 0 1em 0;
+}
+
+#forgot {
+    margin-bottom: 1em;
+}
+
+.wrapper form button {
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    background-color: #FDDF90;
+    padding: 0.3em 0 0.3em 0;
+    margin: 1em 0 1em 0;
+}
+
+.wrapper a {
+    text-decoration: none;
+    color: #32C547;
+}
+
+/* footer */
+#footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #2B2B2B;
+    color: white;
+    margin-top: 3em;
+    padding: 2em;
+}
+
+#logo-black {
+    width: 130px;
+}
+
+#footer li {
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+}
