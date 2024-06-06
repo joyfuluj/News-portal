@@ -29,7 +29,14 @@ class AccountView(TemplateView):
     template_name = 'account.html'
 
 class BaseNewsView(APIView):
-     def getDetails(self, articles):
+    def getDetails(self, url):
+        response = requests.get(url)
+        response.raise_for_status()  # Raises an HTTPError if the HTTP request returned an unsuccessful status code
+        data = response.json()
+        articles = data.get('results', [])
+        if not articles:
+            logger.info("No articles found.")
+            return Response({'error': 'No articles found.'}, status=404)
         detail_list = []
         for item in articles:
             if not isinstance(item, dict):
@@ -61,14 +68,7 @@ class NewsportalView(BaseNewsView):
                'category=top&'
                'apikey=pub_4531191d2b63794a04ccbab7e0be40a2cc9dd')
         try:
-            response = requests.get(url)
-            response.raise_for_status()  # Raises an HTTPError if the HTTP request returned an unsuccessful status code
-            data = response.json()
-            articles = data.get('results', [])
-            if not articles:
-                logger.info("No articles found.")
-                return Response({'error': 'No articles found.'}, status=404)
-            detail = self.getDetails(articles)
+            detail = self.getDetails(url)
             return Response(detail)
         except requests.exceptions.RequestException as e:
             logger.error(f"Request failed: {e}")
@@ -81,12 +81,12 @@ class SetCountryView(BaseNewsView):
                f'country={country}&'
                f'category=top&'
                'apikey=pub_4531191d2b63794a04ccbab7e0be40a2cc9dd')
-        response = requests.get(url)
-        data = response.json()
-        articles = data.get('results')
-        detail = self.getDetails(articles)
-        # return render(request, 'index.html', {'status': detail})
-        return Response(detail)
+        try:
+            detail = self.getDetails(url)
+            return Response(detail)
+        except requests.exceptions.RequestException as e:
+            logger.error(f"Request failed: {e}")
+            return Response({'error': 'Failed to fetch data from the API.'}, status=500)
     
     
 class SetCategoryView(BaseNewsView):
@@ -95,13 +95,13 @@ class SetCategoryView(BaseNewsView):
                f'country={country}&'
                f'category={category}&'
                'apikey=pub_4531191d2b63794a04ccbab7e0be40a2cc9dd')
-        response = requests.get(url)
-        data = response.json()
-        articles = data.get('results')
-        detail = self.getDetails(articles)
-        # return render(request, 'index.html', {'status': detail})
-        return Response(detail)
-    
+        try:
+            detail = self.getDetails(url)
+            return Response(detail)
+        except requests.exceptions.RequestException as e:
+            logger.error(f"Request failed: {e}")
+            return Response({'error': 'Failed to fetch data from the API.'}, status=500)
+        
 class SetLanguageView(BaseNewsView):
     def get(self, request, country, category, language):
         url = ('https://newsdata.io/api/1/latest?'
@@ -109,9 +109,9 @@ class SetLanguageView(BaseNewsView):
                f'category={category}&'
                f'language={language}&'
                'apikey=pub_4531191d2b63794a04ccbab7e0be40a2cc9dd')
-        response = requests.get(url)
-        data = response.json()
-        articles = data.get('results')
-        detail = self.getDetails(articles)
-        # return render(request, 'index.html', {'status': detail})
-        return Response(detail)
+        try:
+            detail = self.getDetails(url)
+            return Response(detail)
+        except requests.exceptions.RequestException as e:
+            logger.error(f"Request failed: {e}")
+            return Response({'error': 'Failed to fetch data from the API.'}, status=500)
