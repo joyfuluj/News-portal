@@ -57,6 +57,7 @@ class BaseNewsView(APIView):
                 'image_url': item.get('image_url'),
                 'description': item.get('description'),
                 'date_published': date_part,
+                'county':item.get('country')
             }
             if detail.get('source') and detail.get('description'):
                 detail_list.append(detail)
@@ -66,6 +67,7 @@ class NewsportalView(BaseNewsView):
     def get(self, request):
         url = ('https://newsdata.io/api/1/latest?'
                'category=top&'
+               'language=en&'
                'apikey=pub_4531191d2b63794a04ccbab7e0be40a2cc9dd')
         try:
             detail = self.getDetails(url)
@@ -90,10 +92,10 @@ class SetCountryView(BaseNewsView):
     
     
 class SetCategoryView(BaseNewsView):
-    def get(self, request, country, category):
+    def get(self, request, category):
         url = ('https://newsdata.io/api/1/latest?'
-               f'country={country}&'
                f'category={category}&'
+               f'language=en&'
                'apikey=pub_4531191d2b63794a04ccbab7e0be40a2cc9dd')
         try:
             detail = self.getDetails(url)
@@ -103,10 +105,8 @@ class SetCategoryView(BaseNewsView):
             return Response({'error': 'Failed to fetch data from the API.'}, status=500)
         
 class SetLanguageView(BaseNewsView):
-    def get(self, request, country, category, language):
+    def get(self, request, language):
         url = ('https://newsdata.io/api/1/latest?'
-               f'country={country}&'
-               f'category={category}&'
                f'language={language}&'
                'apikey=pub_4531191d2b63794a04ccbab7e0be40a2cc9dd')
         try:
