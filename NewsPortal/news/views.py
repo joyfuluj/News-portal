@@ -2,11 +2,15 @@ from django.shortcuts import render
 import json
 import requests
 import logging
-from django.http import HttpResponse
 from django.views.generic import TemplateView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from datetime import datetime
+from django.shortcuts import redirect
+from django.urls import reverse
+from django.http import HttpResponseRedirect
+
+
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
@@ -71,7 +75,8 @@ class NewsportalView(BaseNewsView):
                'apikey=pub_4531191d2b63794a04ccbab7e0be40a2cc9dd')
         try:
             detail = self.getDetails(url)
-            return Response(detail)
+            # return Response(detail)
+            return render(request, 'index.html', {'detail': detail, 'top': True})
         except requests.exceptions.RequestException as e:
             logger.error(f"Request failed: {e}")
             return Response({'error': 'Failed to fetch data from the API.'}, status=500)
@@ -79,13 +84,23 @@ class NewsportalView(BaseNewsView):
     
 class SetCountryView(BaseNewsView):
     def get(self, request, country):
+        request.session['country'] = country
+        category = request.session.get('category', [])
+        language = request.session.get('language', [])
+        if not category:
+            category='top'
+        if not language:
+            language='en'
         url = ('https://newsdata.io/api/1/latest?'
                f'country={country}&'
-               f'category=top&'
+               f'category={category}&'
+               f'language={language}&'
                'apikey=pub_4531191d2b63794a04ccbab7e0be40a2cc9dd')
         try:
             detail = self.getDetails(url)
-            return Response(detail)
+            # return Response(detail)
+            tab_checked = False
+            return render(request, 'index.html', {'detail': detail, 'tab_checked': tab_checked})
         except requests.exceptions.RequestException as e:
             logger.error(f"Request failed: {e}")
             return Response({'error': 'Failed to fetch data from the API.'}, status=500)
@@ -93,20 +108,60 @@ class SetCountryView(BaseNewsView):
     
 class SetCategoryView(BaseNewsView):
     def get(self, request, category):
+        request.session['category'] = category
+        country = request.session.get('county', [])
+        language = request.session.get('language', [])
+        if not country:
+            country='us'
+        if not language:
+            language='en'
         url = ('https://newsdata.io/api/1/latest?'
+               f'country={country}&'
                f'category={category}&'
-               f'language=en&'
+               f'language={language}&'
                'apikey=pub_4531191d2b63794a04ccbab7e0be40a2cc9dd')
         try:
             detail = self.getDetails(url)
-            return Response(detail)
+            # return Response(detail)
+            return render(request, 'index.html', {'detail': detail, 'category': category})
         except requests.exceptions.RequestException as e:
             logger.error(f"Request failed: {e}")
             return Response({'error': 'Failed to fetch data from the API.'}, status=500)
         
 class SetLanguageView(BaseNewsView):
     def get(self, request, language):
+        request.session['language'] = language
+        country = request.session.get('country', [])
+        category = request.session.get('category', [])
+        if not country:
+            country='us'
+        if not category:
+            category='top'
         url = ('https://newsdata.io/api/1/latest?'
+               f'country={country}&'
+               f'category={category}&'
+               f'language={language}&'
+               'apikey=pub_4531191d2b63794a04ccbab7e0be40a2cc9dd')
+        try:
+            detail = self.getDetails(url)
+            # return Response(detail)
+            tab_checked = False
+            return render(request, 'index.html', {'detail': detail, 'tab_checked': tab_checked})
+        except requests.exceptions.RequestException as e:
+            logger.error(f"Request failed: {e}")
+            return Response({'error': 'Failed to fetch data from the API.'}, status=500)
+        
+class EndSessionView(BaseNewsView):
+    def get(self, request):
+    # Flush the session data
+        request.session.flush()
+        return HttpResponseRedirect('home/')
+        
+class FilterView(BaseNewsView):
+    def get(self, request, country, category, language):
+        url = ('https://newsdata.io/api/1/latest?'
+               f'country={country}&'
+               f'category={category}&'
                f'language={language}&'
                'apikey=pub_4531191d2b63794a04ccbab7e0be40a2cc9dd')
         try:
@@ -115,3 +170,25 @@ class SetLanguageView(BaseNewsView):
         except requests.exceptions.RequestException as e:
             logger.error(f"Request failed: {e}")
             return Response({'error': 'Failed to fetch data from the API.'}, status=500)
+        
+class FilteredNewsView(BaseNewsView):
+    def get(self, request):
+        countries = request.GET.getlist('country')
+        categories = request.GET.getlist('category')
+        languages = request.GET.getlist('language')
+        
+        if not countries or not categories or not languages:
+            # Handle the case where no checkboxes are selected
+            return redirect('home')  # Adjust as needed
+        
+        countries_param = ','.join(countries)
+        categories_param = ','.join(categories)
+        languages_param = ','.join(languages)
+        
+        url = reverse('filter_api', kwargs={
+            'country': countries_param,
+            'category': categories_param,
+            'language': languages_param,
+        })
+        
+        return redirect(url)

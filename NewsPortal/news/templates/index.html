@@ -13,6 +13,13 @@
         <link href="https://fonts.googleapis.com/css?family=Asap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.4.0/remixicon.css" crossorigin="">
     </head>
+    <script>
+        function redirectToUrl(url) {
+            var radioButtons = document.getElementById('tab1');
+            radioButtons.checked = false;
+            window.location.href = url;
+        }
+    </script>
     <body>
         <div id="header">
             <nav class="navbar navbar-expand-lg bg-white">
@@ -43,7 +50,7 @@
                     <hr>
                     <ul class="nav nav-pills flex-column">
                         <li class="nav-item">
-                            <a href="#" class="nav-link active" aria-current="page">
+                            <a href="/home" class="nav-link active" aria-current="page">
                             <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
                             Home
                             </a>
@@ -56,7 +63,7 @@
                         </li>
                         <hr>
                         <li>
-                            <a href="#" class="nav-link link-dark">
+                            <a href="end" class="nav-link link-dark">
                             <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
                             Sign out
                             </a>
@@ -66,79 +73,79 @@
 
                 <div id="main" class="col-md-9">
                     <div class="filter">
-                        <form>
+                        <form method="get" action="{% url 'news_view' %}">
                             <div class="btn-group">
                                 <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Country
                                 </button>
                                 <div class="dropdown-menu">
-                                    <input type="checkbox" id="australia" name="australia" value="au">
+                                    <input type="checkbox" id="australia" name="country" value="au">
                                     <label for="australia"> Australia</label><br>
-                                    <input type="checkbox" id="brazil" name="brazil" value="br">
+                                    <input type="checkbox" id="brazil" name="country" value="br">
                                     <label for="brazil"> Brazil</label><br>
-                                    <input type="checkbox" id="canada" name="canada" value="ca">
+                                    <input type="checkbox" id="canada" name="country" value="ca">
                                     <label for="canada"> Canada</label><br>
-                                    <input type="checkbox" id="china" name="china" value="cn">
+                                    <input type="checkbox" id="china" name="country" value="cn">
                                     <label for="china"> Chine</label><br>
-                                    <input type="checkbox" id="france" name="france" value="fr">
+                                    <input type="checkbox" id="france" name="country" value="fr">
                                     <label for="france"> France</label><br>
-                                    <input type="checkbox" id="germany" name="germany" value="de">
+                                    <input type="checkbox" id="germany" name="country" value="de">
                                     <label for="germany"> Germany</label><br>
-                                    <input type="checkbox" id="hongkong" name="hongkong" value="hk">
+                                    <input type="checkbox" id="hongkong" name="country" value="hk">
                                     <label for="hongkong"> Hong Kong</label><br>
-                                    <input type="checkbox" id="india" name="india" value="in">
+                                    <input type="checkbox" id="india" name="country" value="in">
                                     <label for="india"> India</label><br>
-                                    <input type="checkbox" id="indonesia" name="indonesia" value="id">
+                                    <input type="checkbox" id="indonesia" name="country" value="id">
                                     <label for="indonesia"> Indonesia</label><br>
-                                    <input type="checkbox" id="iran" name="iran" value="ir">
+                                    <input type="checkbox" id="iran" name="country" value="ir">
                                     <label for="iran"> Iran</label><br>
-                                    <input type="checkbox" id="iraq" name="iraq" value="iq">
+                                    <input type="checkbox" id="iraq" name="country" value="iq">
                                     <label for="iraq"> Iraq</label><br>
-                                    <input type="checkbox" id="israel" name="israel" value="il">
+                                    <input type="checkbox" id="israel" name="country" value="il">
                                     <label for="israel"> Israel</label><br>
-                                    <input type="checkbox" id="italy" name="italy" value="it">
+                                    <input type="checkbox" id="italy" name="country" value="it">
                                     <label for="italy"> Italy</label><br>
-                                    <input type="checkbox" id="japan" name="japan" value="jp">
+                                    <input type="checkbox" id="japan" name="country" value="jp">
                                     <label for="japan"> Japan</label><br>
-                                    <input type="checkbox" id="malaysia" name="malaysia" value="my">
+                                    <input type="checkbox" id="malaysia" name="country" value="my">
                                     <label for="malaysia"> Malaysia</label><br>
-                                    <input type="checkbox" id="mexico" name="mexico" value="mx">
+                                    <input type="checkbox" id="mexico" name="country" value="mx">
                                     <label for="mexico"> Mexico</label><br>
-                                    <input type="checkbox" id="newzealand" name="newzealand" value="nz">
+                                    <input type="checkbox" id="newzealand" name="country" value="nz">
                                     <label for="newzealand"> New Zealand</label><br>
-                                    <input type="checkbox" id="nigeria" name="nigeria" value="ng">
+                                    <input type="checkbox" id="nigeria" name="country" value="ng">
                                     <label for="nigeria"> Nigeria</label><br>
-                                    <input type="checkbox" id="northkorea" name="northkorea" value="kp">
+                                    <input type="checkbox" id="northkorea" name="country" value="kp">
                                     <label for="northkorea"> North Korea</label><br>
-                                    <input type="checkbox" id="philippines" name="philippines" value="ph">
+                                    <input type="checkbox" id="philippines" name="country" value="ph">
                                     <label for="philippines"> Philippines</label><br>
-                                    <input type="checkbox" id="russia" name="russia" value="ru">
+                                    <input type="checkbox" id="russia" name="country" value="ru">
                                     <label for="russia"> Russia</label><br>
-                                    <input type="checkbox" id="saudiarabia" name="saudiarabia" value="sa">
+                                    <input type="checkbox" id="saudiarabia" name="country" value="sa">
                                     <label for="saudiarabia"> Saudi Arabia</label><br>
-                                    <input type="checkbox" id="singapore" name="Singapore" value="sg">
+                                    <input type="checkbox" id="singapore" name="country" value="sg">
                                     <label for="singapore"> Singapore</label><br>
-                                    <input type="checkbox" id="southafrica" name="southafrica" value="za">
+                                    <input type="checkbox" id="southafrica" name="country" value="za">
                                     <label for="southafrica"> South Africa</label><br>
-                                    <input type="checkbox" id="southkorea" name="southkorea" value="kr">
+                                    <input type="checkbox" id="southkorea" name="country" value="kr">
                                     <label for="southkorea"> South Korea</label><br>
-                                    <input type="checkbox" id="spain" name="spain" value="es">
+                                    <input type="checkbox" id="spain" name="country" value="es">
                                     <label for="spain"> Spain</label><br>
-                                    <input type="checkbox" id="switzerland" name="switzerland" value="ch">
+                                    <input type="checkbox" id="switzerland" name="country" value="ch">
                                     <label for="switzerland"> Switzerland</label><br>
-                                    <input type="checkbox" id="taiwan" name="taiwan" value="tw">
+                                    <input type="checkbox" id="taiwan" name="country" value="tw">
                                     <label for="taiwan"> Taiwan</label><br>
-                                    <input type="checkbox" id="thailand" name="thailand" value="th">
+                                    <input type="checkbox" id="thailand" name="country" value="th">
                                     <label for="thailand"> Thailand</label><br>
-                                    <input type="checkbox" id="turkey" name="turkey" value="tr">
+                                    <input type="checkbox" id="turkey" name="country" value="tr">
                                     <label for="turkey"> Turkey</label><br>
-                                    <input type="checkbox" id="unitedarab" name="unitedarab" value="ae">
+                                    <input type="checkbox" id="unitedarab" name="country" value="ae">
                                     <label for="unitedarab"> UAE</label><br>
-                                    <input type="checkbox" id="unitedkingdom" name="unitedkingdom" value="gb">
+                                    <input type="checkbox" id="unitedkingdom" name="country" value="gb">
                                     <label for="unitedkingdom"> UK</label><br>
-                                    <input type="checkbox" id="unitedstates" name="unitedstates" value="us">
+                                    <input type="checkbox" id="unitedstates" name="country" value="us">
                                     <label for="unitedstates"> US</label><br>
-                                    <input type="checkbox" id="vietnam" name="vietnam" value="vi">
+                                    <input type="checkbox" id="vietnam" name="country" value="vi">
                                     <label for="vietnam"> Vietnam</label><br>
                                 </div>
                             </div>
@@ -147,45 +154,45 @@
                                 Language
                                 </button>
                                 <div class="dropdown-menu">
-                                    <input type="checkbox" id="arabic" name="arabic" value="ar">
+                                    <input type="checkbox" id="arabic" name="language" value="ar">
                                     <label for="arabic"> Arabic</label><br>
-                                    <input type="checkbox" id="chinese" name="chinese" value="zh">
+                                    <input type="checkbox" id="chinese" name="language" value="zh">
                                     <label for="chinese"> Chinese</label><br>
-                                    <input type="checkbox" id="duch" name="duch" value="nl">
+                                    <input type="checkbox" id="duch" name="language" value="nl">
                                     <label for="duch"> Duch</label><br>
-                                    <input type="checkbox" id="english" name="english" value="en">
+                                    <input type="checkbox" id="english" name="language" value="en">
                                     <label for="english"> English</label><br>
-                                    <input type="checkbox" id="filipino" name="filipino" value="di">
+                                    <input type="checkbox" id="filipino" name="language" value="di">
                                     <label for="filipino"> Filipino</label><br>
-                                    <input type="checkbox" id="french" name="french" value="fr">
+                                    <input type="checkbox" id="french" name="language" value="fr">
                                     <label for="french"> French</label><br>
-                                    <input type="checkbox" id="german" name="german" value="de">
+                                    <input type="checkbox" id="german" name="language" value="de">
                                     <label for="german"> German</label><br>
-                                    <input type="checkbox" id="hindi" name="hindi" value="hi">
+                                    <input type="checkbox" id="hindi" name="language" value="hi">
                                     <label for="hindi"> Hindi</label><br>
-                                    <input type="checkbox" id="indonesian" name="indonesian" value="id">
+                                    <input type="checkbox" id="indonesian" name="language" value="id">
                                     <label for="indonesian"> Indonesian</label><br>
-                                    <input type="checkbox" id="italian" name="italian" value="it">
+                                    <input type="checkbox" id="italian" name="language" value="it">
                                     <label for="italian"> Italian</label><br>
-                                    <input type="checkbox" id="japanese" name="japanese" value="jp">
+                                    <input type="checkbox" id="japanese" name="language" value="jp">
                                     <label for="japanese"> Japanese</label><br>
-                                    <input type="checkbox" id="korean" name="korean" value="ko">
+                                    <input type="checkbox" id="korean" name="language" value="ko">
                                     <label for="korean"> Korean</label><br>
-                                    <input type="checkbox" id="malay" name="malay" value="ml">
+                                    <input type="checkbox" id="malay" name="language" value="ml">
                                     <label for="malay"> Malay</label><br>
-                                    <input type="checkbox" id="persian" name="persian" value="fa">
+                                    <input type="checkbox" id="persian" name="language" value="fa">
                                     <label for="persian"> Persian</label><br>
-                                    <input type="checkbox" id="portuguese" name="portuguese" value="pt">
+                                    <input type="checkbox" id="portuguese" name="language" value="pt">
                                     <label for="portuguese"> Portuguese</label><br>
-                                    <input type="checkbox" id="punjabi" name="punjabi" value="pa">
+                                    <input type="checkbox" id="punjabi" name="language" value="pa">
                                     <label for="punjabi"> Punjabi</label><br>
-                                    <input type="checkbox" id="russian" name="russian" value="ru">
+                                    <input type="checkbox" id="russian" name="language" value="ru">
                                     <label for="russian"> Russian</label><br>
-                                    <input type="checkbox" id="spanish" name="spanish" value="es">
+                                    <input type="checkbox" id="spanish" name="language" value="es">
                                     <label for="spanish"> Spanish</label><br>
-                                    <input type="checkbox" id="thai" name="thai" value="th">
+                                    <input type="checkbox" id="thai" name="language" value="th">
                                     <label for="thai"> Thai</label><br>
-                                    <input type="checkbox" id="vietnamese" name="vietnamese" value="vi">
+                                    <input type="checkbox" id="vietnamese" name="language" value="vi">
                                     <label for="vietnamese"> Vietnamese</label><br>
                                 </div>
                             </div>
@@ -194,17 +201,17 @@
                                 Category
                                 </button>
                                 <div class="dropdown-menu">
-                                    <input type="checkbox" id="technology" name="technology" value="tech">
+                                    <input type="checkbox" id="technology" name="category" value="technology">
                                     <label for="technology"> Technology</label><br>
-                                    <input type="checkbox" id="sports" name="sports" value="sp">
+                                    <input type="checkbox" id="sports" name="category" value="sports">
                                     <label for="sports"> Sports</label><br>
-                                    <input type="checkbox" id="entertainment" name="entertainment" value="ent">
+                                    <input type="checkbox" id="entertainment" name="category" value="entertainment">
                                     <label for="entertainment"> Entertainment</label><br>
-                                    <input type="checkbox" id="science" name="science" value="sci">
+                                    <input type="checkbox" id="science" name="category" value="science">
                                     <label for="science"> Science</label><br>
-                                    <input type="checkbox" id="local" name="local" value="lo">
-                                    <label for="local"> Local</label><br>
-                                    <input type="checkbox" id="business" name="business" value="bus">
+                                    <input type="checkbox" id="local" name="category" value="domestic">
+                                    <label for="local"> Domestic</label><br>
+                                    <input type="checkbox" id="business" name="category" value="bussiness">
                                     <label for="business"> Business</label><br>
                                 </div>
                             </div>
@@ -213,8 +220,8 @@
                     </div>
 
                     <div class="tabs">
-                        <input type="radio" name="tab-name" id="tab1" checked>
-                        <label class="tab" for="tab1">Top</label>
+                        <input type="radio" name="tab-name" id="tab1" {% if category == 'top' or category is None %}checked{% endif %}>
+                        <label class="tab" for="tab1" onclick="redirectToUrl('/home/category/top')">Top</label>
                         <div class="content">
                             <div class="top-cards">
                                 <a class="card-big" href="#">
@@ -340,37 +347,37 @@
                                 </a>
                             </div>
                         </div>
-                        <input type="radio" name="tab-name" id="tab2">
-                        <label class="tab" for="tab2">Technology</label>
+                        <input type="radio" name="tab-name" id="tab2" {% if category == 'technology' %}checked{% endif %}>
+                        <label class="tab" for="tab2" onclick="redirectToUrl('/home/category/technology')">Technology</label>
                         <div class="content">
                             <p>タブ2のコンテンツを表示します</p>
                         </div>
-                        <input type="radio" name="tab-name" id="tab3">
-                        <label class="tab" for="tab3">Sports</label>
+                        <input type="radio" name="tab-name" id="tab3" {% if category == 'sports' %}checked{% endif %}>
+                        <label class="tab" for="tab3" onclick="redirectToUrl('/home/category/sports')">Sports</label>
                         <div class="content">
                             <p>タブ3のコンテンツを表示します</p>
                         </div>
-                        <input type="radio" name="tab-name" id="tab4">
-                        <label class="tab" for="tab4">Entertainment</label>
+                        <input type="radio" name="tab-name" id="tab4" {% if category == 'entertainment' %}checked{% endif %}>
+                        <label class="tab" for="tab4" onclick="redirectToUrl('/home/category/entertainment')">Entertainment</label>
                         <div class="content">
                             <p>タブ4のコンテンツを表示します</p>
                         </div>
-                        <input type="radio" name="tab-name" id="tab5">
-                        <label class="tab" for="tab5">Science</label>
+                        <input type="radio" name="tab-name" id="tab5" {% if category == 'science' %}checked{% endif %}>
+                        <label class="tab" for="tab5" onclick="redirectToUrl('/home/category/science')">Science</label>
                         <div class="content">
                             <p>タブ5のコンテンツを表示します</p>
                         </div>
-                        <input type="radio" name="tab-name" id="tab6">
-                        <label class="tab" for="tab6">Local</label>
+                        <input type="radio" name="tab-name" id="tab6" {% if category == 'domestic' %}checked{% endif %}>
+                        <label class="tab" for="tab6" onclick="redirectToUrl('/home/category/domestic')">Domestic</label>
                         <div class="content">
                             <p>タブ6のコンテンツを表示します</p>
                         </div>
-                        <input type="radio" name="tab-name" id="tab7">
-                        <label class="tab" for="tab7">Business</label>
+                        <input type="radio" name="tab-name" id="tab7" {% if category == 'business' %}checked{% endif %}>
+                        <label class="tab" for="tab7" onclick="redirectToUrl('/home/category/business')">Business</label>
                         <div class="content">
                             <p>タブ7のコンテンツを表示します</p>
                         </div>
-                        <input type="radio" name="tab-name" id="tab8">
+                        <input type="radio" name="tab-name" id="tab8" {% if category == 'bookmark' %}checked{% endif %}>
                         <label class="tab" for="tab8">Bookmark</label>
                         <div class="content">
                             <p>タブ8のコンテンツを表示します</p>
@@ -384,65 +391,65 @@
                             Country
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="home/country/au">Australia</a></li>
-                            <li><a class="dropdown-item" href="home/country/br">Brazil</a></li>
-                            <li><a class="dropdown-item" href="home/country/ca">Canada</a></li>
-                            <li><a class="dropdown-item" href="home/country/cn">China</a></li>
-                            <li><a class="dropdown-item" href="home/country/fr">France</a></li>
-                            <li><a class="dropdown-item" href="home/country/de">Germany</a></li>
-                            <li><a class="dropdown-item" href="home/country/hk">Hong Kong</a></li>
-                            <li><a class="dropdown-item" href="home/country/in">India</a></li>
-                            <li><a class="dropdown-item" href="home/country/id">Indonesia</a></li>
-                            <li><a class="dropdown-item" href="home/country/ir">Iran</a></li>
-                            <li><a class="dropdown-item" href="home/country/iq">Iraq</a></li>
-                            <li><a class="dropdown-item" href="home/country/il">Israel</a></li>
-                            <li><a class="dropdown-item" href="home/country/it">Italy</a></li>
-                            <li><a class="dropdown-item" href="home/country/jp">Japan</a></li>
-                            <li><a class="dropdown-item" href="home/country/my">Malaysia</a></li>
-                            <li><a class="dropdown-item" href="home/country/mx">Mexico</a></li>
-                            <li><a class="dropdown-item" href="home/country/nz">New Zealand</a></li>
-                            <li><a class="dropdown-item" href="home/country/ng">Nigeria</a></li>
-                            <li><a class="dropdown-item" href="home/country/kp">North Korea</a></li>
-                            <li><a class="dropdown-item" href="home/country/ph">Philippines</a></li>
-                            <li><a class="dropdown-item" href="home/country/ru">Russia</a></li>
-                            <li><a class="dropdown-item" href="home/country/sa">Saudi Arabia</a></li>
-                            <li><a class="dropdown-item" href="home/country/sg">Singapore</a></li>
-                            <li><a class="dropdown-item" href="home/country/za">South Africa</a></li>
-                            <li><a class="dropdown-item" href="home/country/kr">South Korea</a></li>
-                            <li><a class="dropdown-item" href="home/country/es">Spain</a></li>
-                            <li><a class="dropdown-item" href="home/country/ch">Switzerland</a></li>
-                            <li><a class="dropdown-item" href="home/country/tw">Taiwan</a></li>
-                            <li><a class="dropdown-item" href="home/country/th">Thailand</a></li>
-                            <li><a class="dropdown-item" href="home/country/tr">Turkey</a></li>
-                            <li><a class="dropdown-item" href="home/country/ae">United Arab Emirates</a></li>
-                            <li><a class="dropdown-item" href="home/country/gb">United Kingdom</a></li>
-                            <li><a class="dropdown-item" href="home/country/us">United States of America</a></li>
-                            <li><a class="dropdown-item" href="home/country/vi">Vietnam</a></li>
-                            <li><a class="dropdown-item" href="home/country/wo">World</a></li>
+                            <li><a class="dropdown-item" href="/home/country/au">Australia</a></li>
+                            <li><a class="dropdown-item" href="/home/country/br">Brazil</a></li>
+                            <li><a class="dropdown-item" href="/home/country/ca">Canada</a></li>
+                            <li><a class="dropdown-item" href="/home/country/cn">China</a></li>
+                            <li><a class="dropdown-item" href="/home/country/fr">France</a></li>
+                            <li><a class="dropdown-item" href="/home/country/de">Germany</a></li>
+                            <li><a class="dropdown-item" href="/home/country/hk">Hong Kong</a></li>
+                            <li><a class="dropdown-item" href="/home/country/in">India</a></li>
+                            <li><a class="dropdown-item" href="/home/country/id">Indonesia</a></li>
+                            <li><a class="dropdown-item" href="/home/country/ir">Iran</a></li>
+                            <li><a class="dropdown-item" href="/home/country/iq">Iraq</a></li>
+                            <li><a class="dropdown-item" href="/home/country/il">Israel</a></li>
+                            <li><a class="dropdown-item" href="/home/country/it">Italy</a></li>
+                            <li><a class="dropdown-item" href="/home/country/jp">Japan</a></li>
+                            <li><a class="dropdown-item" href="/home/country/my">Malaysia</a></li>
+                            <li><a class="dropdown-item" href="/home/country/mx">Mexico</a></li>
+                            <li><a class="dropdown-item" href="/home/country/nz">New Zealand</a></li>
+                            <li><a class="dropdown-item" href="/home/country/ng">Nigeria</a></li>
+                            <li><a class="dropdown-item" href="/home/country/kp">North Korea</a></li>
+                            <li><a class="dropdown-item" href="/home/country/ph">Philippines</a></li>
+                            <li><a class="dropdown-item" href="/home/country/ru">Russia</a></li>
+                            <li><a class="dropdown-item" href="/home/country/sa">Saudi Arabia</a></li>
+                            <li><a class="dropdown-item" href="/home/country/sg">Singapore</a></li>
+                            <li><a class="dropdown-item" href="/home/country/za">South Africa</a></li>
+                            <li><a class="dropdown-item" href="/home/country/kr">South Korea</a></li>
+                            <li><a class="dropdown-item" href="/home/country/es">Spain</a></li>
+                            <li><a class="dropdown-item" href="/home/country/ch">Switzerland</a></li>
+                            <li><a class="dropdown-item" href="/home/country/tw">Taiwan</a></li>
+                            <li><a class="dropdown-item" href="/home/country/th">Thailand</a></li>
+                            <li><a class="dropdown-item" href="/home/country/tr">Turkey</a></li>
+                            <li><a class="dropdown-item" href="/home/country/ae">United Arab Emirates</a></li>
+                            <li><a class="dropdown-item" href="/home/country/gb">United Kingdom</a></li>
+                            <li><a class="dropdown-item" href="/home/country/us">United States of America</a></li>
+                            <li><a class="dropdown-item" href="/home/country/vi">Vietnam</a></li>
+                            <li><a class="dropdown-item" href="/home/country/wo">World</a></li>
                         </ul>
                     </div>
                     <hr>
                     <ul class="nav">
-                        <li><a href="#" class="nav-link link-dark">Arabic</a></li>
-                        <li><a href="#" class="nav-link link-dark">Chinese</a></li>
-                        <li><a href="#" class="nav-link link-dark">Duch</a></li>
-                        <li><a href="#" class="nav-link link-dark">English</a></li>
-                        <li><a href="#" class="nav-link link-dark">Filipino</a></li>
-                        <li><a href="#" class="nav-link link-dark">French</a></li>
-                        <li><a href="#" class="nav-link link-dark">German</a></li>
-                        <li><a href="#" class="nav-link link-dark">Hindi</a></li>
-                        <li><a href="#" class="nav-link link-dark">Indonesian</a></li>
-                        <li><a href="#" class="nav-link link-dark">Italian</a></li>
-                        <li><a href="#" class="nav-link link-dark">Japanese</a></li>
-                        <li><a href="#" class="nav-link link-dark">Korean</a></li>
-                        <li><a href="#" class="nav-link link-dark">Malay</a></li>
-                        <li><a href="#" class="nav-link link-dark">Persian</a></li>
-                        <li><a href="#" class="nav-link link-dark">Portuguese</a></li>
-                        <li><a href="#" class="nav-link link-dark">Punjabi</a></li>
-                        <li><a href="#" class="nav-link link-dark">Russian</a></li>
-                        <li><a href="#" class="nav-link link-dark">Spanish</a></li>
-                        <li><a href="#" class="nav-link link-dark">Thai</a></li>
-                        <li><a href="#" class="nav-link link-dark">Vietnamese</a></li>
+                        <li><a href="/home/language/ar" class="nav-link link-dark">Arabic</a></li>
+                        <li><a href="/home/language/zh" class="nav-link link-dark">Chinese</a></li>
+                        <li><a href="/home/language/nl" class="nav-link link-dark">Duch</a></li>
+                        <li><a href="/home/language/en" class="nav-link link-dark">English</a></li>
+                        <li><a href="/home/language/di" class="nav-link link-dark">Filipino</a></li>
+                        <li><a href="/home/language/fr" class="nav-link link-dark">French</a></li>
+                        <li><a href="/home/language/de" class="nav-link link-dark">German</a></li>
+                        <li><a href="/home/language/hi" class="nav-link link-dark">Hindi</a></li>
+                        <li><a href="/home/language/id" class="nav-link link-dark">Indonesian</a></li>
+                        <li><a href="/home/language/it" class="nav-link link-dark">Italian</a></li>
+                        <li><a href="/home/language/jp" class="nav-link link-dark">Japanese</a></li>
+                        <li><a href="/home/language/ko" class="nav-link link-dark">Korean</a></li>
+                        <li><a href="/home/language/ml" class="nav-link link-dark">Malay</a></li>
+                        <li><a href="/home/language/fa" class="nav-link link-dark">Persian</a></li>
+                        <li><a href="/home/language/pt" class="nav-link link-dark">Portuguese</a></li>
+                        <li><a href="/home/language/pa" class="nav-link link-dark">Punjabi</a></li>
+                        <li><a href="/home/language/ru" class="nav-link link-dark">Russian</a></li>
+                        <li><a href="/home/language/es" class="nav-link link-dark">Spanish</a></li>
+                        <li><a href="/home/language/th" class="nav-link link-dark">Thai</a></li>
+                        <li><a href="/home/language/vi" class="nav-link link-dark">Vietnamese</a></li>
                     </ul>
                 </div>
             </div>
@@ -461,5 +468,8 @@
         <h1>{{ status }}</h1>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        {% for item in detail %}
+            <h1>{{ item.title }}</h1>
+        {% endfor %}
     </body>
 </html>
