@@ -3,6 +3,10 @@
     width: 180px;
 }
 
+#header {
+    font-family: 'Asap Condensed';
+}
+
 /* wrapper */
 .wrapper {
     margin: 0 3em 0 3em;
@@ -10,6 +14,7 @@
 
 /* side-bar */
 #leftside-bar, #rightside-bar {
+    font-family: 'Inria Sans';
     background-color: #D2EFFF;
     border: 2px solid #2A6789;
 }
@@ -24,7 +29,18 @@
 }
 
 /* main */
+.filter {
+    font-family: 'Asap Condensed';
+    width: 98%;
+    margin: 0 auto 0.5em auto;
+}
+
+.filter input {
+    margin-left: 1em;
+}
+
 .tabs {
+    font-family: 'Asap Condensed';
     width: 98%;
     margin: auto;
     flex-wrap: wrap;
@@ -62,6 +78,7 @@ input:checked + .tab {
 }
 
 .content {
+    font-family: 'Inria Sans';
     display: none;
     width: 100%;
     border: 2px solid #2A6789;
@@ -161,11 +178,13 @@ a {
 }
 
 #rightside-bar .dropdown {
+    font-family: 'Asap Condensed';
     margin-top: 0.5em;
 }
 
 /* footer */
 #footer {
+    font-family: 'Asap';
     display: flex;
     align-items: center;
     justify-content: space-around;
