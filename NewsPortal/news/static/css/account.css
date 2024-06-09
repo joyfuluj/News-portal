@@ -1,0 +1,71 @@
+/* header */
+#logo-white {
+    width: 180px;
+}
+
+/* wrapper */
+.wrapper {
+    margin: 0 auto 0 auto;
+    width: 70%;
+}
+
+/* main */
+h1 {
+    font-size: 34px;
+    font-family: 'League Spartan';
+}
+
+#setting {
+    width: 70%;
+    margin: auto;
+}
+
+.wrapper p {
+    text-align: center;
+    font-family: 'Poppins';
+}
+
+.wrapper form {
+    font-family: 'Poppins';
+}
+
+.wrapper form img {
+    width: 200px;
+    height: 200px;
+    display: block;
+    object-fit: cover;
+}
+
+.wrapper input {
+    margin: 0.5em 0 2em 0;
+}
+
+.wrapper form button {
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    background-color: #FDDF90;
+    padding: 0.3em 0 0.3em 0;
+    margin: 1em 0 1em 0;
+}
+
+/* footer */
+#footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #2B2B2B;
+    color: white;
+    margin-top: 3em;
+    padding: 2em;
+}
+
+#logo-black {
+    width: 130px;
+}
+
+#footer li {
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+}
