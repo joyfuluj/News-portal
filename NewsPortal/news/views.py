@@ -99,9 +99,12 @@ class SetCountryView(BaseNewsView):
                'apikey=pub_4531191d2b63794a04ccbab7e0be40a2cc9dd')
         try:
             detail = self.getDetails(url)
-            # return Response(detail)
-            tab_checked = False
-            return render(request, 'index.html', {'detail': detail, 'tab_checked': tab_checked})
+            status = False
+            error = ""
+            if not detail:
+                status = True
+                error = "News Unavailable."
+            return render(request, 'index.html', {'detail': detail, 'status': status, 'error': error, 'category': category})
         except requests.exceptions.RequestException as e:
             logger.error(f"Request failed: {e}")
             return Response({'error': 'Failed to fetch data from the API.'}, status=500)
@@ -125,6 +128,8 @@ class SetCategoryView(BaseNewsView):
         )
         try:
             detail = self.getDetails(url)
+            status = False
+            error = ""
             if not detail:
                 status = True
                 error = "News Unavailable."
@@ -146,9 +151,12 @@ class SetLanguageView(BaseNewsView):
                'apikey=pub_4531191d2b63794a04ccbab7e0be40a2cc9dd')
         try:
             detail = self.getDetails(url)
-            # return Response(detail)
-            tab_checked = False
-            return render(request, 'index.html', {'detail': detail, 'tab_checked': tab_checked})
+            status = False
+            error = ""
+            if not detail:
+                status = True
+                error = "News Unavailable."
+            return render(request, 'index.html', {'detail': detail, 'status': status, 'error': error, 'category': category})
         except requests.exceptions.RequestException as e:
             logger.error(f"Request failed: {e}")
             return Response({'error': 'Failed to fetch data from the API.'}, status=500)
