@@ -11,13 +11,13 @@
 /* main */
 h1 {
     font-size: 34px;
-    font-family: Kodchasan;
+    font-family: 'Kodchasan';
     text-align: center;
 }
 
 .wrapper p {
     text-align: center;
-    font-family: Poppins;
+    font-family: 'Poppins';
 }
 
 .wrapper form {
