@@ -98,9 +98,9 @@ class SetCountryView(BaseNewsView):
                'apikey=pub_4531191d2b63794a04ccbab7e0be40a2cc9dd')
         try:
             detail = self.getDetails(url)
-            # return Response(detail)
-            tab_checked = False
-            return render(request, 'index.html', {'detail': detail, 'tab_checked': tab_checked})
+            return Response(detail)
+            # tab_checked = False
+            # return render(request, 'index.html', {'detail': detail, 'tab_checked': tab_checked})
         except requests.exceptions.RequestException as e:
             logger.error(f"Request failed: {e}")
             return Response({'error': 'Failed to fetch data from the API.'}, status=500)
@@ -131,14 +131,10 @@ class SetCategoryView(BaseNewsView):
 class SetLanguageView(BaseNewsView):
     def get(self, request, language):
         request.session['language'] = language
-        country = request.session.get('country', [])
         category = request.session.get('category', [])
-        if not country:
-            country='us'
         if not category:
             category='top'
         url = ('https://newsdata.io/api/1/latest?'
-               f'country={country}&'
                f'category={category}&'
                f'language={language}&'
                'apikey=pub_4531191d2b63794a04ccbab7e0be40a2cc9dd')
