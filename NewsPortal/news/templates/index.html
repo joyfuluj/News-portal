@@ -223,6 +223,9 @@
                         <input type="radio" name="tab-name" id="tab1" {% if category == 'top' or category is None %}checked{% endif %}>
                         <label class="tab" for="tab1" onclick="redirectToUrl('/home/category/top')">Top</label>
                         <div class="content">
+                            {% if status%}
+                            <h1>{{error}}</h1>
+                            {% else %}
                             <div class="top-cards">
                                 <a class="card-big" href="#">
                                     <div class="card card-large">
@@ -346,40 +349,62 @@
                                     </div>
                                 </a>
                             </div>
+                            {% endif %}
                         </div>
                         <input type="radio" name="tab-name" id="tab2" {% if category == 'technology' %}checked{% endif %}>
                         <label class="tab" for="tab2" onclick="redirectToUrl('/home/category/technology')">Technology</label>
                         <div class="content">
+                            {% if status%}
+                            <h1>{{error}}</h1>
+                            {% endif %}
                             <p>タブ2のコンテンツを表示します</p>
                         </div>
                         <input type="radio" name="tab-name" id="tab3" {% if category == 'sports' %}checked{% endif %}>
                         <label class="tab" for="tab3" onclick="redirectToUrl('/home/category/sports')">Sports</label>
                         <div class="content">
+                            {% if status%}
+                            <h1>{{error}}</h1>
+                            {% endif %}
                             <p>タブ3のコンテンツを表示します</p>
                         </div>
                         <input type="radio" name="tab-name" id="tab4" {% if category == 'entertainment' %}checked{% endif %}>
                         <label class="tab" for="tab4" onclick="redirectToUrl('/home/category/entertainment')">Entertainment</label>
                         <div class="content">
+                            {% if status%}
+                            <h1>{{error}}</h1>
+                            {% endif %}
                             <p>タブ4のコンテンツを表示します</p>
                         </div>
                         <input type="radio" name="tab-name" id="tab5" {% if category == 'science' %}checked{% endif %}>
                         <label class="tab" for="tab5" onclick="redirectToUrl('/home/category/science')">Science</label>
                         <div class="content">
+                            {% if status%}
+                            <h1>{{error}}</h1>
+                            {% endif %}
                             <p>タブ5のコンテンツを表示します</p>
                         </div>
                         <input type="radio" name="tab-name" id="tab6" {% if category == 'domestic' %}checked{% endif %}>
                         <label class="tab" for="tab6" onclick="redirectToUrl('/home/category/domestic')">Domestic</label>
                         <div class="content">
+                            {% if status%}
+                            <h1>{{error}}</h1>
+                            {% endif %}
                             <p>タブ6のコンテンツを表示します</p>
                         </div>
                         <input type="radio" name="tab-name" id="tab7" {% if category == 'business' %}checked{% endif %}>
                         <label class="tab" for="tab7" onclick="redirectToUrl('/home/category/business')">Business</label>
                         <div class="content">
+                            {% if status%}
+                            <h1>{{error}}</h1>
+                            {% endif %}
                             <p>タブ7のコンテンツを表示します</p>
                         </div>
                         <input type="radio" name="tab-name" id="tab8" {% if category == 'bookmark' %}checked{% endif %}>
                         <label class="tab" for="tab8">Bookmark</label>
                         <div class="content">
+                            {% if status%}
+                            <h1>{{error}}</h1>
+                            {% endif %}
                             <p>タブ8のコンテンツを表示します</p>
                         </div>
                     </div>
@@ -464,8 +489,6 @@
                 <a href="#"><li>Term of Use</li></a>
             </ul>
         </div>
-
-        <h1>{{ status }}</h1>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         {% for item in detail %}

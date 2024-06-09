@@ -40,7 +40,8 @@ class BaseNewsView(APIView):
         articles = data.get('results', [])
         if not articles:
             logger.info("No articles found.")
-            return Response({'error': 'No articles found.'}, status=404)
+            return []
+
         detail_list = []
         for item in articles:
             if not isinstance(item, dict):
@@ -61,7 +62,7 @@ class BaseNewsView(APIView):
                 'image_url': item.get('image_url'),
                 'description': item.get('description'),
                 'date_published': date_part,
-                'county':item.get('country')
+                'country': item.get('country')
             }
             if detail.get('source') and detail.get('description'):
                 detail_list.append(detail)
@@ -98,9 +99,9 @@ class SetCountryView(BaseNewsView):
                'apikey=pub_4531191d2b63794a04ccbab7e0be40a2cc9dd')
         try:
             detail = self.getDetails(url)
-            return Response(detail)
-            # tab_checked = False
-            # return render(request, 'index.html', {'detail': detail, 'tab_checked': tab_checked})
+            # return Response(detail)
+            tab_checked = False
+            return render(request, 'index.html', {'detail': detail, 'tab_checked': tab_checked})
         except requests.exceptions.RequestException as e:
             logger.error(f"Request failed: {e}")
             return Response({'error': 'Failed to fetch data from the API.'}, status=500)
@@ -109,21 +110,26 @@ class SetCountryView(BaseNewsView):
 class SetCategoryView(BaseNewsView):
     def get(self, request, category):
         request.session['category'] = category
-        country = request.session.get('county', [])
+        country = request.session.get('country', [])
         language = request.session.get('language', [])
         if not country:
             country='us'
         if not language:
             language='en'
-        url = ('https://newsdata.io/api/1/latest?'
-               f'country={country}&'
-               f'category={category}&'
-               f'language={language}&'
-               'apikey=pub_4531191d2b63794a04ccbab7e0be40a2cc9dd')
+        url = (
+            'https://newsdata.io/api/1/latest?'
+            f'country={country}&'
+            f'category={category}&'
+            f'language={language}&'
+            'apikey=pub_4531191d2b63794a04ccbab7e0be40a2cc9dd'
+        )
         try:
             detail = self.getDetails(url)
-            # return Response(detail)
-            return render(request, 'index.html', {'detail': detail, 'category': category})
+            if not detail:
+                status = True
+                error = "News Unavailable."
+            return render(request, 'index.html', {'detail': detail, 'status': status, 'error': error, 'category': category})
+        
         except requests.exceptions.RequestException as e:
             logger.error(f"Request failed: {e}")
             return Response({'error': 'Failed to fetch data from the API.'}, status=500)
