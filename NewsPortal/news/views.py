@@ -9,6 +9,7 @@ from datetime import datetime
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.http import HttpResponseRedirect
+from django.core.cache import cache
 
 
 
@@ -34,6 +35,10 @@ class AccountView(TemplateView):
 
 class BaseNewsView(APIView):
     def getDetails(self, url):
+        cache_key = f"news_{url}"
+        cached_data = cache.get(cache_key)
+        if cached_data:
+            return cached_data
         response = requests.get(url)
         response.raise_for_status()  # Raises an HTTPError if the HTTP request returned an unsuccessful status code
         data = response.json()
@@ -66,6 +71,8 @@ class BaseNewsView(APIView):
             }
             if detail.get('source') and detail.get('description'):
                 detail_list.append(detail)
+        # Cache the result for 1 hour
+        cache.set(cache_key, detail_list, timeout=3600)
         return detail_list
 
 class NewsportalView(BaseNewsView):
@@ -165,7 +172,7 @@ class EndSessionView(BaseNewsView):
     def get(self, request):
     # Flush the session data
         request.session.flush()
-        return HttpResponseRedirect('home/')
+        return HttpResponseRedirect('/home')
         
 class FilterView(BaseNewsView):
     def get(self, request, country, category, language):
