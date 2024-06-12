@@ -126,7 +126,7 @@ input:checked + .tab + .content {
 
 .card img {
     width: 100%;
-    height: 62.5%;
+    height: 45%;
     object-fit: cover;
     border-radius: 16px 16px 0 0;
 }
@@ -143,11 +143,40 @@ a {
     gap: 4px;
 }
 
-.title {
-    font-weight: 700;
+.src-container {
+    display: flex;
+    align-items: center;
 }
 
-.favorite {
+.dot {
+    border: none;
+    background-color: black;
+    height: 3px;
+    width: 3px;
+    border-radius: 1.5px;
+    margin: 0 6px;
+    opacity: 1;
+}
+
+.title {
+    font-size: large;
+    font-weight: 1000;
+}
+
+.description {
+    overflow: hidden; 
+    -webkit-line-clamp: 3;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+
+.date {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+/* .favorite {
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -155,7 +184,7 @@ a {
 
 .ri-heart-fill {
     color: red;
-}
+} */
 
 .card-large {
     width: 98%;
@@ -167,7 +196,9 @@ a {
     height: 62.5%;
 }
 
-
+.card-large .description {
+    -webkit-line-clamp: 6;
+}
 
 /* rightside bar */
 #rightside-bar .nav {
