@@ -60,6 +60,8 @@ class BaseNewsView(APIView):
                     date_part = datetime_obj.date()
                 except ValueError:
                     logger.error(f"Date parsing error for {date_published}")
+            country = ', '.join([country for country in item.get('country') if country])
+            country = ' '.join(word.capitalize() for word in country.split(' '))
             detail = {
                 'source': item.get('source_id'),
                 'title': item.get('title'),
@@ -67,7 +69,7 @@ class BaseNewsView(APIView):
                 'image_url': item.get('image_url'),
                 'description': item.get('description'),
                 'date_published': date_part,
-                'country': item.get('country')
+                'country': country
             }
             if detail.get('source') and detail.get('description'):
                 detail_list.append(detail)
@@ -84,7 +86,7 @@ class NewsportalView(BaseNewsView):
         try:
             detail = self.getDetails(url)
             # return Response(detail)
-            return render(request, 'index.html', {'detail': detail, 'top': True})
+            return render(request, 'index.html', {'detail': detail, 'category': 'top'})
         except requests.exceptions.RequestException as e:
             logger.error(f"Request failed: {e}")
             return Response({'error': 'Failed to fetch data from the API.'}, status=500)

@@ -236,21 +236,26 @@
                             {% if status%}
                             <h1>{{error}}</h1>
                             {% else %}
+                            {% if category == 'top' %}
+                                {% for item in detail %}
                             <div class="top-cards">
                                 <a class="card-big" href="#">
                                     <div class="card card-large">
-                                        <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                        {% if item.image_url %}
+                                            <img src="{{ item.image_url }}" alt="image">
+                                        {% else %}
+                                            <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                        {% endif %}
                                         <div class="card-content">
                                             <div class="src-container">
-                                                <div class="source">BBC News</div>
+                                                <div class="source">{{item.source}}</div>
+                                                <!-- <a href="{{item.url}}" id="source_url">{{item.source}}</a> -->
                                                 <hr class="dot">
-                                                <div class="country">France</div>
+                                                <div class="country">{{item.country}}</div>
                                             </div>
-                                            <div class="title">What is Lorem Ipsum?</div>
-                                            <div class="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
-                                            <div class="date">2024-05-05</div>
+                                            <div class="title">{{item.title}}</div>
+                                            <div class="description">{{item.description}}</div>
+                                            <div class="date">{{item.date_published}}</div>
                                             {% comment %} <div class="favorite" >
                                                 <i class="ri-heart-fill"></i>
                                                 <span>3</span>
@@ -415,6 +420,8 @@
                                     </div>
                                 </a>
                             </div>
+                            {% endfor %}
+                            {% endif %}
                             {% endif %}
                         </div>
                         <input type="radio" name="tab-name" id="tab2" {% if category == 'technology' %}checked{% endif %}>
