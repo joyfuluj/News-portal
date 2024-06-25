@@ -84,9 +84,12 @@ class NewsportalView(BaseNewsView):
                'language=en&'
                'apikey=pub_4531191d2b63794a04ccbab7e0be40a2cc9dd')
         try:
-            detail = self.getDetails(url)
+            detail = self.getDetails(url) #list of dictionary
+            articles = {}
+            for i, news in enumerate(detail, 1):
+                articles[i] = news
             # return Response(detail)
-            return render(request, 'index.html', {'detail': detail, 'category': 'top'})
+            return render(request, 'index.html', {'detail': articles, 'category': 'top'})
         except requests.exceptions.RequestException as e:
             logger.error(f"Request failed: {e}")
             return Response({'error': 'Failed to fetch data from the API.'}, status=500)
@@ -107,13 +110,17 @@ class SetCountryView(BaseNewsView):
                f'language={language}&'
                'apikey=pub_4531191d2b63794a04ccbab7e0be40a2cc9dd')
         try:
-            detail = self.getDetails(url)
-            status = False
-            error = ""
-            if not detail:
+            status = None
+            error = None
+            detail = self.getDetails(url) #list of dictionary
+            articles = {}
+            for i, news in enumerate(detail, 1):
+                articles[i] = news
+            if not articles:
                 status = True
                 error = "News Unavailable."
-            return render(request, 'index.html', {'detail': detail, 'status': status, 'error': error, 'category': category})
+            # return Response(detail)
+            return render(request, 'index.html', {'detail': articles, 'status': status, 'error': error,'category': category, 'country': country})
         except requests.exceptions.RequestException as e:
             logger.error(f"Request failed: {e}")
             return Response({'error': 'Failed to fetch data from the API.'}, status=500)
@@ -136,13 +143,17 @@ class SetCategoryView(BaseNewsView):
             'apikey=pub_4531191d2b63794a04ccbab7e0be40a2cc9dd'
         )
         try:
-            detail = self.getDetails(url)
-            status = False
-            error = ""
-            if not detail:
+            status = None
+            error = None
+            detail = self.getDetails(url) #list of dictionary
+            articles = {}
+            for i, news in enumerate(detail, 1):
+                articles[i] = news
+            if not articles:
                 status = True
                 error = "News Unavailable."
-            return render(request, 'index.html', {'detail': detail, 'status': status, 'error': error, 'category': category})
+            # return Response(detail)
+            return render(request, 'index.html', {'detail': articles, 'status': status, 'error': error,'category': category})
         
         except requests.exceptions.RequestException as e:
             logger.error(f"Request failed: {e}")
@@ -159,13 +170,17 @@ class SetLanguageView(BaseNewsView):
                f'language={language}&'
                'apikey=pub_4531191d2b63794a04ccbab7e0be40a2cc9dd')
         try:
-            detail = self.getDetails(url)
-            status = False
-            error = ""
-            if not detail:
+            status = None
+            error = None
+            detail = self.getDetails(url) #list of dictionary
+            articles = {}
+            for i, news in enumerate(detail, 1):
+                articles[i] = news
+            if not articles:
                 status = True
                 error = "News Unavailable."
-            return render(request, 'index.html', {'detail': detail, 'status': status, 'error': error, 'category': category})
+            # return Response(detail)
+            return render(request, 'index.html', {'detail': articles, 'status': status, 'error': error,'category': category})
         except requests.exceptions.RequestException as e:
             logger.error(f"Request failed: {e}")
             return Response({'error': 'Failed to fetch data from the API.'}, status=500)

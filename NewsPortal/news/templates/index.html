@@ -237,25 +237,24 @@
                             <h1>{{error}}</h1>
                             {% else %}
                             {% if category == 'top' %}
-                                {% for item in detail %}
                             <div class="top-cards">
                                 <a class="card-big" href="#">
                                     <div class="card card-large">
-                                        {% if item.image_url %}
-                                            <img src="{{ item.image_url }}" alt="image">
+                                        {% if detail.1.image_url %}
+                                            <img src="{{ detail.1.image_url }}" alt="image">
                                         {% else %}
                                             <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
                                         {% endif %}
                                         <div class="card-content">
                                             <div class="src-container">
-                                                <div class="source">{{item.source}}</div>
+                                                <div class="source">{{detail.1.source}}</div>
                                                 <!-- <a href="{{item.url}}" id="source_url">{{item.source}}</a> -->
                                                 <hr class="dot">
-                                                <div class="country">{{item.country}}</div>
+                                                <div class="country">{{detail.1.country}}</div>
                                             </div>
-                                            <div class="title">{{item.title}}</div>
-                                            <div class="description">{{item.description}}</div>
-                                            <div class="date">{{item.date_published}}</div>
+                                            <div class="title">{{detail.1.title}}</div>
+                                            <div class="description">{{detail.1.description}}</div>
+                                            <div class="date">{{detail.1.date_published}}</div>
                                             {% comment %} <div class="favorite" >
                                                 <i class="ri-heart-fill"></i>
                                                 <span>3</span>
@@ -266,16 +265,20 @@
                                 <div class="card-small">
                                     <a id="cd-1" href="#">
                                         <div class="card">
+                                        {% if detail.2.image_url %}
+                                            <img src="{{ detail.2.image_url }}" alt="image">
+                                        {% else %}
                                             <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                        {% endif %}
                                             <div class="card-content">
                                                 <div class="src-container">
-                                                    <div class="source">BBC News</div>
+                                                    <div class="source">{{detail.2.source}}</div>
                                                     <hr class="dot">
-                                                    <div class="country">France</div>
+                                                    <div class="country">{{detail.2.country}}</div>
                                                 </div>
-                                                <div class="title">What is Lorem Ipsum?</div>
-                                                <div class="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
-                                                <div class="date">2024-05-05</div>
+                                                <div class="title">{{detail.2.title}}</div>
+                                                <div class="description">{{detail.2.description}}</div>
+                                                <div class="date">{{detail.2.date_published}}</div>
                                                 {% comment %} <div class="favorite" >
                                                     <i class="ri-heart-fill"></i>
                                                     <span>3</span>
@@ -285,16 +288,19 @@
                                     </a>
                                     <a id="cd-2" href="#">
                                         <div class="card">
+                                        {% if detail.3.image_url %}
+                                            <img src="{{ detail.3.image_url }}" alt="image">
+                                        {% else %}
                                             <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
-                                            <div class="card-content">
+                                        {% endif %}                                            <div class="card-content">
                                                 <div class="src-container">
-                                                    <div class="source">BBC News</div>
+                                                    <div class="source">{{detail.3.source}}</div>
                                                     <hr class="dot">
-                                                    <div class="country">France</div>
+                                                    <div class="country">{{detail.3.country}}</div>
                                                 </div>
-                                                <div class="title">What is Lorem Ipsum?</div>
-                                                <div class="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
-                                                <div class="date">2024-05-05</div>
+                                                <div class="title">{{detail.3.title}}</div>
+                                                <div class="description">{{detail.3.description}}</div>
+                                                <div class="date">{{detail.3.date_published}}</div>
                                                 {% comment %} <div class="favorite" >
                                                     <i class="ri-heart-fill"></i>
                                                     <span>3</span>
@@ -304,16 +310,19 @@
                                     </a>
                                     <a id="cd-3" href="#">
                                         <div class="card">
+                                        {% if detail.4.image_url %}
+                                            <img src="{{ detail.4.image_url }}" alt="image">
+                                        {% else %}
                                             <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
-                                            <div class="card-content">
+                                        {% endif %}                                              <div class="card-content">
                                                 <div class="src-container">
-                                                    <div class="source">BBC News</div>
+                                                    <div class="source">{{detail.4.source}}</div>
                                                     <hr class="dot">
-                                                    <div class="country">France</div>
+                                                    <div class="country">{{detail.4.country}}</div>
                                                 </div>
-                                                <div class="title">What is Lorem Ipsum?</div>
-                                                <div class="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
-                                                <div class="date">2024-05-05</div>
+                                                <div class="title">{{detail.4.title}}</div>
+                                                <div class="description">{{detail.4.description}}</div>
+                                                <div class="date">{{detail.4.date_published}}</div>
                                                 {% comment %} <div class="favorite" >
                                                     <i class="ri-heart-fill"></i>
                                                     <span>3</span>
@@ -323,16 +332,19 @@
                                     </a>
                                     <a id="cd-4" href="#">
                                         <div class="card">
+                                        {% if detail.5.image_url %}
+                                            <img src="{{ detail.5.image_url }}" alt="image">
+                                        {% else %}
                                             <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
-                                            <div class="card-content">
+                                        {% endif %}                                               <div class="card-content">
                                                 <div class="src-container">
-                                                    <div class="source">BBC News</div>
+                                                    <div class="source">{{detail.5.source}}</div>
                                                     <hr class="dot">
-                                                    <div class="country">France</div>
+                                                    <div class="country">{{detail.5.country}}</div>
                                                 </div>
-                                                <div class="title">What is Lorem Ipsum?</div>
-                                                <div class="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
-                                                <div class="date">2024-05-05</div>
+                                                <div class="title">{{detail.5.title}}</div>
+                                                <div class="description">{{detail.5.description}}</div>
+                                                <div class="date">{{detail.5.date_published}}</div>
                                                 {% comment %} <div class="favorite" >
                                                     <i class="ri-heart-fill"></i>
                                                     <span>3</span>
@@ -345,16 +357,19 @@
                             <div class="cards">
                                 <a id="cd-1" href="#">
                                     <div class="card">
+                                    {% if detail.6.image_url %}
+                                        <img src="{{ detail.6.image_url }}" alt="image">
+                                    {% else %}
                                         <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
-                                        <div class="card-content">
+                                    {% endif %}                                           <div class="card-content">
                                             <div class="src-container">
-                                                <div class="source">BBC News</div>
+                                                <div class="source">{{detail.6.source}}</div>
                                                 <hr class="dot">
-                                                <div class="country">France</div>
+                                                <div class="country">{{detail.6.country}}</div>
                                             </div>
-                                            <div class="title">What is Lorem Ipsum?</div>
-                                            <div class="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
-                                            <div class="date">2024-05-05</div>
+                                            <div class="title">{{detail.6.title}}</div>
+                                            <div class="description">{{detail.6.description}}</div>
+                                            <div class="date">{{detail.6.date_published}}</div>
                                             {% comment %} <div class="favorite" >
                                                 <i class="ri-heart-fill"></i>
                                                 <span>3</span>
@@ -364,16 +379,19 @@
                                 </a>
                                 <a id="cd-2" href="#">
                                     <div class="card">
+                                    {% if detail.7.image_url %}
+                                        <img src="{{ detail.7.image_url }}" alt="image">
+                                    {% else %}
                                         <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
-                                        <div class="card-content">
+                                    {% endif %}                                          <div class="card-content">
                                             <div class="src-container">
-                                                <div class="source">BBC News</div>
+                                                <div class="source">{{detail.7.source}}</div>
                                                 <hr class="dot">
-                                                <div class="country">France</div>
+                                                <div class="country">{{detail.7.country}}</div>
                                             </div>
-                                            <div class="title">What is Lorem Ipsum?</div>
-                                            <div class="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
-                                            <div class="date">2024-05-05</div>
+                                            <div class="title">{{detail.7.title}}</div>
+                                            <div class="description">{{detail.7.description}}</div>
+                                            <div class="date">{{detail.7.date_published}}</div>
                                             {% comment %} <div class="favorite" >
                                                 <i class="ri-heart-fill"></i>
                                                 <span>3</span>
@@ -383,16 +401,19 @@
                                 </a>
                                 <a id="cd-3" href="#">
                                     <div class="card">
+                                    {% if detail.8.image_url %}
+                                        <img src="{{ detail.8.image_url }}" alt="image">
+                                    {% else %}
                                         <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
-                                        <div class="card-content">
+                                    {% endif %}                                          <div class="card-content">
                                             <div class="src-container">
-                                                <div class="source">BBC News</div>
+                                                <div class="source">{{detail.8.source}}</div>
                                                 <hr class="dot">
-                                                <div class="country">France</div>
+                                                <div class="country">{{detail.8.country}}</div>
                                             </div>
-                                            <div class="title">What is Lorem Ipsum?</div>
-                                            <div class="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
-                                            <div class="date">2024-05-05</div>
+                                            <div class="title">{{detail.8.title}}</div>
+                                            <div class="description">{{detail.8.description}}</div>
+                                            <div class="date">{{detail.8.date_published}}</div>
                                             {% comment %} <div class="favorite" >
                                                 <i class="ri-heart-fill"></i>
                                                 <span>3</span>
@@ -402,16 +423,19 @@
                                 </a>
                                 <a id="cd-4" href="#">
                                     <div class="card">
+                                    {% if detail.9.image_url %}
+                                        <img src="{{ detail.9.image_url }}" alt="image">
+                                    {% else %}
                                         <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
-                                        <div class="card-content">
+                                    {% endif %}                                          <div class="card-content">
                                             <div class="src-container">
-                                                <div class="source">BBC News</div>
+                                                <div class="source">{{detail.9.source}}</div>
                                                 <hr class="dot">
-                                                <div class="country">France</div>
+                                                <div class="country">{{detail.9.country}}</div>
                                             </div>
-                                            <div class="title">What is Lorem Ipsum?</div>
-                                            <div class="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
-                                            <div class="date">2024-05-05</div>
+                                            <div class="title">{{detail.9.title}}</div>
+                                            <div class="description">{{detail.9.description}}</div>
+                                            <div class="date">{{detail.9.date_published}}</div>
                                             {% comment %} <div class="favorite" >
                                                 <i class="ri-heart-fill"></i>
                                                 <span>3</span>
@@ -420,7 +444,6 @@
                                     </div>
                                 </a>
                             </div>
-                            {% endfor %}
                             {% endif %}
                             {% endif %}
                         </div>
@@ -429,48 +452,1302 @@
                         <div class="content">
                             {% if status%}
                             <h1>{{error}}</h1>
+                            {% else %}
+                            {% if category == 'technology' %}
+                            <div class="top-cards">
+                                <a class="card-big" href="#">
+                                    <div class="card card-large">
+                                        {% if detail.1.image_url %}
+                                            <img src="{{ detail.1.image_url }}" alt="image">
+                                        {% else %}
+                                            <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                        {% endif %}
+                                        <div class="card-content">
+                                            <div class="src-container">
+                                                <div class="source">{{detail.1.source}}</div>
+                                                <!-- <a href="{{item.url}}" id="source_url">{{item.source}}</a> -->
+                                                <hr class="dot">
+                                                <div class="country">{{detail.1.country}}</div>
+                                            </div>
+                                            <div class="title">{{detail.1.title}}</div>
+                                            <div class="description">{{detail.1.description}}</div>
+                                            <div class="date">{{detail.1.date_published}}</div>
+                                            {% comment %} <div class="favorite" >
+                                                <i class="ri-heart-fill"></i>
+                                                <span>3</span>
+                                            </div> {% endcomment %}
+                                        </div>
+                                    </div>
+                                </a>
+                                <div class="card-small">
+                                    <a id="cd-1" href="#">
+                                        <div class="card">
+                                        {% if detail.2.image_url %}
+                                            <img src="{{ detail.2.image_url }}" alt="image">
+                                        {% else %}
+                                            <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                        {% endif %}
+                                            <div class="card-content">
+                                                <div class="src-container">
+                                                    <div class="source">{{detail.2.source}}</div>
+                                                    <hr class="dot">
+                                                    <div class="country">{{detail.2.country}}</div>
+                                                </div>
+                                                <div class="title">{{detail.2.title}}</div>
+                                                <div class="description">{{detail.2.description}}</div>
+                                                <div class="date">{{detail.2.date_published}}</div>
+                                                {% comment %} <div class="favorite" >
+                                                    <i class="ri-heart-fill"></i>
+                                                    <span>3</span>
+                                                </div> {% endcomment %}
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a id="cd-2" href="#">
+                                        <div class="card">
+                                        {% if detail.3.image_url %}
+                                            <img src="{{ detail.3.image_url }}" alt="image">
+                                        {% else %}
+                                            <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                        {% endif %}                                            <div class="card-content">
+                                                <div class="src-container">
+                                                    <div class="source">{{detail.3.source}}</div>
+                                                    <hr class="dot">
+                                                    <div class="country">{{detail.3.country}}</div>
+                                                </div>
+                                                <div class="title">{{detail.3.title}}</div>
+                                                <div class="description">{{detail.3.description}}</div>
+                                                <div class="date">{{detail.3.date_published}}</div>
+                                                {% comment %} <div class="favorite" >
+                                                    <i class="ri-heart-fill"></i>
+                                                    <span>3</span>
+                                                </div> {% endcomment %}
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a id="cd-3" href="#">
+                                        <div class="card">
+                                        {% if detail.4.image_url %}
+                                            <img src="{{ detail.4.image_url }}" alt="image">
+                                        {% else %}
+                                            <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                        {% endif %}                                              <div class="card-content">
+                                                <div class="src-container">
+                                                    <div class="source">{{detail.4.source}}</div>
+                                                    <hr class="dot">
+                                                    <div class="country">{{detail.4.country}}</div>
+                                                </div>
+                                                <div class="title">{{detail.4.title}}</div>
+                                                <div class="description">{{detail.4.description}}</div>
+                                                <div class="date">{{detail.4.date_published}}</div>
+                                                {% comment %} <div class="favorite" >
+                                                    <i class="ri-heart-fill"></i>
+                                                    <span>3</span>
+                                                </div> {% endcomment %}
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a id="cd-4" href="#">
+                                        <div class="card">
+                                        {% if detail.5.image_url %}
+                                            <img src="{{ detail.5.image_url }}" alt="image">
+                                        {% else %}
+                                            <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                        {% endif %}                                               <div class="card-content">
+                                                <div class="src-container">
+                                                    <div class="source">{{detail.5.source}}</div>
+                                                    <hr class="dot">
+                                                    <div class="country">{{detail.5.country}}</div>
+                                                </div>
+                                                <div class="title">{{detail.5.title}}</div>
+                                                <div class="description">{{detail.5.description}}</div>
+                                                <div class="date">{{detail.5.date_published}}</div>
+                                                {% comment %} <div class="favorite" >
+                                                    <i class="ri-heart-fill"></i>
+                                                    <span>3</span>
+                                                </div> {% endcomment %}
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="cards">
+                                <a id="cd-1" href="#">
+                                    <div class="card">
+                                    {% if detail.6.image_url %}
+                                        <img src="{{ detail.6.image_url }}" alt="image">
+                                    {% else %}
+                                        <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                    {% endif %}                                           <div class="card-content">
+                                            <div class="src-container">
+                                                <div class="source">{{detail.6.source}}</div>
+                                                <hr class="dot">
+                                                <div class="country">{{detail.6.country}}</div>
+                                            </div>
+                                            <div class="title">{{detail.6.title}}</div>
+                                            <div class="description">{{detail.6.description}}</div>
+                                            <div class="date">{{detail.6.date_published}}</div>
+                                            {% comment %} <div class="favorite" >
+                                                <i class="ri-heart-fill"></i>
+                                                <span>3</span>
+                                            </div> {% endcomment %}
+                                        </div>
+                                    </div>
+                                </a>
+                                <a id="cd-2" href="#">
+                                    <div class="card">
+                                    {% if detail.7.image_url %}
+                                        <img src="{{ detail.7.image_url }}" alt="image">
+                                    {% else %}
+                                        <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                    {% endif %}                                          <div class="card-content">
+                                            <div class="src-container">
+                                                <div class="source">{{detail.7.source}}</div>
+                                                <hr class="dot">
+                                                <div class="country">{{detail.7.country}}</div>
+                                            </div>
+                                            <div class="title">{{detail.7.title}}</div>
+                                            <div class="description">{{detail.7.description}}</div>
+                                            <div class="date">{{detail.7.date_published}}</div>
+                                            {% comment %} <div class="favorite" >
+                                                <i class="ri-heart-fill"></i>
+                                                <span>3</span>
+                                            </div> {% endcomment %}
+                                        </div>
+                                    </div>
+                                </a>
+                                <a id="cd-3" href="#">
+                                    <div class="card">
+                                    {% if detail.8.image_url %}
+                                        <img src="{{ detail.8.image_url }}" alt="image">
+                                    {% else %}
+                                        <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                    {% endif %}                                          <div class="card-content">
+                                            <div class="src-container">
+                                                <div class="source">{{detail.8.source}}</div>
+                                                <hr class="dot">
+                                                <div class="country">{{detail.8.country}}</div>
+                                            </div>
+                                            <div class="title">{{detail.8.title}}</div>
+                                            <div class="description">{{detail.8.description}}</div>
+                                            <div class="date">{{detail.8.date_published}}</div>
+                                            {% comment %} <div class="favorite" >
+                                                <i class="ri-heart-fill"></i>
+                                                <span>3</span>
+                                            </div> {% endcomment %}
+                                        </div>
+                                    </div>
+                                </a>
+                                <a id="cd-4" href="#">
+                                    <div class="card">
+                                    {% if detail.9.image_url %}
+                                        <img src="{{ detail.9.image_url }}" alt="image">
+                                    {% else %}
+                                        <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                    {% endif %}                                          <div class="card-content">
+                                            <div class="src-container">
+                                                <div class="source">{{detail.9.source}}</div>
+                                                <hr class="dot">
+                                                <div class="country">{{detail.9.country}}</div>
+                                            </div>
+                                            <div class="title">{{detail.9.title}}</div>
+                                            <div class="description">{{detail.9.description}}</div>
+                                            <div class="date">{{detail.9.date_published}}</div>
+                                            {% comment %} <div class="favorite" >
+                                                <i class="ri-heart-fill"></i>
+                                                <span>3</span>
+                                            </div> {% endcomment %}
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
                             {% endif %}
-                            <p>タブ2のコンテンツを表示します</p>
+                            {% endif %}
                         </div>
                         <input type="radio" name="tab-name" id="tab3" {% if category == 'sports' %}checked{% endif %}>
                         <label class="tab" for="tab3" onclick="redirectToUrl('/home/category/sports')">Sports</label>
                         <div class="content">
                             {% if status%}
                             <h1>{{error}}</h1>
+                            {% else %}
+                            {% if category == 'sports' %}
+                            <div class="top-cards">
+                                <a class="card-big" href="#">
+                                    <div class="card card-large">
+                                        {% if detail.1.image_url %}
+                                            <img src="{{ detail.1.image_url }}" alt="image">
+                                        {% else %}
+                                            <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                        {% endif %}
+                                        <div class="card-content">
+                                            <div class="src-container">
+                                                <div class="source">{{detail.1.source}}</div>
+                                                <!-- <a href="{{item.url}}" id="source_url">{{item.source}}</a> -->
+                                                <hr class="dot">
+                                                <div class="country">{{detail.1.country}}</div>
+                                            </div>
+                                            <div class="title">{{detail.1.title}}</div>
+                                            <div class="description">{{detail.1.description}}</div>
+                                            <div class="date">{{detail.1.date_published}}</div>
+                                            {% comment %} <div class="favorite" >
+                                                <i class="ri-heart-fill"></i>
+                                                <span>3</span>
+                                            </div> {% endcomment %}
+                                        </div>
+                                    </div>
+                                </a>
+                                <div class="card-small">
+                                    <a id="cd-1" href="#">
+                                        <div class="card">
+                                        {% if detail.2.image_url %}
+                                            <img src="{{ detail.2.image_url }}" alt="image">
+                                        {% else %}
+                                            <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                        {% endif %}
+                                            <div class="card-content">
+                                                <div class="src-container">
+                                                    <div class="source">{{detail.2.source}}</div>
+                                                    <hr class="dot">
+                                                    <div class="country">{{detail.2.country}}</div>
+                                                </div>
+                                                <div class="title">{{detail.2.title}}</div>
+                                                <div class="description">{{detail.2.description}}</div>
+                                                <div class="date">{{detail.2.date_published}}</div>
+                                                {% comment %} <div class="favorite" >
+                                                    <i class="ri-heart-fill"></i>
+                                                    <span>3</span>
+                                                </div> {% endcomment %}
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a id="cd-2" href="#">
+                                        <div class="card">
+                                        {% if detail.3.image_url %}
+                                            <img src="{{ detail.3.image_url }}" alt="image">
+                                        {% else %}
+                                            <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                        {% endif %}                                            <div class="card-content">
+                                                <div class="src-container">
+                                                    <div class="source">{{detail.3.source}}</div>
+                                                    <hr class="dot">
+                                                    <div class="country">{{detail.3.country}}</div>
+                                                </div>
+                                                <div class="title">{{detail.3.title}}</div>
+                                                <div class="description">{{detail.3.description}}</div>
+                                                <div class="date">{{detail.3.date_published}}</div>
+                                                {% comment %} <div class="favorite" >
+                                                    <i class="ri-heart-fill"></i>
+                                                    <span>3</span>
+                                                </div> {% endcomment %}
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a id="cd-3" href="#">
+                                        <div class="card">
+                                        {% if detail.4.image_url %}
+                                            <img src="{{ detail.4.image_url }}" alt="image">
+                                        {% else %}
+                                            <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                        {% endif %}                                              <div class="card-content">
+                                                <div class="src-container">
+                                                    <div class="source">{{detail.4.source}}</div>
+                                                    <hr class="dot">
+                                                    <div class="country">{{detail.4.country}}</div>
+                                                </div>
+                                                <div class="title">{{detail.4.title}}</div>
+                                                <div class="description">{{detail.4.description}}</div>
+                                                <div class="date">{{detail.4.date_published}}</div>
+                                                {% comment %} <div class="favorite" >
+                                                    <i class="ri-heart-fill"></i>
+                                                    <span>3</span>
+                                                </div> {% endcomment %}
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a id="cd-4" href="#">
+                                        <div class="card">
+                                        {% if detail.5.image_url %}
+                                            <img src="{{ detail.5.image_url }}" alt="image">
+                                        {% else %}
+                                            <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                        {% endif %}                                               <div class="card-content">
+                                                <div class="src-container">
+                                                    <div class="source">{{detail.5.source}}</div>
+                                                    <hr class="dot">
+                                                    <div class="country">{{detail.5.country}}</div>
+                                                </div>
+                                                <div class="title">{{detail.5.title}}</div>
+                                                <div class="description">{{detail.5.description}}</div>
+                                                <div class="date">{{detail.5.date_published}}</div>
+                                                {% comment %} <div class="favorite" >
+                                                    <i class="ri-heart-fill"></i>
+                                                    <span>3</span>
+                                                </div> {% endcomment %}
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="cards">
+                                <a id="cd-1" href="#">
+                                    <div class="card">
+                                    {% if detail.6.image_url %}
+                                        <img src="{{ detail.6.image_url }}" alt="image">
+                                    {% else %}
+                                        <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                    {% endif %}                                           <div class="card-content">
+                                            <div class="src-container">
+                                                <div class="source">{{detail.6.source}}</div>
+                                                <hr class="dot">
+                                                <div class="country">{{detail.6.country}}</div>
+                                            </div>
+                                            <div class="title">{{detail.6.title}}</div>
+                                            <div class="description">{{detail.6.description}}</div>
+                                            <div class="date">{{detail.6.date_published}}</div>
+                                            {% comment %} <div class="favorite" >
+                                                <i class="ri-heart-fill"></i>
+                                                <span>3</span>
+                                            </div> {% endcomment %}
+                                        </div>
+                                    </div>
+                                </a>
+                                <a id="cd-2" href="#">
+                                    <div class="card">
+                                    {% if detail.7.image_url %}
+                                        <img src="{{ detail.7.image_url }}" alt="image">
+                                    {% else %}
+                                        <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                    {% endif %}                                          <div class="card-content">
+                                            <div class="src-container">
+                                                <div class="source">{{detail.7.source}}</div>
+                                                <hr class="dot">
+                                                <div class="country">{{detail.7.country}}</div>
+                                            </div>
+                                            <div class="title">{{detail.7.title}}</div>
+                                            <div class="description">{{detail.7.description}}</div>
+                                            <div class="date">{{detail.7.date_published}}</div>
+                                            {% comment %} <div class="favorite" >
+                                                <i class="ri-heart-fill"></i>
+                                                <span>3</span>
+                                            </div> {% endcomment %}
+                                        </div>
+                                    </div>
+                                </a>
+                                <a id="cd-3" href="#">
+                                    <div class="card">
+                                    {% if detail.8.image_url %}
+                                        <img src="{{ detail.8.image_url }}" alt="image">
+                                    {% else %}
+                                        <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                    {% endif %}                                          <div class="card-content">
+                                            <div class="src-container">
+                                                <div class="source">{{detail.8.source}}</div>
+                                                <hr class="dot">
+                                                <div class="country">{{detail.8.country}}</div>
+                                            </div>
+                                            <div class="title">{{detail.8.title}}</div>
+                                            <div class="description">{{detail.8.description}}</div>
+                                            <div class="date">{{detail.8.date_published}}</div>
+                                            {% comment %} <div class="favorite" >
+                                                <i class="ri-heart-fill"></i>
+                                                <span>3</span>
+                                            </div> {% endcomment %}
+                                        </div>
+                                    </div>
+                                </a>
+                                <a id="cd-4" href="#">
+                                    <div class="card">
+                                    {% if detail.9.image_url %}
+                                        <img src="{{ detail.9.image_url }}" alt="image">
+                                    {% else %}
+                                        <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                    {% endif %}                                          <div class="card-content">
+                                            <div class="src-container">
+                                                <div class="source">{{detail.9.source}}</div>
+                                                <hr class="dot">
+                                                <div class="country">{{detail.9.country}}</div>
+                                            </div>
+                                            <div class="title">{{detail.9.title}}</div>
+                                            <div class="description">{{detail.9.description}}</div>
+                                            <div class="date">{{detail.9.date_published}}</div>
+                                            {% comment %} <div class="favorite" >
+                                                <i class="ri-heart-fill"></i>
+                                                <span>3</span>
+                                            </div> {% endcomment %}
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
                             {% endif %}
-                            <p>タブ3のコンテンツを表示します</p>
+                            {% endif %}
                         </div>
                         <input type="radio" name="tab-name" id="tab4" {% if category == 'entertainment' %}checked{% endif %}>
                         <label class="tab" for="tab4" onclick="redirectToUrl('/home/category/entertainment')">Entertainment</label>
                         <div class="content">
                             {% if status%}
                             <h1>{{error}}</h1>
+                            {% else %}
+                            {% if category == 'entertainment' %}
+                            <div class="top-cards">
+                                <a class="card-big" href="#">
+                                    <div class="card card-large">
+                                        {% if detail.1.image_url %}
+                                            <img src="{{ detail.1.image_url }}" alt="image">
+                                        {% else %}
+                                            <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                        {% endif %}
+                                        <div class="card-content">
+                                            <div class="src-container">
+                                                <div class="source">{{detail.1.source}}</div>
+                                                <!-- <a href="{{item.url}}" id="source_url">{{item.source}}</a> -->
+                                                <hr class="dot">
+                                                <div class="country">{{detail.1.country}}</div>
+                                            </div>
+                                            <div class="title">{{detail.1.title}}</div>
+                                            <div class="description">{{detail.1.description}}</div>
+                                            <div class="date">{{detail.1.date_published}}</div>
+                                            {% comment %} <div class="favorite" >
+                                                <i class="ri-heart-fill"></i>
+                                                <span>3</span>
+                                            </div> {% endcomment %}
+                                        </div>
+                                    </div>
+                                </a>
+                                <div class="card-small">
+                                    <a id="cd-1" href="#">
+                                        <div class="card">
+                                        {% if detail.2.image_url %}
+                                            <img src="{{ detail.2.image_url }}" alt="image">
+                                        {% else %}
+                                            <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                        {% endif %}
+                                            <div class="card-content">
+                                                <div class="src-container">
+                                                    <div class="source">{{detail.2.source}}</div>
+                                                    <hr class="dot">
+                                                    <div class="country">{{detail.2.country}}</div>
+                                                </div>
+                                                <div class="title">{{detail.2.title}}</div>
+                                                <div class="description">{{detail.2.description}}</div>
+                                                <div class="date">{{detail.2.date_published}}</div>
+                                                {% comment %} <div class="favorite" >
+                                                    <i class="ri-heart-fill"></i>
+                                                    <span>3</span>
+                                                </div> {% endcomment %}
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a id="cd-2" href="#">
+                                        <div class="card">
+                                        {% if detail.3.image_url %}
+                                            <img src="{{ detail.3.image_url }}" alt="image">
+                                        {% else %}
+                                            <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                        {% endif %}                                            <div class="card-content">
+                                                <div class="src-container">
+                                                    <div class="source">{{detail.3.source}}</div>
+                                                    <hr class="dot">
+                                                    <div class="country">{{detail.3.country}}</div>
+                                                </div>
+                                                <div class="title">{{detail.3.title}}</div>
+                                                <div class="description">{{detail.3.description}}</div>
+                                                <div class="date">{{detail.3.date_published}}</div>
+                                                {% comment %} <div class="favorite" >
+                                                    <i class="ri-heart-fill"></i>
+                                                    <span>3</span>
+                                                </div> {% endcomment %}
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a id="cd-3" href="#">
+                                        <div class="card">
+                                        {% if detail.4.image_url %}
+                                            <img src="{{ detail.4.image_url }}" alt="image">
+                                        {% else %}
+                                            <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                        {% endif %}                                              <div class="card-content">
+                                                <div class="src-container">
+                                                    <div class="source">{{detail.4.source}}</div>
+                                                    <hr class="dot">
+                                                    <div class="country">{{detail.4.country}}</div>
+                                                </div>
+                                                <div class="title">{{detail.4.title}}</div>
+                                                <div class="description">{{detail.4.description}}</div>
+                                                <div class="date">{{detail.4.date_published}}</div>
+                                                {% comment %} <div class="favorite" >
+                                                    <i class="ri-heart-fill"></i>
+                                                    <span>3</span>
+                                                </div> {% endcomment %}
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a id="cd-4" href="#">
+                                        <div class="card">
+                                        {% if detail.5.image_url %}
+                                            <img src="{{ detail.5.image_url }}" alt="image">
+                                        {% else %}
+                                            <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                        {% endif %}                                               <div class="card-content">
+                                                <div class="src-container">
+                                                    <div class="source">{{detail.5.source}}</div>
+                                                    <hr class="dot">
+                                                    <div class="country">{{detail.5.country}}</div>
+                                                </div>
+                                                <div class="title">{{detail.5.title}}</div>
+                                                <div class="description">{{detail.5.description}}</div>
+                                                <div class="date">{{detail.5.date_published}}</div>
+                                                {% comment %} <div class="favorite" >
+                                                    <i class="ri-heart-fill"></i>
+                                                    <span>3</span>
+                                                </div> {% endcomment %}
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="cards">
+                                <a id="cd-1" href="#">
+                                    <div class="card">
+                                    {% if detail.6.image_url %}
+                                        <img src="{{ detail.6.image_url }}" alt="image">
+                                    {% else %}
+                                        <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                    {% endif %}                                           <div class="card-content">
+                                            <div class="src-container">
+                                                <div class="source">{{detail.6.source}}</div>
+                                                <hr class="dot">
+                                                <div class="country">{{detail.6.country}}</div>
+                                            </div>
+                                            <div class="title">{{detail.6.title}}</div>
+                                            <div class="description">{{detail.6.description}}</div>
+                                            <div class="date">{{detail.6.date_published}}</div>
+                                            {% comment %} <div class="favorite" >
+                                                <i class="ri-heart-fill"></i>
+                                                <span>3</span>
+                                            </div> {% endcomment %}
+                                        </div>
+                                    </div>
+                                </a>
+                                <a id="cd-2" href="#">
+                                    <div class="card">
+                                    {% if detail.7.image_url %}
+                                        <img src="{{ detail.7.image_url }}" alt="image">
+                                    {% else %}
+                                        <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                    {% endif %}                                          <div class="card-content">
+                                            <div class="src-container">
+                                                <div class="source">{{detail.7.source}}</div>
+                                                <hr class="dot">
+                                                <div class="country">{{detail.7.country}}</div>
+                                            </div>
+                                            <div class="title">{{detail.7.title}}</div>
+                                            <div class="description">{{detail.7.description}}</div>
+                                            <div class="date">{{detail.7.date_published}}</div>
+                                            {% comment %} <div class="favorite" >
+                                                <i class="ri-heart-fill"></i>
+                                                <span>3</span>
+                                            </div> {% endcomment %}
+                                        </div>
+                                    </div>
+                                </a>
+                                <a id="cd-3" href="#">
+                                    <div class="card">
+                                    {% if detail.8.image_url %}
+                                        <img src="{{ detail.8.image_url }}" alt="image">
+                                    {% else %}
+                                        <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                    {% endif %}                                          <div class="card-content">
+                                            <div class="src-container">
+                                                <div class="source">{{detail.8.source}}</div>
+                                                <hr class="dot">
+                                                <div class="country">{{detail.8.country}}</div>
+                                            </div>
+                                            <div class="title">{{detail.8.title}}</div>
+                                            <div class="description">{{detail.8.description}}</div>
+                                            <div class="date">{{detail.8.date_published}}</div>
+                                            {% comment %} <div class="favorite" >
+                                                <i class="ri-heart-fill"></i>
+                                                <span>3</span>
+                                            </div> {% endcomment %}
+                                        </div>
+                                    </div>
+                                </a>
+                                <a id="cd-4" href="#">
+                                    <div class="card">
+                                    {% if detail.9.image_url %}
+                                        <img src="{{ detail.9.image_url }}" alt="image">
+                                    {% else %}
+                                        <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                    {% endif %}                                          <div class="card-content">
+                                            <div class="src-container">
+                                                <div class="source">{{detail.9.source}}</div>
+                                                <hr class="dot">
+                                                <div class="country">{{detail.9.country}}</div>
+                                            </div>
+                                            <div class="title">{{detail.9.title}}</div>
+                                            <div class="description">{{detail.9.description}}</div>
+                                            <div class="date">{{detail.9.date_published}}</div>
+                                            {% comment %} <div class="favorite" >
+                                                <i class="ri-heart-fill"></i>
+                                                <span>3</span>
+                                            </div> {% endcomment %}
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
                             {% endif %}
-                            <p>タブ4のコンテンツを表示します</p>
+                            {% endif %}
                         </div>
                         <input type="radio" name="tab-name" id="tab5" {% if category == 'science' %}checked{% endif %}>
                         <label class="tab" for="tab5" onclick="redirectToUrl('/home/category/science')">Science</label>
                         <div class="content">
                             {% if status%}
                             <h1>{{error}}</h1>
+                            {% else %}
+                            {% if category == 'science' %}
+                            <div class="top-cards">
+                                <a class="card-big" href="#">
+                                    <div class="card card-large">
+                                        {% if detail.1.image_url %}
+                                            <img src="{{ detail.1.image_url }}" alt="image">
+                                        {% else %}
+                                            <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                        {% endif %}
+                                        <div class="card-content">
+                                            <div class="src-container">
+                                                <div class="source">{{detail.1.source}}</div>
+                                                <!-- <a href="{{item.url}}" id="source_url">{{item.source}}</a> -->
+                                                <hr class="dot">
+                                                <div class="country">{{detail.1.country}}</div>
+                                            </div>
+                                            <div class="title">{{detail.1.title}}</div>
+                                            <div class="description">{{detail.1.description}}</div>
+                                            <div class="date">{{detail.1.date_published}}</div>
+                                            {% comment %} <div class="favorite" >
+                                                <i class="ri-heart-fill"></i>
+                                                <span>3</span>
+                                            </div> {% endcomment %}
+                                        </div>
+                                    </div>
+                                </a>
+                                <div class="card-small">
+                                    <a id="cd-1" href="#">
+                                        <div class="card">
+                                        {% if detail.2.image_url %}
+                                            <img src="{{ detail.2.image_url }}" alt="image">
+                                        {% else %}
+                                            <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                        {% endif %}
+                                            <div class="card-content">
+                                                <div class="src-container">
+                                                    <div class="source">{{detail.2.source}}</div>
+                                                    <hr class="dot">
+                                                    <div class="country">{{detail.2.country}}</div>
+                                                </div>
+                                                <div class="title">{{detail.2.title}}</div>
+                                                <div class="description">{{detail.2.description}}</div>
+                                                <div class="date">{{detail.2.date_published}}</div>
+                                                {% comment %} <div class="favorite" >
+                                                    <i class="ri-heart-fill"></i>
+                                                    <span>3</span>
+                                                </div> {% endcomment %}
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a id="cd-2" href="#">
+                                        <div class="card">
+                                        {% if detail.3.image_url %}
+                                            <img src="{{ detail.3.image_url }}" alt="image">
+                                        {% else %}
+                                            <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                        {% endif %}                                            <div class="card-content">
+                                                <div class="src-container">
+                                                    <div class="source">{{detail.3.source}}</div>
+                                                    <hr class="dot">
+                                                    <div class="country">{{detail.3.country}}</div>
+                                                </div>
+                                                <div class="title">{{detail.3.title}}</div>
+                                                <div class="description">{{detail.3.description}}</div>
+                                                <div class="date">{{detail.3.date_published}}</div>
+                                                {% comment %} <div class="favorite" >
+                                                    <i class="ri-heart-fill"></i>
+                                                    <span>3</span>
+                                                </div> {% endcomment %}
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a id="cd-3" href="#">
+                                        <div class="card">
+                                        {% if detail.4.image_url %}
+                                            <img src="{{ detail.4.image_url }}" alt="image">
+                                        {% else %}
+                                            <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                        {% endif %}                                              <div class="card-content">
+                                                <div class="src-container">
+                                                    <div class="source">{{detail.4.source}}</div>
+                                                    <hr class="dot">
+                                                    <div class="country">{{detail.4.country}}</div>
+                                                </div>
+                                                <div class="title">{{detail.4.title}}</div>
+                                                <div class="description">{{detail.4.description}}</div>
+                                                <div class="date">{{detail.4.date_published}}</div>
+                                                {% comment %} <div class="favorite" >
+                                                    <i class="ri-heart-fill"></i>
+                                                    <span>3</span>
+                                                </div> {% endcomment %}
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a id="cd-4" href="#">
+                                        <div class="card">
+                                        {% if detail.5.image_url %}
+                                            <img src="{{ detail.5.image_url }}" alt="image">
+                                        {% else %}
+                                            <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                        {% endif %}                                               <div class="card-content">
+                                                <div class="src-container">
+                                                    <div class="source">{{detail.5.source}}</div>
+                                                    <hr class="dot">
+                                                    <div class="country">{{detail.5.country}}</div>
+                                                </div>
+                                                <div class="title">{{detail.5.title}}</div>
+                                                <div class="description">{{detail.5.description}}</div>
+                                                <div class="date">{{detail.5.date_published}}</div>
+                                                {% comment %} <div class="favorite" >
+                                                    <i class="ri-heart-fill"></i>
+                                                    <span>3</span>
+                                                </div> {% endcomment %}
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="cards">
+                                <a id="cd-1" href="#">
+                                    <div class="card">
+                                    {% if detail.6.image_url %}
+                                        <img src="{{ detail.6.image_url }}" alt="image">
+                                    {% else %}
+                                        <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                    {% endif %}                                           <div class="card-content">
+                                            <div class="src-container">
+                                                <div class="source">{{detail.6.source}}</div>
+                                                <hr class="dot">
+                                                <div class="country">{{detail.6.country}}</div>
+                                            </div>
+                                            <div class="title">{{detail.6.title}}</div>
+                                            <div class="description">{{detail.6.description}}</div>
+                                            <div class="date">{{detail.6.date_published}}</div>
+                                            {% comment %} <div class="favorite" >
+                                                <i class="ri-heart-fill"></i>
+                                                <span>3</span>
+                                            </div> {% endcomment %}
+                                        </div>
+                                    </div>
+                                </a>
+                                <a id="cd-2" href="#">
+                                    <div class="card">
+                                    {% if detail.7.image_url %}
+                                        <img src="{{ detail.7.image_url }}" alt="image">
+                                    {% else %}
+                                        <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                    {% endif %}                                          <div class="card-content">
+                                            <div class="src-container">
+                                                <div class="source">{{detail.7.source}}</div>
+                                                <hr class="dot">
+                                                <div class="country">{{detail.7.country}}</div>
+                                            </div>
+                                            <div class="title">{{detail.7.title}}</div>
+                                            <div class="description">{{detail.7.description}}</div>
+                                            <div class="date">{{detail.7.date_published}}</div>
+                                            {% comment %} <div class="favorite" >
+                                                <i class="ri-heart-fill"></i>
+                                                <span>3</span>
+                                            </div> {% endcomment %}
+                                        </div>
+                                    </div>
+                                </a>
+                                <a id="cd-3" href="#">
+                                    <div class="card">
+                                    {% if detail.8.image_url %}
+                                        <img src="{{ detail.8.image_url }}" alt="image">
+                                    {% else %}
+                                        <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                    {% endif %}                                          <div class="card-content">
+                                            <div class="src-container">
+                                                <div class="source">{{detail.8.source}}</div>
+                                                <hr class="dot">
+                                                <div class="country">{{detail.8.country}}</div>
+                                            </div>
+                                            <div class="title">{{detail.8.title}}</div>
+                                            <div class="description">{{detail.8.description}}</div>
+                                            <div class="date">{{detail.8.date_published}}</div>
+                                            {% comment %} <div class="favorite" >
+                                                <i class="ri-heart-fill"></i>
+                                                <span>3</span>
+                                            </div> {% endcomment %}
+                                        </div>
+                                    </div>
+                                </a>
+                                <a id="cd-4" href="#">
+                                    <div class="card">
+                                    {% if detail.9.image_url %}
+                                        <img src="{{ detail.9.image_url }}" alt="image">
+                                    {% else %}
+                                        <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                    {% endif %}                                          <div class="card-content">
+                                            <div class="src-container">
+                                                <div class="source">{{detail.9.source}}</div>
+                                                <hr class="dot">
+                                                <div class="country">{{detail.9.country}}</div>
+                                            </div>
+                                            <div class="title">{{detail.9.title}}</div>
+                                            <div class="description">{{detail.9.description}}</div>
+                                            <div class="date">{{detail.9.date_published}}</div>
+                                            {% comment %} <div class="favorite" >
+                                                <i class="ri-heart-fill"></i>
+                                                <span>3</span>
+                                            </div> {% endcomment %}
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
                             {% endif %}
-                            <p>タブ5のコンテンツを表示します</p>
+                            {% endif %}
                         </div>
                         <input type="radio" name="tab-name" id="tab6" {% if category == 'domestic' %}checked{% endif %}>
                         <label class="tab" for="tab6" onclick="redirectToUrl('/home/category/domestic')">Domestic</label>
                         <div class="content">
                             {% if status%}
                             <h1>{{error}}</h1>
+                            {% else %}
+                            {% if category == 'domestic' %}
+                            <div class="top-cards">
+                                <a class="card-big" href="#">
+                                    <div class="card card-large">
+                                        {% if detail.1.image_url %}
+                                            <img src="{{ detail.1.image_url }}" alt="image">
+                                        {% else %}
+                                            <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                        {% endif %}
+                                        <div class="card-content">
+                                            <div class="src-container">
+                                                <div class="source">{{detail.1.source}}</div>
+                                                <!-- <a href="{{item.url}}" id="source_url">{{item.source}}</a> -->
+                                                <hr class="dot">
+                                                <div class="country">{{detail.1.country}}</div>
+                                            </div>
+                                            <div class="title">{{detail.1.title}}</div>
+                                            <div class="description">{{detail.1.description}}</div>
+                                            <div class="date">{{detail.1.date_published}}</div>
+                                            {% comment %} <div class="favorite" >
+                                                <i class="ri-heart-fill"></i>
+                                                <span>3</span>
+                                            </div> {% endcomment %}
+                                        </div>
+                                    </div>
+                                </a>
+                                <div class="card-small">
+                                    <a id="cd-1" href="#">
+                                        <div class="card">
+                                        {% if detail.2.image_url %}
+                                            <img src="{{ detail.2.image_url }}" alt="image">
+                                        {% else %}
+                                            <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                        {% endif %}
+                                            <div class="card-content">
+                                                <div class="src-container">
+                                                    <div class="source">{{detail.2.source}}</div>
+                                                    <hr class="dot">
+                                                    <div class="country">{{detail.2.country}}</div>
+                                                </div>
+                                                <div class="title">{{detail.2.title}}</div>
+                                                <div class="description">{{detail.2.description}}</div>
+                                                <div class="date">{{detail.2.date_published}}</div>
+                                                {% comment %} <div class="favorite" >
+                                                    <i class="ri-heart-fill"></i>
+                                                    <span>3</span>
+                                                </div> {% endcomment %}
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a id="cd-2" href="#">
+                                        <div class="card">
+                                        {% if detail.3.image_url %}
+                                            <img src="{{ detail.3.image_url }}" alt="image">
+                                        {% else %}
+                                            <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                        {% endif %}                                            <div class="card-content">
+                                                <div class="src-container">
+                                                    <div class="source">{{detail.3.source}}</div>
+                                                    <hr class="dot">
+                                                    <div class="country">{{detail.3.country}}</div>
+                                                </div>
+                                                <div class="title">{{detail.3.title}}</div>
+                                                <div class="description">{{detail.3.description}}</div>
+                                                <div class="date">{{detail.3.date_published}}</div>
+                                                {% comment %} <div class="favorite" >
+                                                    <i class="ri-heart-fill"></i>
+                                                    <span>3</span>
+                                                </div> {% endcomment %}
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a id="cd-3" href="#">
+                                        <div class="card">
+                                        {% if detail.4.image_url %}
+                                            <img src="{{ detail.4.image_url }}" alt="image">
+                                        {% else %}
+                                            <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                        {% endif %}                                              <div class="card-content">
+                                                <div class="src-container">
+                                                    <div class="source">{{detail.4.source}}</div>
+                                                    <hr class="dot">
+                                                    <div class="country">{{detail.4.country}}</div>
+                                                </div>
+                                                <div class="title">{{detail.4.title}}</div>
+                                                <div class="description">{{detail.4.description}}</div>
+                                                <div class="date">{{detail.4.date_published}}</div>
+                                                {% comment %} <div class="favorite" >
+                                                    <i class="ri-heart-fill"></i>
+                                                    <span>3</span>
+                                                </div> {% endcomment %}
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a id="cd-4" href="#">
+                                        <div class="card">
+                                        {% if detail.5.image_url %}
+                                            <img src="{{ detail.5.image_url }}" alt="image">
+                                        {% else %}
+                                            <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                        {% endif %}                                               <div class="card-content">
+                                                <div class="src-container">
+                                                    <div class="source">{{detail.5.source}}</div>
+                                                    <hr class="dot">
+                                                    <div class="country">{{detail.5.country}}</div>
+                                                </div>
+                                                <div class="title">{{detail.5.title}}</div>
+                                                <div class="description">{{detail.5.description}}</div>
+                                                <div class="date">{{detail.5.date_published}}</div>
+                                                {% comment %} <div class="favorite" >
+                                                    <i class="ri-heart-fill"></i>
+                                                    <span>3</span>
+                                                </div> {% endcomment %}
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="cards">
+                                <a id="cd-1" href="#">
+                                    <div class="card">
+                                    {% if detail.6.image_url %}
+                                        <img src="{{ detail.6.image_url }}" alt="image">
+                                    {% else %}
+                                        <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                    {% endif %}                                           <div class="card-content">
+                                            <div class="src-container">
+                                                <div class="source">{{detail.6.source}}</div>
+                                                <hr class="dot">
+                                                <div class="country">{{detail.6.country}}</div>
+                                            </div>
+                                            <div class="title">{{detail.6.title}}</div>
+                                            <div class="description">{{detail.6.description}}</div>
+                                            <div class="date">{{detail.6.date_published}}</div>
+                                            {% comment %} <div class="favorite" >
+                                                <i class="ri-heart-fill"></i>
+                                                <span>3</span>
+                                            </div> {% endcomment %}
+                                        </div>
+                                    </div>
+                                </a>
+                                <a id="cd-2" href="#">
+                                    <div class="card">
+                                    {% if detail.7.image_url %}
+                                        <img src="{{ detail.7.image_url }}" alt="image">
+                                    {% else %}
+                                        <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                    {% endif %}                                          <div class="card-content">
+                                            <div class="src-container">
+                                                <div class="source">{{detail.7.source}}</div>
+                                                <hr class="dot">
+                                                <div class="country">{{detail.7.country}}</div>
+                                            </div>
+                                            <div class="title">{{detail.7.title}}</div>
+                                            <div class="description">{{detail.7.description}}</div>
+                                            <div class="date">{{detail.7.date_published}}</div>
+                                            {% comment %} <div class="favorite" >
+                                                <i class="ri-heart-fill"></i>
+                                                <span>3</span>
+                                            </div> {% endcomment %}
+                                        </div>
+                                    </div>
+                                </a>
+                                <a id="cd-3" href="#">
+                                    <div class="card">
+                                    {% if detail.8.image_url %}
+                                        <img src="{{ detail.8.image_url }}" alt="image">
+                                    {% else %}
+                                        <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                    {% endif %}                                          <div class="card-content">
+                                            <div class="src-container">
+                                                <div class="source">{{detail.8.source}}</div>
+                                                <hr class="dot">
+                                                <div class="country">{{detail.8.country}}</div>
+                                            </div>
+                                            <div class="title">{{detail.8.title}}</div>
+                                            <div class="description">{{detail.8.description}}</div>
+                                            <div class="date">{{detail.8.date_published}}</div>
+                                            {% comment %} <div class="favorite" >
+                                                <i class="ri-heart-fill"></i>
+                                                <span>3</span>
+                                            </div> {% endcomment %}
+                                        </div>
+                                    </div>
+                                </a>
+                                <a id="cd-4" href="#">
+                                    <div class="card">
+                                    {% if detail.9.image_url %}
+                                        <img src="{{ detail.9.image_url }}" alt="image">
+                                    {% else %}
+                                        <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                    {% endif %}                                          <div class="card-content">
+                                            <div class="src-container">
+                                                <div class="source">{{detail.9.source}}</div>
+                                                <hr class="dot">
+                                                <div class="country">{{detail.9.country}}</div>
+                                            </div>
+                                            <div class="title">{{detail.9.title}}</div>
+                                            <div class="description">{{detail.9.description}}</div>
+                                            <div class="date">{{detail.9.date_published}}</div>
+                                            {% comment %} <div class="favorite" >
+                                                <i class="ri-heart-fill"></i>
+                                                <span>3</span>
+                                            </div> {% endcomment %}
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
                             {% endif %}
-                            <p>タブ6のコンテンツを表示します</p>
+                            {% endif %}
                         </div>
                         <input type="radio" name="tab-name" id="tab7" {% if category == 'business' %}checked{% endif %}>
                         <label class="tab" for="tab7" onclick="redirectToUrl('/home/category/business')">Business</label>
                         <div class="content">
                             {% if status%}
                             <h1>{{error}}</h1>
+                            {% else %}
+                            {% if category == 'business' %}
+                            <div class="top-cards">
+                                <a class="card-big" href="#">
+                                    <div class="card card-large">
+                                        {% if detail.1.image_url %}
+                                            <img src="{{ detail.1.image_url }}" alt="image">
+                                        {% else %}
+                                            <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                        {% endif %}
+                                        <div class="card-content">
+                                            <div class="src-container">
+                                                <div class="source">{{detail.1.source}}</div>
+                                                <!-- <a href="{{item.url}}" id="source_url">{{item.source}}</a> -->
+                                                <hr class="dot">
+                                                <div class="country">{{detail.1.country}}</div>
+                                            </div>
+                                            <div class="title">{{detail.1.title}}</div>
+                                            <div class="description">{{detail.1.description}}</div>
+                                            <div class="date">{{detail.1.date_published}}</div>
+                                            {% comment %} <div class="favorite" >
+                                                <i class="ri-heart-fill"></i>
+                                                <span>3</span>
+                                            </div> {% endcomment %}
+                                        </div>
+                                    </div>
+                                </a>
+                                <div class="card-small">
+                                    <a id="cd-1" href="#">
+                                        <div class="card">
+                                        {% if detail.2.image_url %}
+                                            <img src="{{ detail.2.image_url }}" alt="image">
+                                        {% else %}
+                                            <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                        {% endif %}
+                                            <div class="card-content">
+                                                <div class="src-container">
+                                                    <div class="source">{{detail.2.source}}</div>
+                                                    <hr class="dot">
+                                                    <div class="country">{{detail.2.country}}</div>
+                                                </div>
+                                                <div class="title">{{detail.2.title}}</div>
+                                                <div class="description">{{detail.2.description}}</div>
+                                                <div class="date">{{detail.2.date_published}}</div>
+                                                {% comment %} <div class="favorite" >
+                                                    <i class="ri-heart-fill"></i>
+                                                    <span>3</span>
+                                                </div> {% endcomment %}
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a id="cd-2" href="#">
+                                        <div class="card">
+                                        {% if detail.3.image_url %}
+                                            <img src="{{ detail.3.image_url }}" alt="image">
+                                        {% else %}
+                                            <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                        {% endif %}                                            <div class="card-content">
+                                                <div class="src-container">
+                                                    <div class="source">{{detail.3.source}}</div>
+                                                    <hr class="dot">
+                                                    <div class="country">{{detail.3.country}}</div>
+                                                </div>
+                                                <div class="title">{{detail.3.title}}</div>
+                                                <div class="description">{{detail.3.description}}</div>
+                                                <div class="date">{{detail.3.date_published}}</div>
+                                                {% comment %} <div class="favorite" >
+                                                    <i class="ri-heart-fill"></i>
+                                                    <span>3</span>
+                                                </div> {% endcomment %}
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a id="cd-3" href="#">
+                                        <div class="card">
+                                        {% if detail.4.image_url %}
+                                            <img src="{{ detail.4.image_url }}" alt="image">
+                                        {% else %}
+                                            <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                        {% endif %}                                              <div class="card-content">
+                                                <div class="src-container">
+                                                    <div class="source">{{detail.4.source}}</div>
+                                                    <hr class="dot">
+                                                    <div class="country">{{detail.4.country}}</div>
+                                                </div>
+                                                <div class="title">{{detail.4.title}}</div>
+                                                <div class="description">{{detail.4.description}}</div>
+                                                <div class="date">{{detail.4.date_published}}</div>
+                                                {% comment %} <div class="favorite" >
+                                                    <i class="ri-heart-fill"></i>
+                                                    <span>3</span>
+                                                </div> {% endcomment %}
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a id="cd-4" href="#">
+                                        <div class="card">
+                                        {% if detail.5.image_url %}
+                                            <img src="{{ detail.5.image_url }}" alt="image">
+                                        {% else %}
+                                            <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                        {% endif %}                                               <div class="card-content">
+                                                <div class="src-container">
+                                                    <div class="source">{{detail.5.source}}</div>
+                                                    <hr class="dot">
+                                                    <div class="country">{{detail.5.country}}</div>
+                                                </div>
+                                                <div class="title">{{detail.5.title}}</div>
+                                                <div class="description">{{detail.5.description}}</div>
+                                                <div class="date">{{detail.5.date_published}}</div>
+                                                {% comment %} <div class="favorite" >
+                                                    <i class="ri-heart-fill"></i>
+                                                    <span>3</span>
+                                                </div> {% endcomment %}
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="cards">
+                                <a id="cd-1" href="#">
+                                    <div class="card">
+                                    {% if detail.6.image_url %}
+                                        <img src="{{ detail.6.image_url }}" alt="image">
+                                    {% else %}
+                                        <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                    {% endif %}                                           <div class="card-content">
+                                            <div class="src-container">
+                                                <div class="source">{{detail.6.source}}</div>
+                                                <hr class="dot">
+                                                <div class="country">{{detail.6.country}}</div>
+                                            </div>
+                                            <div class="title">{{detail.6.title}}</div>
+                                            <div class="description">{{detail.6.description}}</div>
+                                            <div class="date">{{detail.6.date_published}}</div>
+                                            {% comment %} <div class="favorite" >
+                                                <i class="ri-heart-fill"></i>
+                                                <span>3</span>
+                                            </div> {% endcomment %}
+                                        </div>
+                                    </div>
+                                </a>
+                                <a id="cd-2" href="#">
+                                    <div class="card">
+                                    {% if detail.7.image_url %}
+                                        <img src="{{ detail.7.image_url }}" alt="image">
+                                    {% else %}
+                                        <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                    {% endif %}                                          <div class="card-content">
+                                            <div class="src-container">
+                                                <div class="source">{{detail.7.source}}</div>
+                                                <hr class="dot">
+                                                <div class="country">{{detail.7.country}}</div>
+                                            </div>
+                                            <div class="title">{{detail.7.title}}</div>
+                                            <div class="description">{{detail.7.description}}</div>
+                                            <div class="date">{{detail.7.date_published}}</div>
+                                            {% comment %} <div class="favorite" >
+                                                <i class="ri-heart-fill"></i>
+                                                <span>3</span>
+                                            </div> {% endcomment %}
+                                        </div>
+                                    </div>
+                                </a>
+                                <a id="cd-3" href="#">
+                                    <div class="card">
+                                    {% if detail.8.image_url %}
+                                        <img src="{{ detail.8.image_url }}" alt="image">
+                                    {% else %}
+                                        <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                    {% endif %}                                          <div class="card-content">
+                                            <div class="src-container">
+                                                <div class="source">{{detail.8.source}}</div>
+                                                <hr class="dot">
+                                                <div class="country">{{detail.8.country}}</div>
+                                            </div>
+                                            <div class="title">{{detail.8.title}}</div>
+                                            <div class="description">{{detail.8.description}}</div>
+                                            <div class="date">{{detail.8.date_published}}</div>
+                                            {% comment %} <div class="favorite" >
+                                                <i class="ri-heart-fill"></i>
+                                                <span>3</span>
+                                            </div> {% endcomment %}
+                                        </div>
+                                    </div>
+                                </a>
+                                <a id="cd-4" href="#">
+                                    <div class="card">
+                                    {% if detail.9.image_url %}
+                                        <img src="{{ detail.9.image_url }}" alt="image">
+                                    {% else %}
+                                        <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                    {% endif %}                                          <div class="card-content">
+                                            <div class="src-container">
+                                                <div class="source">{{detail.9.source}}</div>
+                                                <hr class="dot">
+                                                <div class="country">{{detail.9.country}}</div>
+                                            </div>
+                                            <div class="title">{{detail.9.title}}</div>
+                                            <div class="description">{{detail.9.description}}</div>
+                                            <div class="date">{{detail.9.date_published}}</div>
+                                            {% comment %} <div class="favorite" >
+                                                <i class="ri-heart-fill"></i>
+                                                <span>3</span>
+                                            </div> {% endcomment %}
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
                             {% endif %}
-                            <p>タブ7のコンテンツを表示します</p>
+                            {% endif %}
                         </div>
                         <input type="radio" name="tab-name" id="tab8" {% if category == 'bookmark' %}checked{% endif %}>
                         <label class="tab" for="tab8">Bookmark</label>
@@ -564,8 +1841,5 @@
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-        {% for item in detail %}
-            <h1>{{ item.title }}</h1>
-        {% endfor %}
     </body>
 </html>
