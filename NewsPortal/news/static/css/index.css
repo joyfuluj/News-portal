@@ -124,9 +124,21 @@ input:checked + .tab + .content {
     margin-bottom: 10px;
 }
 
+.card.card-large {
+    width: 98%;
+    height: 650px;
+}
+
+.card.card-large img {
+    width: 100%;
+    height: 62.5%;
+    max-height: 55%;
+}
+
 .card img {
     width: 100%;
     height: 45%;
+    max-height: 130px;
     object-fit: cover;
     border-radius: 16px 16px 0 0;
 }
@@ -159,8 +171,34 @@ a {
 }
 
 .title {
-    font-size: large;
+    overflow: hidden; 
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
     font-weight: 1000;
+}
+
+.card.card-large .title {
+    font-size: 20px;
+}
+
+.card .title {
+    font-size: 16px;
+}
+
+.card.card-large .src-container {
+    font-size: 15px;
+}
+
+.card .src-container {
+    font-size: 12px;
+}
+
+.country {
+    overflow: hidden; 
+    -webkit-line-clamp: 1;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
 }
 
 .description {
@@ -168,6 +206,15 @@ a {
     -webkit-line-clamp: 3;
     display: -webkit-box;
     -webkit-box-orient: vertical;
+}
+
+.card.card-large .description {
+    -webkit-line-clamp: 6;
+    font-size: 16px;
+}
+
+.card .description {
+    font-size: 14px;
 }
 
 .date {
@@ -185,20 +232,6 @@ a {
 .ri-heart-fill {
     color: red;
 } */
-
-.card-large {
-    width: 98%;
-    height: 650px;
-}
-
-.card-large img {
-    width: 100%;
-    height: 62.5%;
-}
-
-.card-large .description {
-    -webkit-line-clamp: 6;
-}
 
 /* rightside bar */
 #rightside-bar .nav {
