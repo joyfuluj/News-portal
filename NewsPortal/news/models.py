@@ -4,7 +4,7 @@ from django.contrib.auth.hashers import check_password
 
 # User model
 class User(models.Model):
-    firstName = models.CharField(max_length=50)
+    username = models.CharField(max_length=50)
     email = models.EmailField(max_length=254, unique=True, default='default@default.com')
     password = models.CharField(max_length=128, default=make_password('default_pass'))
     date_registered = models.DateField(auto_now_add=True)
