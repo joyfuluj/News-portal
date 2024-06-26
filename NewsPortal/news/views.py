@@ -10,6 +10,8 @@ from django.shortcuts import redirect
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.core.cache import cache
+from .models import User, Bookmark
+from django.contrib.auth.hashers import check_password
 
 
 
@@ -20,6 +22,54 @@ logger = logging.getLogger(__name__)
 
 # def index(request):
 #     return HttpResponse("Hello, world. You're at the polls index.")
+
+def signup_user(request):
+    entered_email = request.POST.get('email')
+    entered_password = request.POST.get('new-password')
+    con_password = request.POST.get('con-password')
+    
+    if entered_password != con_password:
+        return render(request, 'signup.html', {'error': 'Password doesn\'t match.'})
+    
+    users = User.objects.filter(email=entered_email).first()
+    
+    if users:
+        return render(request, 'signup.html', {'error': 'Email already exists.'})
+    
+    user = User(
+        username=entered_email.split('@')[0],
+        email=entered_email,
+        password=entered_password,
+    )
+    # user = User(
+    #     username=joyful,
+    #     email=joyful@yahoo.co.jp,
+    #     password='joyful123',
+    # )
+    
+    user.save()
+    
+    user = User.objects.get(email=entered_email)
+    request.session['user_id'] = user.id
+    
+    return render(request, 'index.html', {'user': user})
+
+
+def signin_user(request):
+    email = request.POST.get('email')
+    password = request.POST.get('password')
+
+    user = User.objects.get(email=email)
+    
+    if user:
+        if check_password(password, user.password):
+            request.session['user_id'] = user.id
+            return render(request, 'index.html', {'user': user})
+        else:
+            return render(request, 'signin.html', {'error': 'Password is wrong.'})
+    else:
+        return render(request, 'signin.html', {'error': 'Email doesn\'t exist.'})
+
 
 class IndexView(TemplateView):
     template_name = 'index.html'
@@ -32,6 +82,7 @@ class SignupView(TemplateView):
 
 class AccountView(TemplateView):
     template_name = 'account.html'
+
 
 class BaseNewsView(APIView):
     def getDetails(self, url):
@@ -124,8 +175,8 @@ class SetCountryView(BaseNewsView):
         except requests.exceptions.RequestException as e:
             logger.error(f"Request failed: {e}")
             return Response({'error': 'Failed to fetch data from the API.'}, status=500)
-    
-    
+
+
 class SetCategoryView(BaseNewsView):
     def get(self, request, category):
         request.session['category'] = category
@@ -158,7 +209,8 @@ class SetCategoryView(BaseNewsView):
         except requests.exceptions.RequestException as e:
             logger.error(f"Request failed: {e}")
             return Response({'error': 'Failed to fetch data from the API.'}, status=500)
-        
+
+
 class SetLanguageView(BaseNewsView):
     def get(self, request, language):
         request.session['language'] = language
@@ -184,13 +236,15 @@ class SetLanguageView(BaseNewsView):
         except requests.exceptions.RequestException as e:
             logger.error(f"Request failed: {e}")
             return Response({'error': 'Failed to fetch data from the API.'}, status=500)
-        
+
+
 class EndSessionView(BaseNewsView):
     def get(self, request):
     # Flush the session data
         request.session.flush()
         return HttpResponseRedirect('/home')
-        
+
+
 class FilterView(BaseNewsView):
     def get(self, request, country, category, language):
         url = ('https://newsdata.io/api/1/latest?'
@@ -204,7 +258,8 @@ class FilterView(BaseNewsView):
         except requests.exceptions.RequestException as e:
             logger.error(f"Request failed: {e}")
             return Response({'error': 'Failed to fetch data from the API.'}, status=500)
-        
+
+
 class FilteredNewsView(BaseNewsView):
     def get(self, request):
         countries = request.GET.getlist('country')

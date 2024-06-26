@@ -1,5 +1,5 @@
 from django.urls import path
-# from . import views
+from . import views
 from .views import IndexView, SigninView, SignupView, AccountView, NewsportalView, SetCountryView, SetCategoryView, SetLanguageView, FilteredNewsView, FilterView, EndSessionView
 
 # urlpatterns = [
@@ -20,4 +20,6 @@ urlpatterns = [
     path('filtered-news/', FilteredNewsView.as_view(), name='news_view'),
     path('home/filter/<str:country>/<str:category>/<str:language>', FilterView.as_view(), name='filter_api'),
     path('end/', EndSessionView.as_view(), name='end_view'),
+    path('signin-user', views.signin_user),
+    path('signup-user', views.signup_user),
 ]

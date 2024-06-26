@@ -34,20 +34,22 @@
         </div>
        
         <div class="wrapper">
-            <form>
+            <h2>{{error}}</h2>
+            <form action="/signup-user" method="post">
+                {% csrf_token %}
                 <h1>Welcome</h1>
                 <div class="form-group">
-                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                    <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Enter email">
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" id="password" placeholder="Password">
+                    <input type="password" class="form-control" name="new-password" id="password" placeholder="Password">
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" id="password" placeholder="Confirm Password">
+                    <input type="password" class="form-control" name="con-password" id="password" placeholder="Confirm Password">
                 </div>
                 <button type="submit">SIGN UP</button>
                 <div>
-                    <p>Already have an account? <a href="signin">Sign in</a></p>
+                    <p>Already have an account? <a href="/signin">Sign in</a></p>
                 </div>
             </form>
 

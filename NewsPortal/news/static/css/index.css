@@ -22,6 +22,8 @@
 /* leftside bar */
 #leftside-bar .dropdown {
     margin-top: 0.5em;
+    display: flex;
+    align-items: center;
 }
 
 #leftside-bar ul hr {
