@@ -144,7 +144,8 @@ class NewsportalView(BaseNewsView):
                 articles[i] = news
             # return Response(detail)
             username = request.session.get('username')
-            return render(request, 'index.html', {'detail': articles, 'category': 'top', 'user': username})
+            userid = request.session.get('user_id')
+            return render(request, 'index.html', {'detail': articles, 'category': 'top', 'username': username, 'user_id': userid})
         except requests.exceptions.RequestException as e:
             logger.error(f"Request failed: {e}")
             return Response({'error': 'Failed to fetch data from the API.'}, status=500)
@@ -175,7 +176,9 @@ class SetCountryView(BaseNewsView):
                 status = True
                 error = "News Unavailable."
             # return Response(detail)
-            return render(request, 'index.html', {'detail': articles, 'status': status, 'error': error,'category': category, 'country': country})
+            username = request.session.get('username')
+            userid = request.session.get('user_id')
+            return render(request, 'index.html', {'detail': articles, 'status': status, 'error': error,'category': category, 'country': country, 'username': username, 'user_id': userid})
         except requests.exceptions.RequestException as e:
             logger.error(f"Request failed: {e}")
             return Response({'error': 'Failed to fetch data from the API.'}, status=500)
@@ -208,7 +211,9 @@ class SetCategoryView(BaseNewsView):
                 status = True
                 error = "News Unavailable."
             # return Response(detail)
-            return render(request, 'index.html', {'detail': articles, 'status': status, 'error': error,'category': category})
+            username = request.session.get('username')
+            userid = request.session.get('user_id')
+            return render(request, 'index.html', {'detail': articles, 'status': status, 'error': error,'category': category, 'username': username, 'user_id': userid})
         
         except requests.exceptions.RequestException as e:
             logger.error(f"Request failed: {e}")
@@ -236,7 +241,9 @@ class SetLanguageView(BaseNewsView):
                 status = True
                 error = "News Unavailable."
             # return Response(detail)
-            return render(request, 'index.html', {'detail': articles, 'status': status, 'error': error,'category': category})
+            username = request.session.get('username')
+            userid = request.session.get('user_id')
+            return render(request, 'index.html', {'detail': articles, 'status': status, 'error': error,'category': category, 'username': username, 'user_id': userid})
         except requests.exceptions.RequestException as e:
             logger.error(f"Request failed: {e}")
             return Response({'error': 'Failed to fetch data from the API.'}, status=500)
