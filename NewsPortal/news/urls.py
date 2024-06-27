@@ -22,4 +22,5 @@ urlpatterns = [
     path('end/', EndSessionView.as_view(), name='end_view'),
     path('signin-user', views.signin_user),
     path('signup-user', views.signup_user),
+    path('account-setting', views.account_setting),
 ]

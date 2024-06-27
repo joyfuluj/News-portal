@@ -73,6 +73,16 @@ def signin_user(request):
         return render(request, 'signin.html', {'error': 'Email doesn\'t exist.'})
 
 
+def account_setting(request):
+    if 'user_id' not in request.session:
+        return redirect('news_api')
+    
+    userid = request.session.get('user_id')
+    user = User.objects.get(id=userid)
+    
+    return render(request, 'account.html', {'user': user})
+
+
 class IndexView(TemplateView):
     template_name = 'index.html'
 
