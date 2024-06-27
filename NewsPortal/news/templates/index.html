@@ -47,10 +47,10 @@
             <div class="row">
                 <div id="leftside-bar" class="col-md-2">
                     <div class="dropdown">
-                        {% if user.username %}
+                        {% if user %}
                             <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
                                 <img src="https://www.antiochchurchnc.org/wp-content/uploads/2017/05/Joyful.jpeg" alt="profile-pic" width="32" height="32" class="rounded-circle me-2">
-                                <strong>{{user.username}}</strong>
+                                <strong>{{user}}</strong>
                             </a>
                             <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
                                 <li><a class="dropdown-item" href="/account">Settings</a></li>

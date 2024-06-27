@@ -7,7 +7,7 @@ from .views import IndexView, SigninView, SignupView, AccountView, NewsportalVie
 # ]
 
 urlpatterns = [
-    path('', IndexView.as_view()),
+    path('', NewsportalView.as_view(), name='news_api'),
     path('index', IndexView.as_view()),
     path('signin', SigninView.as_view()),
     path('signup', SignupView.as_view()),

@@ -51,8 +51,9 @@ def signup_user(request):
     
     user = User.objects.get(email=entered_email)
     request.session['user_id'] = user.id
+    request.session['username'] = user.username
     
-    return render(request, 'index.html', {'user': user})
+    return redirect('news_api')
 
 
 def signin_user(request):
@@ -64,7 +65,8 @@ def signin_user(request):
     if user:
         if check_password(password, user.password):
             request.session['user_id'] = user.id
-            return render(request, 'index.html', {'user': user})
+            request.session['username'] = user.username
+            return redirect('news_api')
         else:
             return render(request, 'signin.html', {'error': 'Password is wrong.'})
     else:
@@ -129,6 +131,7 @@ class BaseNewsView(APIView):
         return detail_list
 
 class NewsportalView(BaseNewsView):
+    template_name = 'index.html'
     def get(self, request):
         url = ('https://newsdata.io/api/1/latest?'
                'category=top&'
@@ -140,7 +143,8 @@ class NewsportalView(BaseNewsView):
             for i, news in enumerate(detail, 1):
                 articles[i] = news
             # return Response(detail)
-            return render(request, 'index.html', {'detail': articles, 'category': 'top'})
+            username = request.session.get('username')
+            return render(request, 'index.html', {'detail': articles, 'category': 'top', 'user': username})
         except requests.exceptions.RequestException as e:
             logger.error(f"Request failed: {e}")
             return Response({'error': 'Failed to fetch data from the API.'}, status=500)
