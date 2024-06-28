@@ -75,10 +75,21 @@
                     {% csrf_token %}
                     <div class="row">
                         <div class="form-group col-md-8">
-                            <label for="old-password">Old Password</label>
+                            <label for="old-password">Old Password&emsp;
+                                {% if success2 %}
+                                    <span class="success">{{ success2 }}</span>
+                                {% endif %}
+                                {% if error2 %}
+                                    <span class="error">{{ error2 }}</span>
+                                {% endif %}
+                            </label>
                             <input type="password" class="form-control" name="old-password" id="old-password" name="old-password" placeholder="********">
                     
-                            <label for="new-password">New Password</label>
+                            <label for="new-password">New Password&emsp;
+                                {% if error3 %}
+                                    <span class="error">{{ error3 }}</span>
+                                {% endif %}
+                            </label>
                             <input type="password" class="form-control" name="new-password" id="new-password" name="new-password" placeholder="Password">
                     
                             <label for="con-password">Confirm Password</label>

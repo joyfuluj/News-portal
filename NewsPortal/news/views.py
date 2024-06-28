@@ -11,7 +11,7 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.core.cache import cache
 from .models import User, Bookmark
-from django.contrib.auth.hashers import check_password
+from django.contrib.auth.hashers import make_password, check_password
 import re
 
 
@@ -110,11 +110,32 @@ def change_email(request):
     request.session['username'] = username
 
     return render(request, 'account.html', {'success': 'Email address has been changed.', 'user': user})
-    
 
 
 def change_password(request):
+    old_password = request.POST.get('old-password')
+    entered_password = request.POST.get('new-password')
+    con_password = request.POST.get('con-password')
+    
+    if old_password == '' or entered_password == '' or con_password == '':
+        return render(request, 'account.html', {'error2': 'Please enter all the password field.'})
+    
     userid = request.session.get('user_id')
+    user = User.objects.get(id=userid)
+    
+    # match the password
+    if entered_password != con_password:
+        return render(request, 'account.html', {'error3': 'Please ensure that password matches.'})
+    
+    # check the old password
+    if not check_password(old_password, user.password):
+        return render(request, 'account.html', {'error2': 'Please enter the correct password.'})
+    
+    # change the password
+    user.password = make_password(entered_password)
+    user.save(update_fields=['password'])
+    
+    return render(request, 'account.html', {'success2': 'Password has been changed.', 'user': user})    
 
 
 class IndexView(TemplateView):
