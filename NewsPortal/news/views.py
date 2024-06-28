@@ -12,6 +12,7 @@ from django.http import HttpResponseRedirect
 from django.core.cache import cache
 from .models import User, Bookmark
 from django.contrib.auth.hashers import check_password
+import re
 
 
 
@@ -81,6 +82,39 @@ def account_setting(request):
     user = User.objects.get(id=userid)
     
     return render(request, 'account.html', {'user': user})
+
+
+def change_email(request):
+    entered_email = request.POST.get('email')
+    
+    if entered_email == '':
+        return render(request, 'account.html', {'error': 'Please enter an email address.'})
+
+    if not valid(entered_email):
+        return render(request, 'account.html', {'error': 'Please enter a valid email address.'})
+    
+    same_email = User.objects.filter(email=entered_email).first()
+    
+    if same_email:
+        return render(request, 'account.html', {'error': 'Entered email address is used.'})
+    
+    userid = request.session.get('user_id')
+    user = User.objects.get(id=userid)
+
+    username = entered_email.split('@')[0]
+    user.email = entered_email
+    user.username = username
+    
+    user.save(update_fields=['email', 'username'])
+    
+    request.session['username'] = username
+
+    return render(request, 'account.html', {'success': 'Email address has been changed.', 'user': user})
+    
+
+
+def change_password(request):
+    userid = request.session.get('user_id')
 
 
 class IndexView(TemplateView):
@@ -302,3 +336,13 @@ class FilteredNewsView(BaseNewsView):
         })
         
         return redirect(url)
+
+
+def valid(email):
+    regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b'
+
+    if(re.fullmatch(regex, email)):
+        return True
+
+    else:
+        return False

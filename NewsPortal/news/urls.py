@@ -23,4 +23,6 @@ urlpatterns = [
     path('signin-user', views.signin_user),
     path('signup-user', views.signup_user),
     path('account-setting', views.account_setting),
+    path('change-email', views.change_email),
+    path('change-pass', views.change_password),
 ]
