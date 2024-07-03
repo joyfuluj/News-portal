@@ -15,6 +15,15 @@ h1 {
     font-family: 'League Spartan';
 }
 
+#header-1 {
+    display: flex;
+    justify-content: space-between;
+}
+
+.wrapper .btn-info {
+    font-family: 'Poppins';
+}
+
 #setting {
     width: 70%;
     margin: auto;
@@ -47,6 +56,14 @@ h1 {
     background-color: #FDDF90;
     padding: 0.3em 0 0.3em 0;
     margin: 1em 0 1em 0;
+}
+
+.wrapper .success {
+    color: #32C547;
+}
+
+.wrapper .error {
+    color: red;
 }
 
 /* footer */

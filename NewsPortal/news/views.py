@@ -11,7 +11,8 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.core.cache import cache
 from .models import User, Bookmark
-from django.contrib.auth.hashers import check_password
+from django.contrib.auth.hashers import make_password, check_password
+import re
 
 
 
@@ -71,6 +72,70 @@ def signin_user(request):
             return render(request, 'signin.html', {'error': 'Password is wrong.'})
     else:
         return render(request, 'signin.html', {'error': 'Email doesn\'t exist.'})
+
+
+def account_setting(request):
+    if 'user_id' not in request.session:
+        return redirect('news_api')
+    
+    userid = request.session.get('user_id')
+    user = User.objects.get(id=userid)
+    
+    return render(request, 'account.html', {'user': user})
+
+
+def change_email(request):
+    entered_email = request.POST.get('email')
+    
+    if entered_email == '':
+        return render(request, 'account.html', {'error': 'Please enter an email address.'})
+
+    if not valid(entered_email):
+        return render(request, 'account.html', {'error': 'Please enter a valid email address.'})
+    
+    same_email = User.objects.filter(email=entered_email).first()
+    
+    if same_email:
+        return render(request, 'account.html', {'error': 'Entered email address is used.'})
+    
+    userid = request.session.get('user_id')
+    user = User.objects.get(id=userid)
+
+    username = entered_email.split('@')[0]
+    user.email = entered_email
+    user.username = username
+    
+    user.save(update_fields=['email', 'username'])
+    
+    request.session['username'] = username
+
+    return render(request, 'account.html', {'success': 'Email address has been changed.', 'user': user})
+
+
+def change_password(request):
+    old_password = request.POST.get('old-password')
+    entered_password = request.POST.get('new-password')
+    con_password = request.POST.get('con-password')
+    
+    if old_password == '' or entered_password == '' or con_password == '':
+        return render(request, 'account.html', {'error2': 'Please enter all the password field.'})
+    
+    userid = request.session.get('user_id')
+    user = User.objects.get(id=userid)
+    
+    # match the password
+    if entered_password != con_password:
+        return render(request, 'account.html', {'error3': 'Please ensure that password matches.'})
+    
+    # check the old password
+    if not check_password(old_password, user.password):
+        return render(request, 'account.html', {'error2': 'Please enter the correct password.'})
+    
+    # change the password
+    user.password = make_password(entered_password)
+    user.save(update_fields=['password'])
+    
+    return render(request, 'account.html', {'success2': 'Password has been changed.', 'user': user})    
 
 
 class IndexView(TemplateView):
@@ -144,7 +209,8 @@ class NewsportalView(BaseNewsView):
                 articles[i] = news
             # return Response(detail)
             username = request.session.get('username')
-            return render(request, 'index.html', {'detail': articles, 'category': 'top', 'user': username})
+            userid = request.session.get('user_id')
+            return render(request, 'index.html', {'detail': articles, 'category': 'top', 'username': username, 'user_id': userid})
         except requests.exceptions.RequestException as e:
             logger.error(f"Request failed: {e}")
             return Response({'error': 'Failed to fetch data from the API.'}, status=500)
@@ -175,7 +241,9 @@ class SetCountryView(BaseNewsView):
                 status = True
                 error = "News Unavailable."
             # return Response(detail)
-            return render(request, 'index.html', {'detail': articles, 'status': status, 'error': error,'category': category, 'country': country})
+            username = request.session.get('username')
+            userid = request.session.get('user_id')
+            return render(request, 'index.html', {'detail': articles, 'status': status, 'error': error,'category': category, 'country': country, 'username': username, 'user_id': userid})
         except requests.exceptions.RequestException as e:
             logger.error(f"Request failed: {e}")
             return Response({'error': 'Failed to fetch data from the API.'}, status=500)
@@ -214,7 +282,9 @@ class SetCategoryView(BaseNewsView):
                 status = True
                 error = "News Unavailable."
             # return Response(detail)
-            return render(request, 'index.html', {'detail': articles, 'status': status, 'error': error,'category': category})
+            username = request.session.get('username')
+            userid = request.session.get('user_id')
+            return render(request, 'index.html', {'detail': articles, 'status': status, 'error': error,'category': category, 'username': username, 'user_id': userid})
         
         except requests.exceptions.RequestException as e:
             logger.error(f"Request failed: {e}")
@@ -245,7 +315,9 @@ class SetLanguageView(BaseNewsView):
                 status = True
                 error = "News Unavailable."
             # return Response(detail)
-            return render(request, 'index.html', {'detail': articles, 'status': status, 'error': error,'category': category})
+            username = request.session.get('username')
+            userid = request.session.get('user_id')
+            return render(request, 'index.html', {'detail': articles, 'status': status, 'error': error,'category': category, 'username': username, 'user_id': userid})
         except requests.exceptions.RequestException as e:
             logger.error(f"Request failed: {e}")
             return Response({'error': 'Failed to fetch data from the API.'}, status=500)
@@ -326,3 +398,13 @@ class FilteredNewsView(BaseNewsView):
         })
         
         return redirect(url)
+
+
+def valid(email):
+    regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b'
+
+    if(re.fullmatch(regex, email)):
+        return True
+
+    else:
+        return False

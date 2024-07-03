@@ -24,7 +24,7 @@
         <div id="header">
             <nav class="navbar navbar-expand-lg bg-white">
                 <div class="container-fluid justify-content-center">
-                    <a class="navbar-brand" href="index"><img id="logo-white" src="{% static '/images/logo_white.png' %}" alt="logo"></a>
+                    <a class="navbar-brand" href="/home"><img id="logo-white" src="{% static '/images/logo_white.png' %}" alt="logo"></a>
                     <form class="d-flex" role="search">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success" type="submit">Search</button>
@@ -34,7 +34,10 @@
         </div>
        
         <div class="wrapper">
-            <h1>Account Setting</h1>
+            <div id="header-1">
+                <h1>Account Setting</h1>
+                <a class="btn btn-info" href="account-setting">Reload</a>
+            </div>
             <hr>
             <div id="setting">
                 <form id="pic-form" enctype="multipart/form-data" method="post" action="#">
@@ -49,28 +52,48 @@
                         </div>
                     </div>
                 </form>
-                <form id="email-form" method="post" action="#">
+                <form id="email-form" method="post" action="/change-email">
+                    {% csrf_token %}
                     <div class="row">
                         <div class="form-group col-md-8">
-                            <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="joyful@yahoo.co.jp">
+                            <label for="email">Email&emsp;
+                                {% if success %}
+                                    <span class="success">{{ success }}</span>
+                                {% endif %}
+                                {% if error %}
+                                    <span class="error">{{ error }}</span>
+                                {% endif %}
+                            </label>
+                            <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder={{ user.email }}>
                         </div>
                         <div class="col-md-4">
                             <button type="submit">Change email address</button>
                         </div>
                     </div>
                 </form>
-                <form id="pass-form" method="post" action="#">
+                <form id="pass-form" method="post" action="/change-pass">
+                    {% csrf_token %}
                     <div class="row">
                         <div class="form-group col-md-8">
-                            <label for="old-password">Old Password</label>
-                            <input type="password" class="form-control" id="old-password" name="old-password" placeholder="********">
+                            <label for="old-password">Old Password&emsp;
+                                {% if success2 %}
+                                    <span class="success">{{ success2 }}</span>
+                                {% endif %}
+                                {% if error2 %}
+                                    <span class="error">{{ error2 }}</span>
+                                {% endif %}
+                            </label>
+                            <input type="password" class="form-control" name="old-password" id="old-password" name="old-password" placeholder="********">
                     
-                            <label for="new-password">New Password</label>
-                            <input type="password" class="form-control" id="new-password" name="new-password" placeholder="Password">
+                            <label for="new-password">New Password&emsp;
+                                {% if error3 %}
+                                    <span class="error">{{ error3 }}</span>
+                                {% endif %}
+                            </label>
+                            <input type="password" class="form-control" name="new-password" id="new-password" name="new-password" placeholder="Password">
                     
                             <label for="con-password">Confirm Password</label>
-                            <input type="password" class="form-control" id="con-password" name="con-password" placeholder="Password">
+                            <input type="password" class="form-control" name="con-password" id="con-password" name="con-password" placeholder="Password">
                         </div>
                         <div class="col-md-4">
                             <button type="submit">Change password</button>
@@ -83,7 +106,7 @@
 
         <div id="footer">
             <p>Copyright &copy; 2024 JoyfulTaiful Inc. All rights reserved.</p>
-            <a class="navbar-brand" href="index"><img id="logo-black" src="{% static '/images/logo_black.png' %}" alt="logo"></a>
+            <a class="navbar-brand" href="/home"><img id="logo-black" src="{% static '/images/logo_black.png' %}" alt="logo"></a>
             <ul>
                 <a href="#"><li>Privacy Policy</li></a> |
                 <a href="#"><li>Term of Use</li></a>

@@ -34,7 +34,7 @@
         <div id="header">
             <nav class="navbar navbar-expand-lg bg-white">
                 <div class="container-fluid justify-content-center">
-                    <a class="navbar-brand" href="#"><img id="logo-white" src="{% static '/images/logo_white.png' %}" alt="logo"></a>
+                    <a class="navbar-brand" href="/home"><img id="logo-white" src="{% static '/images/logo_white.png' %}" alt="logo"></a>
                     <form class="d-flex" role="search" method="get" action="{% url 'query_api' %}">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="query">
                         <button class="btn btn-outline-info" type="submit">Search</button>
@@ -47,10 +47,10 @@
             <div class="row">
                 <div id="leftside-bar" class="col-md-2">
                     <div class="dropdown">
-                        {% if user %}
+                        {% if username %}
                             <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
                                 <img src="https://www.antiochchurchnc.org/wp-content/uploads/2017/05/Joyful.jpeg" alt="profile-pic" width="32" height="32" class="rounded-circle me-2">
-                                <strong>{{user}}</strong>
+                                <strong>{{username}}</strong>
                             </a>
                             <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
                                 <li><a class="dropdown-item" href="/account">Settings</a></li>
@@ -59,7 +59,7 @@
                             </ul>
                         {% else %}
                             <img src="https://t3.ftcdn.net/jpg/05/53/79/60/360_F_553796090_XHrE6R9jwmBJUMo9HKl41hyHJ5gqt9oz.jpg" alt="profile-pic" width="32" height="32" class="rounded-circle me-2">
-                            <a href="/signin">Sign in</a>
+                            <a href="/signin">Sign in</a>&nbsp;/&nbsp;<a href="/signup"> Sign up</a>
                         {% endif %}
                     </div>
                     <hr>
@@ -71,7 +71,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/account" class="nav-link link-dark">
+                            <a href="/account-setting" class="nav-link link-dark">
                             <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
                             Settings
                             </a>
@@ -1838,7 +1838,7 @@
 
         <div id="footer">
             <p>Copyright &copy; 2024 JoyfulTaiful Inc. All rights reserved.</p>
-            <a class="navbar-brand" href="#"><img id="logo-black" src="{% static '/images/logo_black.png' %}" alt="logo"></a>
+            <a class="navbar-brand" href="/home"><img id="logo-black" src="{% static '/images/logo_black.png' %}" alt="logo"></a>
             <ul>
                 <a href="#"><li>Privacy Policy</li></a> |
                 <a href="#"><li>Term of Use</li></a>
