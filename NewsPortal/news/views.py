@@ -256,20 +256,20 @@ class SetCategoryView(BaseNewsView):
         language = request.session.get('language', [])
         if not language:
             language='en'
-        if not country or language:
-            url = (
-            'https://newsdata.io/api/1/latest?'
-            f'category={category}&'
-            f'language={language}&'
-            'apikey=pub_4531191d2b63794a04ccbab7e0be40a2cc9dd'
-        )
-        else:
+        if country:
             url = (
                 'https://newsdata.io/api/1/latest?'
                 f'country={country}&'
                 f'category={category}&'
                 f'language={language}&'
                 'apikey=pub_4531191d2b63794a04ccbab7e0be40a2cc9dd'
+            )
+        elif not country or language:
+            url = (
+            'https://newsdata.io/api/1/latest?'
+            f'category={category}&'
+            f'language={language}&'
+            'apikey=pub_4531191d2b63794a04ccbab7e0be40a2cc9dd'
             )
         try:
             status = None
