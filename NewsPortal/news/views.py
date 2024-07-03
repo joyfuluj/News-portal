@@ -154,15 +154,15 @@ class SetCountryView(BaseNewsView):
     def get(self, request, country):
         request.session['country'] = country
         category = request.session.get('category', [])
-        language = request.session.get('language', [])
+        # language = request.session.get('language', [])
         if not category:
             category='top'
-        if not language:
-            language='en'
+        # if not language:
+        #     language='en'
         url = ('https://newsdata.io/api/1/latest?'
                f'country={country}&'
                f'category={category}&'
-               f'language={language}&'
+            #    f'language={language}&'
                'apikey=pub_4531191d2b63794a04ccbab7e0be40a2cc9dd')
         try:
             status = None
@@ -186,17 +186,23 @@ class SetCategoryView(BaseNewsView):
         request.session['category'] = category
         country = request.session.get('country', [])
         language = request.session.get('language', [])
-        if not country:
-            country='us'
         if not language:
             language='en'
-        url = (
+        if not country or language:
+            url = (
             'https://newsdata.io/api/1/latest?'
-            f'country={country}&'
             f'category={category}&'
             f'language={language}&'
             'apikey=pub_4531191d2b63794a04ccbab7e0be40a2cc9dd'
         )
+        else:
+            url = (
+                'https://newsdata.io/api/1/latest?'
+                f'country={country}&'
+                f'category={category}&'
+                f'language={language}&'
+                'apikey=pub_4531191d2b63794a04ccbab7e0be40a2cc9dd'
+            )
         try:
             status = None
             error = None
@@ -219,6 +225,9 @@ class SetLanguageView(BaseNewsView):
     def get(self, request, language):
         request.session['language'] = language
         category = request.session.get('category', [])
+        # country = request.session.get('country', [])
+        # if not country:
+        #     country='us'
         if not category:
             category='top'
         url = ('https://newsdata.io/api/1/latest?'
@@ -240,6 +249,38 @@ class SetLanguageView(BaseNewsView):
         except requests.exceptions.RequestException as e:
             logger.error(f"Request failed: {e}")
             return Response({'error': 'Failed to fetch data from the API.'}, status=500)
+        
+class QueryView(BaseNewsView):
+    def get(self, request):
+        query = request.GET.get('query')
+        request.session['query'] = query
+        # category = request.session.get('category', [])
+        # # language = request.session.get('language', [])
+        # if not category:
+        #     category='top'
+        # # if not language:
+        # #     language='en'
+        url = ('https://newsdata.io/api/1/latest?'
+               f'q={query}&'
+               'apikey=pub_4531191d2b63794a04ccbab7e0be40a2cc9dd')
+        try:
+            status = None
+            error = None
+            detail = self.getDetails(url) #list of dictionary
+            articles = {}
+            for i, news in enumerate(detail, 1):
+                articles[i] = news
+            if not articles:
+                status = True
+                error = "News Unavailable."
+            # return Response(detail)
+            return render(request, 'index.html', {'detail': articles, 'status': status, 'error': error,'category': 'query'})
+        except requests.exceptions.RequestException as e:
+            logger.error(f"Request failed: {e}")
+            return Response({'error': 'Failed to fetch data from the API.'}, status=500)
+
+
+
 
 
 class EndSessionView(BaseNewsView):
