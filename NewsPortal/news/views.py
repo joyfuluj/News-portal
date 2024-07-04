@@ -42,6 +42,12 @@ def signup_user(request):
         email=entered_email,
         password=entered_password,
     )
+    # user = User(
+    #     username=joyful,
+    #     email=joyful@yahoo.co.jp,
+    #     password='joyful123',
+    # )
+    
     user.save()
     
     user = User.objects.get(email=entered_email)
@@ -55,8 +61,7 @@ def signin_user(request):
     email = request.POST.get('email')
     password = request.POST.get('password')
 
-    user = User.objects.filter(email=email).first()
-    
+    user = User.objects.filter(email=email).first()    
     if user:
         if check_password(password, user.password):
             request.session['user_id'] = user.id
@@ -103,7 +108,54 @@ def change_email(request):
     
     request.session['username'] = username
 
-    return render(request, 'account.html', {'success': 'Email address has been changed.', 'user': user})
+    return render(request, 'account.html', {'success2': 'Password has been changed.', 'user': user})
+
+
+def add_to_bookmark(request):
+    if 'user_id' not in request.session:
+        return render(request, 'signin.html', {'error': 'Please sign in to bookmark.'})
+
+    if request.method == 'GET':
+        source = request.GET['source']
+        title = request.GET['title']
+        date_published = request.GET['date']
+        url = request.GET['url']
+        img_url = request.GET['img_url']
+        content = request.GET['content']
+
+        if not all([source, title, date_published, url, img_url, content]):
+            return JsonResponse({'error': 'Missing parameters.'}, status=400)
+
+        try:
+            date_obj = datetime.strptime(date_published, "%B %d, %Y")
+            date = date_obj.strftime("%Y-%m-%d")
+        except ValueError:
+            return JsonResponse({'error': 'Invalid date format.'}, status=400)
+
+        userid = request.session.get('user_id')
+        user = User.objects.get(id=userid)
+
+        bookmarks = Bookmark.objects.filter(user_id=userid, title=title, date_published=date).first()
+
+        if bookmarks:
+            bookmarks.delete()
+            return JsonResponse({'message': 'Deleted'})
+        else:
+            bookmark = Bookmark (
+                source=source,
+                title=title,
+                date_published=date,
+                url=url,
+                image_url=img_url,
+                content=content,
+                user=user,
+            )
+            bookmark.save()
+            data = {'message': title}
+            return JsonResponse(data)
+    else:
+        return JsonResponse({'message': 'Request method is not a GET'})
+
 
 
 def change_password(request):
@@ -129,53 +181,7 @@ def change_password(request):
     user.password = make_password(entered_password)
     user.save(update_fields=['password'])
     
-    return render(request, 'account.html', {'success2': 'Password has been changed.', 'user': user})
-
-
-def add_to_bookmark(request):
-    if 'user_id' not in request.session:
-        return render(request, 'signin.html', {'error': 'Please sign in to bookmark.'})
-    
-    if request.method == 'GET':
-        source = request.GET['source']
-        title = request.GET['title']
-        date_published = request.GET['date']
-        url = request.GET['url']
-        img_url = request.GET['img_url']
-        content = request.GET['content']
-        
-        if not all([source, title, date_published, url, img_url, content]):
-            return JsonResponse({'error': 'Missing parameters.'}, status=400)
-        
-        try:
-            date_obj = datetime.strptime(date_published, "%B %d, %Y")
-            date = date_obj.strftime("%Y-%m-%d")
-        except ValueError:
-            return JsonResponse({'error': 'Invalid date format.'}, status=400)
-        
-        userid = request.session.get('user_id')
-        user = User.objects.get(id=userid)
-        
-        bookmarks = Bookmark.objects.filter(user_id=userid, title=title, date_published=date).first()
-    
-        if bookmarks:
-            bookmarks.delete()
-            return JsonResponse({'message': 'Deleted'})
-        else:
-            bookmark = Bookmark (
-                source=source,
-                title=title,
-                date_published=date,
-                url=url,
-                image_url=img_url,
-                content=content,
-                user=user,
-            )
-            bookmark.save()
-            data = {'message': title}
-            return JsonResponse(data)
-    else:
-        return JsonResponse({'message': 'Request method is not a GET'})
+    return render(request, 'account.html', {'success2': 'Password has been changed.', 'user': user})    
 
 
 class IndexView(TemplateView):
@@ -293,14 +299,14 @@ class SetCategoryView(BaseNewsView):
         language = request.session.get('language', [])
         # if not language:
         #     language='en'
-        if country:
+        if country or not language:
             url = (
                 'https://newsdata.io/api/1/latest?'
                 f'country={country}&'
                 f'category={category}&'
                 'apikey=pub_4531191d2b63794a04ccbab7e0be40a2cc9dd'
             )
-        elif not country or language:
+        else:
             url = (
             'https://newsdata.io/api/1/latest?'
             f'category={category}&'
