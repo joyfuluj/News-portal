@@ -26,4 +26,5 @@ urlpatterns = [
     path('account-setting', views.account_setting),
     path('change-email', views.change_email),
     path('change-pass', views.change_password),
+    path('bookmark', views.add_to_bookmark, name='bookmark'),
 ]
