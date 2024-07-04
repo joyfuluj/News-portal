@@ -8,7 +8,7 @@ from rest_framework.response import Response
 from datetime import datetime
 from django.shortcuts import redirect
 from django.urls import reverse
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.core.cache import cache
 from .models import User, Bookmark
 from django.contrib.auth.hashers import make_password, check_password
@@ -37,17 +37,11 @@ def signup_user(request):
     if users:
         return render(request, 'signup.html', {'error': 'Email already exists.'})
     
-    user = User(
+    user = User (
         username=entered_email.split('@')[0],
         email=entered_email,
         password=entered_password,
     )
-    # user = User(
-    #     username=joyful,
-    #     email=joyful@yahoo.co.jp,
-    #     password='joyful123',
-    # )
-    
     user.save()
     
     user = User.objects.get(email=entered_email)
@@ -61,7 +55,7 @@ def signin_user(request):
     email = request.POST.get('email')
     password = request.POST.get('password')
 
-    user = User.objects.get(email=email)
+    user = User.objects.filter(email=email).first()
     
     if user:
         if check_password(password, user.password):
@@ -135,7 +129,53 @@ def change_password(request):
     user.password = make_password(entered_password)
     user.save(update_fields=['password'])
     
-    return render(request, 'account.html', {'success2': 'Password has been changed.', 'user': user})    
+    return render(request, 'account.html', {'success2': 'Password has been changed.', 'user': user})
+
+
+def add_to_bookmark(request):
+    if 'user_id' not in request.session:
+        return render(request, 'signin.html', {'error': 'Please sign in to bookmark.'})
+    
+    if request.method == 'GET':
+        source = request.GET['source']
+        title = request.GET['title']
+        date_published = request.GET['date']
+        url = request.GET['url']
+        img_url = request.GET['img_url']
+        content = request.GET['content']
+        
+        if not all([source, title, date_published, url, img_url, content]):
+            return JsonResponse({'error': 'Missing parameters.'}, status=400)
+        
+        try:
+            date_obj = datetime.strptime(date_published, "%B %d, %Y")
+            date = date_obj.strftime("%Y-%m-%d")
+        except ValueError:
+            return JsonResponse({'error': 'Invalid date format.'}, status=400)
+        
+        userid = request.session.get('user_id')
+        user = User.objects.get(id=userid)
+        
+        bookmarks = Bookmark.objects.filter(user_id=userid, title=title, date_published=date).first()
+    
+        if bookmarks:
+            bookmarks.delete()
+            return JsonResponse({'message': 'Deleted'})
+        else:
+            bookmark = Bookmark (
+                source=source,
+                title=title,
+                date_published=date,
+                url=url,
+                image_url=img_url,
+                content=content,
+                user=user,
+            )
+            bookmark.save()
+            data = {'message': title}
+            return JsonResponse(data)
+    else:
+        return JsonResponse({'message': 'Request method is not a GET'})
 
 
 class IndexView(TemplateView):

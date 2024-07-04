@@ -211,7 +211,7 @@ a {
 }
 
 .card.card-large .description {
-    -webkit-line-clamp: 6;
+    -webkit-line-clamp: 7;
     font-size: 16px;
 }
 
@@ -225,15 +225,21 @@ a {
     justify-content: flex-end;
 }
 
-/* .favorite {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
+.bookmark {
+    border: none;
+    background-color: white;
+    padding: 0;
+    margin: 0;
 }
 
-.ri-heart-fill {
+.bookmark:hover, .bookmark:hover {
+    transform: scale(1.5);
+}
+
+.ri-heart-line, .ri-heart-fill {
     color: red;
-} */
+}
+
 
 /* rightside bar */
 #rightside-bar .nav {
