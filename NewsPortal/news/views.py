@@ -160,12 +160,13 @@ def add_to_bookmark(request):
         source = request.GET.get('source')
         title = request.GET.get('title')
         date_published = request.GET.get('date')
+        country = request.GET.get('country')
         url = request.GET.get('url')
         img_url = request.GET.get('img_url')
         content = request.GET.get('content')
         
         # check if all the field is obtained
-        if not all([source, title, date_published, url, img_url, content]):
+        if not all([source, title, date_published, country, url, img_url, content]):
             return JsonResponse({'error': 'Missing parameters.'}, status=400)
         
         # convert the date format
@@ -192,6 +193,7 @@ def add_to_bookmark(request):
                 source=source,
                 title=title,
                 date_published=date,
+                country = country,
                 url=url,
                 image_url=img_url,
                 content=content,
