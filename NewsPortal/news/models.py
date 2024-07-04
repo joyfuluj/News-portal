@@ -24,6 +24,7 @@ class Bookmark(models.Model):
     source = models.CharField(max_length=100)
     title = models.CharField(max_length=100)
     date_published = models.DateField(null=True, blank=True, default=None)
+    country = models.CharField(max_length=100)
     url = models.URLField(max_length=200)
     image_url = models.URLField(max_length=200)
     content = models.TextField()
