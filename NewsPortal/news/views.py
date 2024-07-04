@@ -29,14 +29,17 @@ def signup_user(request):
     entered_password = request.POST.get('new-password')
     con_password = request.POST.get('con-password')
     
+    # check if the password matches
     if entered_password != con_password:
         return render(request, 'signup.html', {'error': 'Password doesn\'t match.'})
     
+    # find a user with the email address
     users = User.objects.filter(email=entered_email).first()
     
     if users:
         return render(request, 'signup.html', {'error': 'Email already exists.'})
     
+    # register the user
     user = User (
         username=entered_email.split('@')[0],
         email=entered_email,
@@ -47,9 +50,9 @@ def signup_user(request):
     #     email=joyful@yahoo.co.jp,
     #     password='joyful123',
     # )
-    
     user.save()
     
+    # save the user id and username in the session
     user = User.objects.get(email=entered_email)
     request.session['user_id'] = user.id
     request.session['username'] = user.username
@@ -60,17 +63,22 @@ def signup_user(request):
 def signin_user(request):
     email = request.POST.get('email')
     password = request.POST.get('password')
-
-    user = User.objects.filter(email=email).first()    
-    if user:
-        if check_password(password, user.password):
-            request.session['user_id'] = user.id
-            request.session['username'] = user.username
-            return redirect('news_api')
-        else:
-            return render(request, 'signin.html', {'error': 'Password is wrong.'})
-    else:
+    
+    # find the user with email address
+    user = User.objects.filter(email=email).first()
+    
+    if not user:
         return render(request, 'signin.html', {'error': 'Email doesn\'t exist.'})
+    
+    # check the password
+    if not check_password(password, user.password):
+        return render(request, 'signin.html', {'error': 'Password is wrong.'})
+    
+    # save the user id and username in the session
+    request.session['user_id'] = user.id
+    request.session['username'] = user.username
+    
+    return redirect('news_api')
 
 
 def account_setting(request):
@@ -86,17 +94,21 @@ def account_setting(request):
 def change_email(request):
     entered_email = request.POST.get('email')
     
+    # check if email is blank
     if entered_email == '':
         return render(request, 'account.html', {'error': 'Please enter an email address.'})
-
+    
+    # check if email is valid
     if not valid(entered_email):
         return render(request, 'account.html', {'error': 'Please enter a valid email address.'})
     
+    # find a user with the same email
     same_email = User.objects.filter(email=entered_email).first()
     
     if same_email:
         return render(request, 'account.html', {'error': 'Entered email address is used.'})
     
+    # find a user with user id and change the email address (and also the username)
     userid = request.session.get('user_id')
     user = User.objects.get(id=userid)
 
@@ -106,56 +118,10 @@ def change_email(request):
     
     user.save(update_fields=['email', 'username'])
     
+    # save the username in the session
     request.session['username'] = username
 
-    return render(request, 'account.html', {'success2': 'Password has been changed.', 'user': user})
-
-
-def add_to_bookmark(request):
-    if 'user_id' not in request.session:
-        return render(request, 'signin.html', {'error': 'Please sign in to bookmark.'})
-
-    if request.method == 'GET':
-        source = request.GET['source']
-        title = request.GET['title']
-        date_published = request.GET['date']
-        url = request.GET['url']
-        img_url = request.GET['img_url']
-        content = request.GET['content']
-
-        if not all([source, title, date_published, url, img_url, content]):
-            return JsonResponse({'error': 'Missing parameters.'}, status=400)
-
-        try:
-            date_obj = datetime.strptime(date_published, "%B %d, %Y")
-            date = date_obj.strftime("%Y-%m-%d")
-        except ValueError:
-            return JsonResponse({'error': 'Invalid date format.'}, status=400)
-
-        userid = request.session.get('user_id')
-        user = User.objects.get(id=userid)
-
-        bookmarks = Bookmark.objects.filter(user_id=userid, title=title, date_published=date).first()
-
-        if bookmarks:
-            bookmarks.delete()
-            return JsonResponse({'message': 'Deleted'})
-        else:
-            bookmark = Bookmark (
-                source=source,
-                title=title,
-                date_published=date,
-                url=url,
-                image_url=img_url,
-                content=content,
-                user=user,
-            )
-            bookmark.save()
-            data = {'message': title}
-            return JsonResponse(data)
-    else:
-        return JsonResponse({'message': 'Request method is not a GET'})
-
+    return render(request, 'account.html', {'success': 'Email address has been changed.', 'user': user})
 
 
 def change_password(request):
@@ -163,6 +129,7 @@ def change_password(request):
     entered_password = request.POST.get('new-password')
     con_password = request.POST.get('con-password')
     
+    # check if password is blank
     if old_password == '' or entered_password == '' or con_password == '':
         return render(request, 'account.html', {'error2': 'Please enter all the password field.'})
     
@@ -182,6 +149,58 @@ def change_password(request):
     user.save(update_fields=['password'])
     
     return render(request, 'account.html', {'success2': 'Password has been changed.', 'user': user})    
+
+
+def add_to_bookmark(request):
+    if 'user_id' not in request.session:
+        return render(request, 'signin.html', {'error': 'Please sign in to bookmark.'})
+    
+    if request.method == 'GET':
+        # get the info of the news
+        source = request.GET.get('source')
+        title = request.GET.get('title')
+        date_published = request.GET.get('date')
+        url = request.GET.get('url')
+        img_url = request.GET.get('img_url')
+        content = request.GET.get('content')
+        
+        # check if all the field is obtained
+        if not all([source, title, date_published, url, img_url, content]):
+            return JsonResponse({'error': 'Missing parameters.'}, status=400)
+        
+        # convert the date format
+        try:
+            date_obj = datetime.strptime(date_published, "%B %d, %Y")
+            date = date_obj.strftime("%Y-%m-%d")
+        except ValueError:
+            return JsonResponse({'error': 'Invalid date format.'}, status=400)
+        
+        # find the user with user id
+        userid = request.session.get('user_id')
+        user = User.objects.get(id=userid)
+        
+        # check if the bookmark already exist with the user
+        bookmarks = Bookmark.objects.filter(user_id=userid, title=title, date_published=date).first()
+        
+        if bookmarks:
+            # delete the bookmark if found
+            bookmarks.delete()
+            return JsonResponse({'message': 'Deleted'})
+        else:
+            # add to the bookmark
+            bookmark = Bookmark (
+                source=source,
+                title=title,
+                date_published=date,
+                url=url,
+                image_url=img_url,
+                content=content,
+                user=user,
+            )
+            bookmark.save()
+            return JsonResponse({'message': title})
+    else:
+        return JsonResponse({'error': 'Request method is not a GET.'}, status=400)
 
 
 class IndexView(TemplateView):
@@ -244,7 +263,7 @@ class BaseNewsView(APIView):
 class NewsportalView(BaseNewsView):
     template_name = 'index.html'
     def get(self, request):
-        request.session.flush()
+        # request.session.flush()
         url = ('https://newsdata.io/api/1/latest?'
                'category=top&'
                'language=en&'

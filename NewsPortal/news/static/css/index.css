@@ -177,7 +177,7 @@ a {
     -webkit-line-clamp: 2;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    font-weight: 1000;
+    font-weight: 700;
 }
 
 .card.card-large .title {

@@ -2046,7 +2046,7 @@
                         },
                         success: function(data) {
                             var $heart = $this.find("i");
-                            if (data.message == "Deleted" || data.message == none) {
+                            if (data.message == "Deleted") {
                                 $heart.removeClass("ri-heart-fill").addClass("ri-heart-line");
                             } else {
                                 $heart.removeClass("ri-heart-line").addClass("ri-heart-fill");
