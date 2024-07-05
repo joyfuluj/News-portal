@@ -447,7 +447,9 @@ class QueryView(BaseNewsView):
                 status = True
                 error = "News Unavailable."
             # return Response(detail)
-            return render(request, 'index.html', {'detail': articles, 'status': status, 'error': error,'category': 'query'})
+            userid = request.session.get('user_id')
+            username = request.session.get('username')
+            return render(request, 'index.html', {'detail': articles, 'status': status, 'error': error,'category': 'query', 'username': username, 'user_id': userid})
         except requests.exceptions.RequestException as e:
             logger.error(f"Request failed: {e}")
             return Response({'error': 'Failed to fetch data from the API.'}, status=500)
