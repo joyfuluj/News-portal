@@ -265,7 +265,9 @@ class BaseNewsView(APIView):
 class NewsportalView(BaseNewsView):
     template_name = 'index.html'
     def get(self, request):
-        # request.session.flush()
+        request.session.pop('country', None)
+        request.session.pop('category', None)
+        request.session.pop('language', None)
         url = ('https://newsdata.io/api/1/latest?'
                'category=top&'
                'language=en&'
