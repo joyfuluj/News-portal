@@ -1,13 +1,10 @@
 from django.shortcuts import render
-import json
 import requests
 import logging
-from django.views.generic import TemplateView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from datetime import datetime
 from django.shortcuts import redirect
-from django.urls import reverse
 from django.http import HttpResponseRedirect, JsonResponse
 from django.core.cache import cache
 from .models import User, Bookmark
@@ -21,8 +18,6 @@ logger = logging.getLogger(__name__)
 
 # Create your views here.
 
-# def index(request):
-#     return HttpResponse("Hello, world. You're at the polls index.")
 
 def signup_user(request):
     entered_email = request.POST.get('email')
@@ -205,19 +200,6 @@ def add_to_bookmark(request):
         return JsonResponse({'error': 'Request method is not a GET.'}, status=400)
 
 
-class IndexView(TemplateView):
-    template_name = 'index.html'
-
-class SigninView(TemplateView):
-    template_name = 'signin.html'
-
-class SignupView(TemplateView):
-    template_name = 'signup.html'
-
-class AccountView(TemplateView):
-    template_name = 'account.html'
-
-
 class BaseNewsView(APIView):
     def getDetails(self, url):
         cache_key = f"news_{url}"
@@ -266,13 +248,14 @@ class BaseNewsView(APIView):
 class NewsportalView(BaseNewsView):
     template_name = 'index.html'
     def get(self, request):
+        apikey = "pub_4531191d2b63794a04ccbab7e0be40a2cc9dd"
         request.session.pop('country', None)
         request.session.pop('category', None)
         request.session.pop('language', None)
         url = ('https://newsdata.io/api/1/latest?'
                'category=top&'
                'language=en&'
-               'apikey=pub_4531191d2b63794a04ccbab7e0be40a2cc9dd')
+               f'apikey={apikey}')
         try:
             detail = self.getDetails(url) #list of dictionary
             articles = {}
@@ -289,6 +272,7 @@ class NewsportalView(BaseNewsView):
     
 class SetCountryView(BaseNewsView):
     def get(self, request, country):
+        apikey = "pub_4531191d2b63794a04ccbab7e0be40a2cc9dd"
         request.session['country'] = country
         category = request.session.get('category', [])
         if not category:
@@ -296,7 +280,7 @@ class SetCountryView(BaseNewsView):
         url = ('https://newsdata.io/api/1/latest?'
                f'country={country}&'
                f'category={category}&'
-               'apikey=pub_4531191d2b63794a04ccbab7e0be40a2cc9dd')
+               f'apikey={apikey}')
         try:
             status = None
             error = None
@@ -318,6 +302,7 @@ class SetCountryView(BaseNewsView):
 
 class SetCategoryView(BaseNewsView):
     def get(self, request, category):
+        apikey = "pub_4531191d2b63794a04ccbab7e0be40a2cc9dd"
         request.session['category'] = category
         country = request.session.get('country', [])
         language = request.session.get('language', [])
@@ -328,20 +313,20 @@ class SetCategoryView(BaseNewsView):
                 'https://newsdata.io/api/1/latest?'
                 f'country={country}&'
                 f'category={category}&'
-                'apikey=pub_4531191d2b63794a04ccbab7e0be40a2cc9dd'
+                f'apikey={apikey}'
             )
         elif not language:
             url = (
                 'https://newsdata.io/api/1/latest?'
                 f'category={category}&'
-                'apikey=pub_4531191d2b63794a04ccbab7e0be40a2cc9dd'
+                f'apikey={apikey}'
             )
         else:
             url = (
             'https://newsdata.io/api/1/latest?'
             f'category={category}&'
             f'language={language}&'
-            'apikey=pub_4531191d2b63794a04ccbab7e0be40a2cc9dd'
+            f'apikey={apikey}'
             )
         try:
             status = None
@@ -365,6 +350,7 @@ class SetCategoryView(BaseNewsView):
 
 class SetLanguageView(BaseNewsView):
     def get(self, request, language):
+        apikey = "pub_4531191d2b63794a04ccbab7e0be40a2cc9dd"
         request.session['language'] = language
         category = request.session.get('category', [])
         # country = request.session.get('country', [])
@@ -375,7 +361,7 @@ class SetLanguageView(BaseNewsView):
         url = ('https://newsdata.io/api/1/latest?'
                f'category={category}&'
                f'language={language}&'
-               'apikey=pub_4531191d2b63794a04ccbab7e0be40a2cc9dd')
+               f'apikey={apikey}')
         try:
             status = None
             error = None
@@ -440,6 +426,7 @@ class BookmarkView(BaseNewsView):
 
 class QueryView(BaseNewsView):
     def get(self, request):
+        apikey = "pub_4531191d2b63794a04ccbab7e0be40a2cc9dd"
         query = request.GET.get('query')
         request.session['query'] = query
         # category = request.session.get('category', [])
@@ -450,7 +437,7 @@ class QueryView(BaseNewsView):
         # #     language='en'
         url = ('https://newsdata.io/api/1/latest?'
                f'q={query}&'
-               'apikey=pub_4531191d2b63794a04ccbab7e0be40a2cc9dd')
+               f'apikey={apikey}')
         try:
             status = None
             error = None
