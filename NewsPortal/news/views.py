@@ -475,43 +475,6 @@ class EndSessionView(BaseNewsView):
         return HttpResponseRedirect('/home')
 
 
-class FilterView(BaseNewsView):
-    def get(self, request, country, category, language):
-        url = ('https://newsdata.io/api/1/latest?'
-               f'country={country}&'
-               f'category={category}&'
-               f'language={language}&'
-               'apikey=pub_4531191d2b63794a04ccbab7e0be40a2cc9dd')
-        try:
-            detail = self.getDetails(url)
-            return Response(detail)
-        except requests.exceptions.RequestException as e:
-            logger.error(f"Request failed: {e}")
-            return Response({'error': 'Failed to fetch data from the API.'}, status=500)
-
-
-class FilteredNewsView(BaseNewsView):
-    def get(self, request):
-        countries = request.GET.getlist('country')
-        categories = request.GET.getlist('category')
-        languages = request.GET.getlist('language')
-        
-        if not countries or not categories or not languages:
-            # Handle the case where no checkboxes are selected
-            return redirect('home')  # Adjust as needed
-        
-        countries_param = ','.join(countries)
-        categories_param = ','.join(categories)
-        languages_param = ','.join(languages)
-        
-        url = reverse('filter_api', kwargs={
-            'country': countries_param,
-            'category': categories_param,
-            'language': languages_param,
-        })
-        
-        return redirect(url)
-
 
 def valid(email):
     regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b'
