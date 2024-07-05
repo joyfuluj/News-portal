@@ -1,9 +1,11 @@
 from django.urls import path
 from . import views
-from .views import NewsportalView, SetCountryView, SetCategoryView, SetLanguageView, BookmarkView, EndSessionView, QueryView
+from .views import SigninView, SignupView, NewsportalView, SetCountryView, SetCategoryView, SetLanguageView, BookmarkView, EndSessionView, QueryView
 
 urlpatterns = [
     path('', NewsportalView.as_view(), name='news_api'),
+    path('signin', SigninView.as_view()),
+    path('signup', SignupView.as_view()),
     path('home', NewsportalView.as_view(), name='news_api'),
     path('home/country/<str:country>/', SetCountryView.as_view(), name='country_api'),
     path('home/category/<str:category>', SetCategoryView.as_view(), name='category_api'),

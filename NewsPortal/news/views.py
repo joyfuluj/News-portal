@@ -1,6 +1,7 @@
 from django.shortcuts import render
 import requests
 import logging
+from django.views.generic import TemplateView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from datetime import datetime
@@ -17,6 +18,12 @@ logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 # Create your views here.
+
+class SigninView(TemplateView):
+    template_name = 'signin.html'
+
+class SignupView(TemplateView):
+    template_name = 'signup.html'
 
 
 def signup_user(request):
@@ -353,9 +360,6 @@ class SetLanguageView(BaseNewsView):
         apikey = "pub_4531191d2b63794a04ccbab7e0be40a2cc9dd"
         request.session['language'] = language
         category = request.session.get('category', [])
-        # country = request.session.get('country', [])
-        # if not country:
-        #     country='us'
         if not category:
             category='top'
         url = ('https://newsdata.io/api/1/latest?'
@@ -429,12 +433,6 @@ class QueryView(BaseNewsView):
         apikey = "pub_4531191d2b63794a04ccbab7e0be40a2cc9dd"
         query = request.GET.get('query')
         request.session['query'] = query
-        # category = request.session.get('category', [])
-        # # language = request.session.get('language', [])
-        # if not category:
-        #     category='top'
-        # # if not language:
-        # #     language='en'
         url = ('https://newsdata.io/api/1/latest?'
                f'q={query}&'
                f'apikey={apikey}')
