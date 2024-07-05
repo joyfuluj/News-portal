@@ -1930,12 +1930,218 @@
                             {% endif %}
                         </div>
                         <input type="radio" name="tab-name" id="tab8" {% if category == 'bookmark' %}checked{% endif %}>
-                        <label class="tab" for="tab8">Bookmark</label>
+                        <label class="tab" for="tab8" onclick="redirectToUrl('/home/bookmark')">Bookmark</label>
                         <div class="content">
                             {% if status %}
                             <h1>{{error}}</h1>
+                            {% else %}
+                            {% if category == 'bookmark' %}
+                            <div class="cards">
+                                <div id="cd-1" href="#">
+                                    <div class="card">
+                                        {% if detail.1.image_url %}
+                                            <img src="{{ detail.1.image_url }}" alt="image">
+                                        {% else %}
+                                            <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                        {% endif %}
+                                        <div class="card-content">
+                                            <div class="src-container">
+                                                <div class="source">{{ detail.1.source }}</div>
+                                                <hr class="dot">
+                                                <div class="country">{{ detail.1.country }}</div>
+                                            </div>
+                                            <div class="title">{{ detail.1.title }}</div>
+                                            <div class="description">{{ detail.1.description }}</div>
+                                            <div class="date">{{ detail.1.date_published }}&ensp;
+                                                <button class="bookmark" data-src="{{ detail.1.source }}" data-title="{{ detail.1.title }}" data-date="{{ detail.1.date_published }}"
+                                                    data-country="{{ detail.1.country }}" data-url="{{ detail.1.url }}" data-img="{{ detail.1.image_url }}" data-content="{{ detail.1.description }}">
+                                                    <i class="ri-heart-fill"></i>
+                                                </button>
+                                            </div>
+                                            {% comment %} <div id="ajax-response">あとで消す</div> {% endcomment %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="cd-2" href="#">
+                                    <div class="card">
+                                        {% if detail.2.image_url %}
+                                            <img src="{{ detail.2.image_url }}" alt="image">
+                                        {% else %}
+                                            <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                        {% endif %}
+                                        <div class="card-content">
+                                            <div class="src-container">
+                                                <div class="source">{{ detail.2.source }}</div>
+                                                <hr class="dot">
+                                                <div class="country">{{ detail.2.country }}</div>
+                                            </div>
+                                            <div class="title">{{ detail.2.title }}</div>
+                                            <div class="description">{{ detail.2.description }}</div>
+                                            <div class="date">{{ detail.2.date_published }}&ensp;
+                                                <button class="bookmark" data-src="{{ detail.2.source }}" data-title="{{ detail.2.title }}" data-date="{{ detail.2.date_published }}"
+                                                    data-country="{{ detail.2.country }}" data-url="{{ detail.2.url }}" data-img="{{ detail.2.image_url }}" data-content="{{ detail.2.description }}">
+                                                    <i class="ri-heart-fill"></i>
+                                                </button>
+                                            </div>
+                                            {% comment %} <div id="ajax-response">あとで消す</div> {% endcomment %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="cd-3" href="#">
+                                    <div class="card">
+                                        {% if detail.3.image_url %}
+                                            <img src="{{ detail.3.image_url }}" alt="image">
+                                        {% else %}
+                                            <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                        {% endif %}
+                                        <div class="card-content">
+                                            <div class="src-container">
+                                                <div class="source">{{ detail.3.source }}</div>
+                                                <hr class="dot">
+                                                <div class="country">{{ detail.3.country }}</div>
+                                            </div>
+                                            <div class="title">{{ detail.3.title }}</div>
+                                            <div class="description">{{ detail.3.description }}</div>
+                                            <div class="date">{{ detail.3.date_published }}&ensp;
+                                                <button class="bookmark" data-src="{{ detail.3.source }}" data-title="{{ detail.3.title }}" data-date="{{ detail.3.date_published }}"
+                                                    data-country="{{ detail.3.country }}" data-url="{{ detail.3.url }}" data-img="{{ detail.3.image_url }}" data-content="{{ detail.3.description }}">
+                                                    <i class="ri-heart-fill"></i>
+                                                </button>
+                                            </div>
+                                            {% comment %} <div id="ajax-response">あとで消す</div> {% endcomment %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="cd-4" href="#">
+                                    <div class="card">
+                                        {% if detail.4.image_url %}
+                                            <img src="{{ detail.4.image_url }}" alt="image">
+                                        {% else %}
+                                            <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                        {% endif %}
+                                        <div class="card-content">
+                                            <div class="src-container">
+                                                <div class="source">{{ detail.4.source }}</div>
+                                                <hr class="dot">
+                                                <div class="country">{{ detail.4.country }}</div>
+                                            </div>
+                                            <div class="title">{{ detail.4.title }}</div>
+                                            <div class="description">{{ detail.4.description }}</div>
+                                            <div class="date">{{ detail.4.date_published }}&ensp;
+                                                <button class="bookmark" data-src="{{ detail.4.source }}" data-title="{{ detail.4.title }}" data-date="{{ detail.4.date_published }}"
+                                                    data-country="{{ detail.4.country }}" data-url="{{ detail.4.url }}" data-img="{{ detail.4.image_url }}" data-content="{{ detail.4.description }}">
+                                                    <i class="ri-heart-fill"></i>
+                                                </button>
+                                            </div>
+                                            {% comment %} <div id="ajax-response">あとで消す</div> {% endcomment %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cards">
+                                <div id="cd-1" href="#">
+                                    <div class="card">
+                                        {% if detail.5.image_url %}
+                                            <img src="{{ detail.5.image_url }}" alt="image">
+                                        {% else %}
+                                            <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                        {% endif %}
+                                        <div class="card-content">
+                                            <div class="src-container">
+                                                <div class="source">{{ detail.5.source }}</div>
+                                                <hr class="dot">
+                                                <div class="country">{{ detail.5.country }}</div>
+                                            </div>
+                                            <div class="title">{{ detail.5.title }}</div>
+                                            <div class="description">{{ detail.5.description }}</div>
+                                            <div class="date">{{ detail.5.date_published }}&ensp;
+                                                <button class="bookmark" data-src="{{ detail.5.source }}" data-title="{{ detail.5.title }}" data-date="{{ detail.5.date_published }}"
+                                                    data-country="{{ detail.5.country }}" data-url="{{ detail.5.url }}" data-img="{{ detail.5.image_url }}" data-content="{{ detail.5.description }}">
+                                                    <i class="ri-heart-fill"></i>
+                                                </button>
+                                            </div>
+                                            {% comment %} <div id="ajax-response">あとで消す</div> {% endcomment %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="cd-2" href="#">
+                                    <div class="card">
+                                        {% if detail.6.image_url %}
+                                            <img src="{{ detail.6.image_url }}" alt="image">
+                                        {% else %}
+                                            <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                        {% endif %}
+                                        <div class="card-content">
+                                            <div class="src-container">
+                                                <div class="source">{{ detail.6.source }}</div>
+                                                <hr class="dot">
+                                                <div class="country">{{ detail.6.country }}</div>
+                                            </div>
+                                            <div class="title">{{ detail.6.title }}</div>
+                                            <div class="description">{{ detail.6.description }}</div>
+                                            <div class="date">{{ detail.6.date_published }}&ensp;
+                                                <button class="bookmark" data-src="{{ detail.6.source }}" data-title="{{ detail.6.title }}" data-date="{{ detail.6.date_published }}"
+                                                    data-country="{{ detail.6.country }}" data-url="{{ detail.6.url }}" data-img="{{ detail.6.image_url }}" data-content="{{ detail.6.description }}">
+                                                    <i class="ri-heart-fill"></i>
+                                                </button>
+                                            </div>
+                                            {% comment %} <div id="ajax-response">あとで消す</div> {% endcomment %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="cd-3" href="#">
+                                    <div class="card">
+                                        {% if detail.7.image_url %}
+                                            <img src="{{ detail.7.image_url }}" alt="image">
+                                        {% else %}
+                                            <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                        {% endif %}
+                                        <div class="card-content">
+                                            <div class="src-container">
+                                                <div class="source">{{ detail.7.source }}</div>
+                                                <hr class="dot">
+                                                <div class="country">{{ detail.7.country }}</div>
+                                            </div>
+                                            <div class="title">{{ detail.7.title }}</div>
+                                            <div class="description">{{ detail.7.description }}</div>
+                                            <div class="date">{{ detail.7.date_published }}&ensp;
+                                                <button class="bookmark" data-src="{{ detail.7.source }}" data-title="{{ detail.7.title }}" data-date="{{ detail.7.date_published }}"
+                                                    data-country="{{ detail.7.country }}" data-url="{{ detail.7.url }}" data-img="{{ detail.7.image_url }}" data-content="{{ detail.7.description }}">
+                                                    <i class="ri-heart-fill"></i>
+                                                </button>
+                                            </div>
+                                            {% comment %} <div id="ajax-response">あとで消す</div> {% endcomment %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="cd-4" href="#">
+                                    <div class="card">
+                                        {% if detail.8.image_url %}
+                                            <img src="{{ detail.8.image_url }}" alt="image">
+                                        {% else %}
+                                            <img src="https://www.albertadoctors.org/images/ama-master/feature/Stock%20photos/News.jpg" alt="image" >
+                                        {% endif %}
+                                        <div class="card-content">
+                                            <div class="src-container">
+                                                <div class="source">{{ detail.8.source }}</div>
+                                                <hr class="dot">
+                                                <div class="country">{{ detail.8.country }}</div>
+                                            </div>
+                                            <div class="title">{{ detail.8.title }}</div>
+                                            <div class="description">{{ detail.8.description }}</div>
+                                            <div class="date">{{ detail.8.date_published }}&ensp;
+                                                <button class="bookmark" data-src="{{ detail.8.source }}" data-title="{{ detail.8.title }}" data-date="{{ detail.8.date_published }}"
+                                                    data-country="{{ detail.8.country }}" data-url="{{ detail.8.url }}" data-img="{{ detail.8.image_url }}" data-content="{{ detail.8.description }}">
+                                                    <i class="ri-heart-fill"></i>
+                                                </button>
+                                            </div>
+                                            {% comment %} <div id="ajax-response">あとで消す</div> {% endcomment %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             {% endif %}
-                            <p>タブ8のコンテンツを表示します</p>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -2023,7 +2229,6 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>
-            /* var bookmarkUrl = "{% url 'bookmark' %}"; */
             $(document).ready(function() {
                 $(document).on("click", ".bookmark", function() {
                     var $this = $(this);

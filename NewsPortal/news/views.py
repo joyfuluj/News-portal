@@ -262,6 +262,7 @@ class BaseNewsView(APIView):
         cache.set(cache_key, detail_list, timeout=3600)
         return detail_list
 
+
 class NewsportalView(BaseNewsView):
     template_name = 'index.html'
     def get(self, request):
@@ -390,7 +391,51 @@ class SetLanguageView(BaseNewsView):
         except requests.exceptions.RequestException as e:
             logger.error(f"Request failed: {e}")
             return Response({'error': 'Failed to fetch data from the API.'}, status=500)
+
+
+class BookmarkView(BaseNewsView):
+    def get(self, request):
+        category = 'bookmark'
         
+        status = None
+        error = None
+        
+        articles = {}
+        
+        if 'user_id' not in request.session:
+            status = True
+            error = "Sign in to use bookmark feature."
+            return render(request, 'index.html', {'detail': articles, 'status': status, 'error': error,'category': category})
+        
+        userid = request.session.get('user_id')
+        username = request.session.get('username')
+        user = User.objects.get(id=userid)
+        
+        bookmark_list = Bookmark.objects.filter(user=user)
+        news_list = []
+        
+        for bookmark in bookmark_list:
+            detail = {
+                'source': bookmark.source,
+                'title': bookmark.title,
+                'url': bookmark.url,
+                'image_url': bookmark.image_url,
+                'description': bookmark.content,
+                'date_published': bookmark.date_published,
+                'country': bookmark.country
+            }
+            news_list.append(detail)
+        
+        for i, news in enumerate(news_list, 1):
+            articles[i] = news
+        
+        if not articles:
+            status = True
+            error = "News Unavailable."
+        
+        return render(request, 'index.html', {'detail': articles, 'status': status, 'error': error,'category': category, 'username': username, 'user_id': userid})
+
+
 class QueryView(BaseNewsView):
     def get(self, request):
         query = request.GET.get('query')
@@ -419,9 +464,6 @@ class QueryView(BaseNewsView):
         except requests.exceptions.RequestException as e:
             logger.error(f"Request failed: {e}")
             return Response({'error': 'Failed to fetch data from the API.'}, status=500)
-
-
-
 
 
 class EndSessionView(BaseNewsView):
