@@ -8,4 +8,4 @@ See details: [ChronoScope Documentation]()
 
 Website at a glance: <https://youtu.be/K-PTAUvCrZ4>
 
-![main page](NewsPortal/main.png)
+![main page](main.png)
