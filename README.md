@@ -1,5 +1,13 @@
 # News Portal Website
 
+Watch Me! 👉 [Demo](https://youtu.be/K-PTAUvCrZ4)
+
+![main page](main.png)
+
+## Full Documentation
+
+[ChronoScope](https://github.com/joyfuluj/News-portal/blob/master/ChronoScope%20Documentation.pdf)
+
 ## Overview
 
 The News-Portal website is a web application designed to provide users with news from around the world. Users can select a country to view news specific to that region and choose a language to view the news in some countries. This application aims to increase interest in global events and deepen users' knowledge of current happenings worldwide.
@@ -31,11 +39,3 @@ The News-Portal website is a web application designed to provide users with news
 ### API Integration
 
 - News API: To fetch real-time news articles based on user-selected countries and languages.
-
-## Final Product
-
-See details: [ChronoScope Documentation](https://github.com/joyfuluj/News-portal/blob/master/ChronoScope%20Documentation.pdf)
-
-Website at a glance: <https://youtu.be/K-PTAUvCrZ4>
-
-![main page](main.png)
